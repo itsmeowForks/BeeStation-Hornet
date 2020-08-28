@@ -84,9 +84,7 @@
 	buckled_mobs |= M
 	M.update_mobility()
 	M.throw_alert("buckled", /atom/movable/screen/alert/restrained/buckled)
-	/*
 	M.set_glide_size(glide_size)
-	*/
 
 	//Something has unbuckled us
 	if(!M.buckled)

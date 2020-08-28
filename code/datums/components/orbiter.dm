@@ -69,6 +69,8 @@
 	orbiters[orbiter] = TRUE
 	orbiter.orbiting = src
 	RegisterSignal(orbiter, COMSIG_MOVABLE_MOVED, PROC_REF(orbiter_move_react))
+	RegisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, PROC_REF(orbiter_glide_size_update))
+
 	SEND_SIGNAL(parent, COMSIG_ATOM_ORBIT_BEGIN, orbiter)
 	var/matrix/initial_transform = matrix(orbiter.transform)
 	orbiters[orbiter] = initial_transform
@@ -88,6 +90,13 @@
 
 	orbiter.SpinAnimation(rotation_speed, -1, clockwise, rotation_segments, parallel = FALSE)
 
+	if(ismob(orbiter))
+		var/mob/orbiter_mob = orbiter
+		orbiter_mob.updating_glide_size = FALSE
+	if(ismovable(parent))
+		var/atom/movable/movable_parent = parent
+		orbiter.glide_size = movable_parent.glide_size
+
 	orbiter.abstract_move(get_turf(parent))
 	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
 
@@ -95,6 +104,7 @@
 	if(!orbiters[orbiter])
 		return
 	UnregisterSignal(orbiter, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE)
 	SEND_SIGNAL(parent, COMSIG_ATOM_ORBIT_STOP, orbiter)
 	orbiter.SpinAnimation(0, 0)
 	if(istype(orbiters[orbiter],/matrix)) //This is ugly.
@@ -102,6 +112,12 @@
 	orbiters -= orbiter
 	orbiter.stop_orbit(src)
 	orbiter.orbiting = null
+
+	if(ismob(orbiter))
+		var/mob/orbiter_mob = orbiter
+		orbiter_mob.updating_glide_size = TRUE
+		orbiter_mob.glide_size = 8
+
 	if(!refreshing && !length(orbiters) && !QDELING(src))
 		qdel(src)
 
