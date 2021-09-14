@@ -7,6 +7,7 @@
 	var/antag_hud_type = ANTAG_HUD_HERETIC // someone make all the other antags conform to this too lol
 	var/antag_hud_name = "heretic"
 	hijack_speed = 0.5
+	preview_outfit = /datum/outfit/heretic
 	var/give_equipment = TRUE
 	var/list/researched_knowledge = list()
 	var/total_sacrifices = 0
@@ -29,6 +30,27 @@
 	You can find a basic guide at : https://wiki.beestation13.com/view/Heretics </span>")
 	owner.current.client?.tgui_panel?.give_antagonist_popup("Heretic",
 		"Collect influences or sacrifice targets to expand your forbidden knowledge.")
+
+/datum/antagonist/heretic/get_preview_icon()
+	var/icon/icon = render_preview_outfit(preview_outfit)
+
+	// MOTHBLOCKS TOOD: Copied and pasted from cult, make this its own proc
+
+	// The sickly blade is 64x64, but getFlatIcon crunches to 32x32.
+	// So I'm just going to add it in post, screw it.
+
+	// Center the dude, because item icon states start from the center.
+	// This makes the image 64x64.
+	icon.Crop(-15, -15, 48, 48)
+
+	var/obj/item/melee/sickly_blade/blade = new
+	icon.Blend(icon(blade.lefthand_file, blade.inhand_icon_state), ICON_OVERLAY)
+	qdel(blade)
+
+	// Move the guy back to the bottom left, 32x32.
+	icon.Crop(17, 17, 48, 48)
+
+	return finish_preview_icon(icon)
 
 /datum/antagonist/heretic/on_gain()
 	var/mob/living/current = owner.current
@@ -287,3 +309,14 @@
 		return ..()
 	var/datum/antagonist/heretic/cultie = owner.has_antag_datum(/datum/antagonist/heretic)
 	return cultie?.ascended || ..()
+
+/datum/outfit/heretic
+	name = "Heretic (Preview only)"
+
+	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch
+	r_hand = /obj/item/melee/touch_attack/mansus_fist
+
+/datum/outfit/heretic/post_equip(mob/living/carbon/human/H, visualsOnly)
+	var/obj/item/clothing/suit/hooded/hooded = locate() in H
+	hooded.MakeHood() // This is usually created on Initialize, but we run before atoms
+	hooded.ToggleHood()

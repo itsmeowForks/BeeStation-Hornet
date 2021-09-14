@@ -53,7 +53,7 @@
 /datum/tgui/New(mob/user, datum/src_object, interface, title, ui_x, ui_y)
 	if(!user.client) // No client to show the TGUI to, so stop here
 		return
-	log_tgui(user, "new [interface] fancy [user.client.prefs.toggles2 & PREFTOGGLE_2_FANCY_TGUI]")
+	log_tgui(user, "new [interface] fancy [user?.client?.prefs.read_preference(/datum/preference/toggle/tgui_fancy)]")
 	src.user = user
 	src.src_object = src_object
 	src.window_key = "[REF(src_object)]-main"
@@ -96,7 +96,7 @@
 	window.acquire_lock(src)
 	if(!window.is_ready())
 		window.initialize(
-			fancy = (user.client.prefs.toggles & PREFTOGGLE_2_FANCY_TGUI),
+			fancy = user.client.prefs.read_preference(/datum/preference/toggle/tgui_fancy),
 			assets = list(
 				get_asset_datum(/datum/asset/simple/tgui),
 			))
@@ -227,8 +227,8 @@
 		"window" = list(
 			"key" = window_key,
 			"size" = window_size,
-			"fancy" = (user.client.prefs.toggles2 & PREFTOGGLE_2_FANCY_TGUI),
-			"locked" = (user.client.prefs.toggles2 & PREFTOGGLE_2_LOCKED_BUTTONS),
+			"fancy" = user.client.prefs.read_preference(/datum/preference/toggle/tgui_fancy),
+			"locked" = user.client.prefs.read_preference(/datum/preference/toggle/tgui_lock),
 		),
 		"client" = list(
 			"ckey" = user.client.ckey,

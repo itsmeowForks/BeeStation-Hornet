@@ -14,6 +14,25 @@
 #define BREAKFAST	(1<<13)
 #define CLOTH 		(1<<14)
 
+/// A list of food type names, in order of their flags
+#define FOOD_FLAGS list( \
+	"MEAT", \
+	"VEGETABLES", \
+	"RAW", \
+	"JUNKFOOD", \
+	"GRAIN", \
+	"FRUIT", \
+	"DAIRY", \
+	"FRIED", \
+	"ALCOHOL", \
+	"SUGAR", \
+	"GROSS", \
+	"TOXIC", \
+	"PINEAPPLE", \
+	"BREAKFAST", \
+	"CLOTH", \
+)
+
 #define DRINK_BAD   1
 #define DRINK_NICE	2
 #define DRINK_GOOD	3

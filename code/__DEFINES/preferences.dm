@@ -1,12 +1,14 @@
 
-//Preference toggles
+// Legacy preference toggles.
+// !!! DO NOT ADD ANY NEW ONES HERE !!!
+// Use `/datum/preference/toggle` instead.
 #define PREFTOGGLE_SOUND_ADMINHELP				(1<<0)
 #define PREFTOGGLE_SOUND_MIDI					(1<<1)
 #define PREFTOGGLE_SOUND_AMBIENCE				(1<<2)
 #define PREFTOGGLE_SOUND_LOBBY					(1<<3)
 #define PREFTOGGLE_MEMBER_PUBLIC				(1<<4)
 #define PREFTOGGLE_INTENT_STYLE					(1<<5)
-#define PREFTOGGLE_MIDROUND_ANTAG				(1<<6)
+//#define PREFTOGGLE_MIDROUND_ANTAG				(1<<6)
 #define PREFTOGGLE_SOUND_INSTRUMENTS			(1<<7)
 #define PREFTOGGLE_SOUND_SHIP_AMBIENCE			(1<<8)
 #define PREFTOGGLE_SOUND_PRAYERS				(1<<9)
@@ -27,11 +29,13 @@
 #define PREFTOGGLE_RUNECHAT_NONMOBS				(1<<22)
 #define PREFTOGGLE_RUNECHAT_EMOTES				(1<<23)
 
-#define TOGGLES_DEFAULT (PREFTOGGLE_SOUND_ADMINHELP|PREFTOGGLE_SOUND_MIDI|PREFTOGGLE_SOUND_AMBIENCE|PREFTOGGLE_SOUND_LOBBY|PREFTOGGLE_MEMBER_PUBLIC|PREFTOGGLE_INTENT_STYLE|PREFTOGGLE_MIDROUND_ANTAG|PREFTOGGLE_SOUND_INSTRUMENTS|PREFTOGGLE_SOUND_SHIP_AMBIENCE|PREFTOGGLE_SOUND_PRAYERS|PREFTOGGLE_SOUND_ANNOUNCEMENTS|PREFTOGGLE_OUTLINE_ENABLED|PREFTOGGLE_RUNECHAT_GLOBAL|PREFTOGGLE_RUNECHAT_NONMOBS|PREFTOGGLE_RUNECHAT_EMOTES)
+#define TOGGLES_DEFAULT (PREFTOGGLE_SOUND_ADMINHELP|PREFTOGGLE_SOUND_MIDI|PREFTOGGLE_SOUND_AMBIENCE|PREFTOGGLE_SOUND_LOBBY|PREFTOGGLE_MEMBER_PUBLIC|PREFTOGGLE_INTENT_STYLE|PREFTOGGLE_SOUND_INSTRUMENTS|PREFTOGGLE_SOUND_SHIP_AMBIENCE|PREFTOGGLE_SOUND_PRAYERS|PREFTOGGLE_SOUND_ANNOUNCEMENTS|PREFTOGGLE_OUTLINE_ENABLED|PREFTOGGLE_RUNECHAT_GLOBAL|PREFTOGGLE_RUNECHAT_NONMOBS|PREFTOGGLE_RUNECHAT_EMOTES)
 
 // You CANNOT go above 1<<23 in BYOND due to integer limits
 // Please add subsequent ones as PREFTOGGLE_2_[name]
-// If you run out of these, make a third toggles column
+// Legacy preference toggles.
+// !!! DO NOT ADD ANY NEW ONES HERE !!!
+// Use `/datum/preference/toggle` instead.
 #define PREFTOGGLE_2_FANCY_TGUI					(1<<0)
 #define PREFTOGGLE_2_LOCKED_TGUI				(1<<1)
 #define PREFTOGGLE_2_LOCKED_BUTTONS				(1<<2)
@@ -49,7 +53,9 @@
 
 #define TOGGLES_2_DEFAULT (PREFTOGGLE_2_FANCY_TGUI|PREFTOGGLE_2_LOCKED_TGUI|PREFTOGGLE_2_LOCKED_BUTTONS|PREFTOGGLE_2_WINDOW_FLASHING|PREFTOGGLE_2_CREW_OBJECTIVES|PREFTOGGLE_2_GHOST_HUD|PREFTOGGLE_2_GHOST_INQUISITIVENESS|PREFTOGGLE_2_AMBIENT_OCCLUSION|PREFTOGGLE_2_AUTO_FIT_VIEWPORT|PREFTOGGLE_2_ENABLE_TIPS|PREFTOGGLE_2_SHOW_CREDITS|PREFTOGGLE_2_HOTKEYS|PREFTOGGLE_2_SOUNDTRACK)
 
-//Chat toggles
+// Legacy chat toggles.
+// !!! DO NOT ADD ANY NEW ONES HERE !!!
+// Use `/datum/preference/toggle` instead.
 #define CHAT_OOC			(1<<0)
 #define CHAT_DEAD			(1<<1)
 #define CHAT_GHOSTEARS		(1<<2)
@@ -66,11 +72,11 @@
 
 #define TOGGLES_DEFAULT_CHAT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_PULLR|CHAT_GHOSTWHISPER|CHAT_GHOSTPDA|CHAT_GHOSTRADIO|CHAT_BANKCARD|CHAT_GHOSTLAWS|CHAT_GHOSTFOLLOWMINDLESS)
 
-#define PARALLAX_INSANE -1 //for show offs
-#define PARALLAX_HIGH    0 //default.
-#define PARALLAX_MED     1
-#define PARALLAX_LOW     2
-#define PARALLAX_DISABLE 3 //this option must be the highest number
+#define PARALLAX_INSANE "Insane"
+#define PARALLAX_HIGH "High"
+#define PARALLAX_MED "Medium"
+#define PARALLAX_LOW "Low"
+#define PARALLAX_DISABLE "Disabled"
 
 #define PIXEL_SCALING_AUTO 0
 #define PIXEL_SCALING_1X 1
@@ -183,3 +189,38 @@
 
 // True value of max save slots (3 is default, 8 is byond member, +1 to either if you have the extra slot loadout entry). Potential max is 9
 #define TRUE_MAX_SAVE_SLOTS 9
+
+// Values for /datum/preference/savefile_identifier
+/// This preference is character specific.
+#define PREFERENCE_CHARACTER "character"
+/// This preference is account specific.
+#define PREFERENCE_PLAYER "player"
+
+// Values for /datum/preferences/current_tab
+/// Open the character preference window
+#define PREFERENCE_TAB_CHARACTER_PREFERENCES 0
+
+/// Open the game preferences window
+#define PREFERENCE_TAB_GAME_PREFERENCES 1
+
+/// Open the keybindings window
+#define PREFERENCE_TAB_KEYBINDINGS 2
+
+/// These will be shown in the character sidebar, but at the bottom.
+#define PREFERENCE_CATEGORY_FEATURES "features"
+
+/// Any preferences that will show to the sides of the character in the setup menu.
+#define PREFERENCE_CATEGORY_CLOTHING "clothing"
+
+/// Preferences that will be put into the 3rd list, and are not contextual.
+#define PREFERENCE_CATEGORY_NON_CONTEXTUAL "non_contextual"
+
+/// Will be put under the game preferences window.
+#define PREFERENCE_CATEGORY_GAME_PREFERENCES "game_preferences"
+
+/// These will show in the list to the right of the character preview.
+#define PREFERENCE_CATEGORY_SECONDARY_FEATURES "secondary_features"
+
+/// These are preferences that are supplementary for main features,
+/// such as hair color being affixed to hair.
+#define PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES "supplemental_features"
