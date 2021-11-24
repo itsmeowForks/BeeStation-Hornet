@@ -29,24 +29,23 @@
 		relay_render_to_plane(mymob, render_relay_plane)
 
 ///Things rendered on "openspace"; holes in multi-z
-/atom/movable/screen/plane_master/openspace
-	name = "open space plane master"
+/atom/movable/screen/plane_master/openspace_backdrop
+	name = "open space backdrop plane master"
 	plane = OPENSPACE_BACKDROP_PLANE
 	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
-
-/atom/movable/screen/plane_master/openspace/Initialize(mapload)
-	. = ..()
-	add_filter("first_stage_openspace", 1, drop_shadow_filter(color = "#04080FAA", size = -10))
-	add_filter("second_stage_openspace", 2, drop_shadow_filter(color = "#04080FAA", size = -15))
-	add_filter("third_stage_openspace", 2, drop_shadow_filter(color = "#04080FAA", size = -20))
 
 /atom/movable/screen/plane_master/openspace
 	name = "open space plane master"
 	plane = OPENSPACE_PLANE
 	appearance_flags = PLANE_MASTER
 
+/atom/movable/screen/plane_master/openspace/Initialize(mapload)
+	. = ..()
+	add_filter("first_stage_openspace", 1, drop_shadow_filter(color = "#04080FAA", size = -10))
+	add_filter("second_stage_openspace", 2, drop_shadow_filter(color = "#04080FAA", size = -15))
+	add_filter("third_stage_openspace", 3, drop_shadow_filter(color = "#04080FAA", size = -20))
 
 ///Contains just the floor
 /atom/movable/screen/plane_master/floor
