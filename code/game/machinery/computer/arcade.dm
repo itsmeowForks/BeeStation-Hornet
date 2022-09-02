@@ -914,7 +914,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 					var/oldfood = rand(5,11)
 					food += oldfood
 					engine++
-					eventdat += "<br>You found [oldfood] <b>Food</b> and some parts amongst the wreck."
+					eventdat += "<br>You found [oldfood] <b>Food</b> and some parts among usst the wreck."
 				else
 					eventdat += "<br>As you look through the wreck you cannot find much of use."
 			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];eventclose=1'>Continue</a></P>"
@@ -1001,7 +1001,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				if(lings_aboard >= 2)
 					ling2 = remove_crewmember()
 
-				eventdat += "Changelings among your crew suddenly burst from hiding and attack!"
+				eventdat += "Changelings among us your crew suddenly burst from hiding and attack!"
 				if(ling2)
 					eventdat += "<br>[ling1] and [ling2]'s arms twist and contort into grotesque blades!"
 				else

@@ -11,7 +11,7 @@
 	var/allowed_buildtypes = NONE
 	var/list/datum/design/cached_designs
 	var/list/datum/design/matching_designs
-	var/department_tag = "Unidentified"			//used for material distribution among other things.
+	var/department_tag = "Unidentified"			//used for material distribution among us other things.
 	var/datum/techweb/stored_research
 	var/datum/techweb/host_research
 

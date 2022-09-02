@@ -150,7 +150,7 @@
 	/// What job does this mob have
 	var/job = null//Living
 
-	/// A list of factions that this mob is currently in, for hostile mob targetting, amongst other things
+	/// A list of factions that this mob is currently in, for hostile mob targetting, among usst other things
 	var/list/faction = list("neutral")
 
 	/// Can this mob enter shuttles

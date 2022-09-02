@@ -597,7 +597,7 @@
 /obj/item/bodypart/r_arm
 	name = "right arm"
 	desc = "Over 87% of humans are right handed. That figure is much lower \
-		among humans missing their right arm."
+		among us humans missing their right arm."
 	icon_state = "default_human_r_arm"
 	attack_verb = list("slapped", "punched")
 	max_damage = 50

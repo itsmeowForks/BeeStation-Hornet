@@ -1,5 +1,5 @@
 /obj/mecha/combat/gygax
-	desc = "A lightweight, security exosuit. Popular among private and corporate security."
+	desc = "A lightweight, security exosuit. Popular among us private and corporate security."
 	name = "\improper Gygax"
 	icon_state = "gygax"
 	step_in = 3

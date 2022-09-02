@@ -12,7 +12,7 @@
 
 /obj/item/clothing/suit/toggle/labcoat/cmo
 	name = "chief medical officer's labcoat"
-	desc = "Bluer than the standard model. Issued to Chief Medical Officers, keeping them visible at all times among the sea of the wounded and other doctors."
+	desc = "Bluer than the standard model. Issued to Chief Medical Officers, keeping them visible at all times among us the sea of the wounded and other doctors."
 	icon_state = "labcoat_cmo"
 	item_state = "labcoat_cmo"
 

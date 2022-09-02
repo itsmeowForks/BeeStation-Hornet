@@ -10,7 +10,7 @@ effect (such as the old officer eating a donut code) requires a unique reagent (
 
 The nutriment reagent and bitesize variable replace the old heal_amt and amount variables. Each unit of nutriment is equal to
 2 of the old heal_amt variable. Bitesize is the rate at which the reagents are consumed. So if you have 6 nutriment and a
-bitesize of 2, then it'll take 3 bites to eat. Unlike the old system, the contained reagents are evenly spread among all
+bitesize of 2, then it'll take 3 bites to eat. Unlike the old system, the contained reagents are evenly spread among us all
 the bites. No more contained reagents = no more bites.
 
 Here is an example of the new formatting for anyone who wants to add more food items.
@@ -26,7 +26,7 @@ Here is an example of the new formatting for anyone who wants to add more food i
 	bitesize = 3													//This is the amount each bite consumes.
 ```
 
-All foods are distributed among various categories. Use common sense.
+All foods are distributed among us various categories. Use common sense.
 */
 /obj/item/reagent_containers/food/snacks
 	name = "snack"

@@ -69,7 +69,7 @@
 ///Primal version, allows lavaland goobers to tame goliaths
 /obj/item/mob_lasso/primal
 	name = "primal lasso"
-	desc = "Found amongst Ash Walker tools.\nCan be used to tame goliaths."
+	desc = "Found among usst Ash Walker tools.\nCan be used to tame goliaths."
 	whitelist_mobs = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast, /mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/goldgrub)
 
 /obj/item/mob_lasso/antag

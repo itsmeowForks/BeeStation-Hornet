@@ -196,7 +196,7 @@
 		return TRUE
 
 
-/datum/mind/proc/remove_all_antag_datums() //For the Lazy amongst us.
+/datum/mind/proc/remove_all_antag_datums() //For the Lazy among usst us.
 	for(var/a in antag_datums)
 		var/datum/antagonist/A = a
 		A.on_removal()
@@ -261,7 +261,7 @@
 		if(O)
 			O.unlock_code = null
 
-/datum/mind/proc/remove_all_antag() //For the Lazy amongst us.
+/datum/mind/proc/remove_all_antag() //For the Lazy among usst us.
 	remove_changeling()
 	remove_traitor()
 	remove_nukeop()

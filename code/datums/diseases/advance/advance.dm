@@ -552,7 +552,7 @@
 			A.Evolve(minimum, CLAMP(A.severity + 4, minimum, 9))
 			A.id = GetDiseaseID()
 			A.keepid = TRUE//this is really janky, but basically mutated diseases count as the original disease
-				//if you want to evolve a higher level symptom you need to test and spread a deadly virus among test subjects. 
+				//if you want to evolve a higher level symptom you need to test and spread a deadly virus among us test subjects. 
 				//this is to give monkey testing a use, and add a bit more of a roleplay element to virology- testing deadly diseases on and curing/vaccinating monkeys
 				//this also adds the risk of disease escape if strict biohazard protocol is not followed, however
 				//the immutability of resistant diseases discourages this with hard-to-cure diseases.

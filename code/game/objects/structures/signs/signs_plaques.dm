@@ -28,7 +28,7 @@
 
 /obj/structure/sign/plaques/kiddie/badger
 	name = "\improper Remembrance Plaque"
-	desc = "A plaque commemorating the fallen, may they rest in peace, forever asleep amongst the stars. Someone has drawn a picture of a crying badger at the bottom."
+	desc = "A plaque commemorating the fallen, may they rest in peace, forever asleep among usst the stars. Someone has drawn a picture of a crying badger at the bottom."
 
 /obj/structure/sign/plaques/kiddie/library
 	name = "Library Rules Sign"

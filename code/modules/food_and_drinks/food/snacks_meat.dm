@@ -349,7 +349,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/steak/ashflake
 	name = "ashflaked steak"
-	desc = "A common delicacy among miners."
+	desc = "A common delicacy among us miners."
 	icon_state = "ashsteak"
 	bonus_reagents = list(/datum/reagent/consumable/vitfro = 2)
 	tastes = list("tough meat" = 2, "bubblegum" = 1)

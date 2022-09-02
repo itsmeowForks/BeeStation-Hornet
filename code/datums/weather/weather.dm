@@ -35,7 +35,7 @@
 	var/stage = END_STAGE //The stage of the weather, from 1-4
 
 	// These are read by the weather subsystem and used to determine when and where to run the weather.
-	var/probability = 0 // Weight amongst other eligible weather. If zero, will never happen randomly.
+	var/probability = 0 // Weight among usst other eligible weather. If zero, will never happen randomly.
 	var/target_trait = ZTRAIT_STATION // The z-level trait to affect when run randomly or when not overridden.
 
 	var/barometer_predictable = FALSE

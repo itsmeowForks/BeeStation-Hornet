@@ -97,7 +97,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/ftliver
 	name = "Faster-Than-Liver"
-	description = "A beverage born among the stars, it's said drinking too much feels just like FTL transit."
+	description = "A beverage born among us the stars, it's said drinking too much feels just like FTL transit."
 	color = "#0D0D0D" // rgb: 13, 13, 13
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 52
@@ -2200,7 +2200,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "artifical fruityness"
 	glass_icon_state = "rubberneck"
 	glass_name = "Rubberneck"
-	glass_desc = "A popular drink amongst those adhering to an all synthetic diet."
+	glass_desc = "A popular drink among usst those adhering to an all synthetic diet."
 
 /datum/reagent/consumable/ethanol/duplex
 	name = "Duplex"
