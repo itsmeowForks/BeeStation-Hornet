@@ -957,7 +957,6 @@
 /obj/item/borg/apparatus/beaker/update_icon()
 	cut_overlays()
 	if(stored)
-		COMPILE_OVERLAYS(stored)
 		stored.pixel_x = 0
 		stored.pixel_y = 0
 		var/image/img = image("icon"=stored, "layer"=FLOAT_LAYER)
@@ -1002,7 +1001,6 @@
 /obj/item/borg/apparatus/circuit/update_icon()
 	cut_overlays()
 	if(stored)
-		COMPILE_OVERLAYS(stored)
 		stored.pixel_x = -3
 		stored.pixel_y = 0
 		var/image/arm
