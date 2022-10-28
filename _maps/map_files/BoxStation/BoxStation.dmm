@@ -30793,6 +30793,9 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/science/research)
+"efW" = (
+/turf/open/floor/plating,
+/area/space)
 "efX" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
@@ -32773,6 +32776,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"fuj" = (
+/turf/open/space/basic,
+/area/construction/mining/aux_base)
 "fuQ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -33734,6 +33740,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"gcn" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/item/aicard,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "gcE" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/stripes/line{
@@ -60725,6 +60736,10 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
+"xnM" = (
+/obj/item/aicard,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "xnQ" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -71666,7 +71681,7 @@ apJ
 apN
 apN
 apN
-apN
+efW
 apN
 apN
 apN
@@ -71923,7 +71938,7 @@ apJ
 apN
 apN
 apN
-apN
+fuj
 apN
 apN
 apN
@@ -72180,7 +72195,7 @@ apJ
 apN
 apN
 apN
-apN
+aaa
 apN
 apN
 apN
@@ -72437,7 +72452,7 @@ apJ
 apN
 apN
 apN
-apN
+xnM
 wph
 apN
 apN
@@ -73722,7 +73737,7 @@ apJ
 apJ
 apJ
 ajZ
-asF
+gcn
 atp
 asF
 asF
