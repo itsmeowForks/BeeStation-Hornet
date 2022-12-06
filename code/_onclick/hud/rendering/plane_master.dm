@@ -14,6 +14,8 @@
 	var/generate_render_target = TRUE
 	///integer: blend mode to apply to the render relay in case you dont want to use the plane_masters blend_mode
 	var/blend_mode_override
+	///reference: current relay this plane is utilizing to render
+	var/atom/movable/render_plane_relay/relay
 
 /atom/movable/screen/plane_master/proc/Show(override)
 	alpha = override || show_alpha
@@ -65,6 +67,10 @@
 
 /atom/movable/screen/plane_master/game_world/backdrop(mob/mymob)
 	. = ..()
+	remove_filter("AO")
+	if(istype(mymob) && (mymob.client?.prefs?.toggles2 & PREFTOGGLE_2_AMBIENT_OCCLUSION))
+		add_filter("AO", 1, drop_shadow_filter(x = 0, y = -2, size = 4, color = "#04080FAA"))
+	remove_filter("eye_blur")
 	if(istype(mymob) && mymob.eye_blurry)
 		add_filter("eye_blur", 1, gauss_blur_filter(clamp(mymob.eye_blurry * 0.1, 0.6, 3)))
 
@@ -188,7 +194,7 @@
 
 /atom/movable/screen/plane_master/runechat/backdrop(mob/mymob)
 	. = ..()
-	filters = list()
+	remove_filter("AO")
 	if(istype(mymob) && (mymob.client?.prefs?.toggles2 & PREFTOGGLE_2_AMBIENT_OCCLUSION))
 		add_filter("AO", 1, drop_shadow_filter(x = 0, y = -2, size = 4, color = "#04080FAA"))
 
