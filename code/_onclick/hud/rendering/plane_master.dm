@@ -56,14 +56,12 @@
 	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_OVERLAY
 
-
 ///Contains most things in the game world
 /atom/movable/screen/plane_master/game_world
 	name = "game world plane master"
 	plane = GAME_PLANE
 	appearance_flags = PLANE_MASTER //should use client color
 	blend_mode = BLEND_OVERLAY
-
 
 /atom/movable/screen/plane_master/game_world/backdrop(mob/mymob)
 	. = ..()
@@ -86,7 +84,6 @@
 	appearance_flags = PLANE_MASTER //should use client color
 	blend_mode = BLEND_OVERLAY
 
-
 /atom/movable/screen/plane_master/ghost
 	name = "ghost plane master"
 	plane = GHOST_PLANE
@@ -100,7 +97,6 @@
 	appearance_flags = PLANE_MASTER //should use client color
 	blend_mode = BLEND_OVERLAY
 
-
 /**
  * Plane master handling byond internal blackness
  * vars are set as to replicate behavior when rendering to other planes
@@ -113,8 +109,6 @@
 	blend_mode = BLEND_MULTIPLY
 	appearance_flags = PLANE_MASTER | NO_CLIENT_COLOR | PIXEL_SCALE
 	//byond internal end
-
-
 
 ///Contains all lighting objects
 /atom/movable/screen/plane_master/lighting
@@ -156,14 +150,12 @@
 	appearance_flags = PLANE_MASTER //should use client color
 	blend_mode = BLEND_OVERLAY
 
-
 ///Contains space parallax
 /atom/movable/screen/plane_master/parallax
 	name = "parallax plane master"
 	plane = PLANE_SPACE_PARALLAX
 	blend_mode = BLEND_MULTIPLY
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
 
 /atom/movable/screen/plane_master/parallax_white
 	name = "parallax whitifier plane master"
@@ -175,7 +167,6 @@
 	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_OVERLAY
 
-
 /atom/movable/screen/plane_master/o_light_visual
 	name = "overlight light visual plane master"
 	plane = O_LIGHTING_VISUAL_PLANE
@@ -183,7 +174,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	blend_mode = BLEND_MULTIPLY
 	blend_mode_override = BLEND_MULTIPLY
-	render_relay_plane = RENDER_PLANE_GAME
 
 /atom/movable/screen/plane_master/runechat
 	name = "runechat plane master"
@@ -210,7 +200,6 @@
 /atom/movable/screen/plane_master/area
 	name = "area plane"
 	plane = AREA_PLANE
-
 
 /atom/movable/screen/plane_master/radtext
 	name = "radtext plane"
