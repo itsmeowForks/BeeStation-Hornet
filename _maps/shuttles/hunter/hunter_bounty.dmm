@@ -119,6 +119,18 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/shuttle/hunter)
+"dD" = (
+/obj/structure/sign/poster/official/ian{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/delivery/white,
+/obj/effect/mob_spawn/human/fugitive_hunter{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
+/turf/open/floor/plasteel/ridged/steel,
+/area/shuttle/hunter)
 "dH" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
 	dir = 8
@@ -150,17 +162,12 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/hunter)
-"fp" = (
+"fr" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
-/obj/structure/sign/poster/official/ian{
-	pixel_x = -32
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/delivery/white,
-/obj/effect/mob_spawn/human/fugitive_hunter{
-	dir = 4
-	},
-/turf/open/floor/plasteel/ridged/steel,
+/turf/open/floor/plasteel/grid/steel,
 /area/shuttle/hunter)
 "fW" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -182,13 +189,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/robot_debris,
 /turf/open/floor/plasteel/tech/grid,
-/area/shuttle/hunter)
-"iD" = (
-/obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/grid/steel,
 /area/shuttle/hunter)
 "jl" = (
 /obj/effect/turf_decal/stripes/line{
@@ -253,22 +253,23 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/hunter)
+"kC" = (
+/obj/effect/turf_decal/delivery/white,
+/obj/machinery/airalarm/directional/south{
+	req_access = null;
+	req_access_txt = "181"
+	},
+/obj/effect/mob_spawn/human/fugitive_hunter{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/black/fourcorners/contrasted,
+/turf/open/floor/plasteel/ridged/steel,
+/area/shuttle/hunter)
 "kL" = (
 /obj/machinery/door/airlock/hatch{
 	req_access_txt = "181"
 	},
 /turf/open/floor/plasteel/tech,
-/area/shuttle/hunter)
-"kM" = (
-/obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
-/obj/effect/decal/cleanable/vomit/old{
-	pixel_x = 6;
-	pixel_y = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/grid/steel,
 /area/shuttle/hunter)
 "lg" = (
 /obj/machinery/computer/shuttle_flight/hunter{
@@ -288,18 +289,6 @@
 	},
 /obj/item/trash/candy,
 /turf/open/floor/plasteel/tech,
-/area/shuttle/hunter)
-"lw" = (
-/obj/effect/turf_decal/tile/black/fourcorners/contrasted,
-/obj/effect/turf_decal/delivery/white,
-/obj/machinery/airalarm/directional/south{
-	req_access = null;
-	req_access_txt = "181"
-	},
-/obj/effect/mob_spawn/human/fugitive_hunter{
-	dir = 4
-	},
-/turf/open/floor/plasteel/ridged/steel,
 /area/shuttle/hunter)
 "ms" = (
 /obj/structure/railing{
@@ -419,6 +408,15 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/tech/grid,
 /area/shuttle/hunter)
+"qN" = (
+/obj/structure/fluff/empty_sleeper{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/delivery/white,
+/obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
+/turf/open/floor/plasteel/ridged/steel,
+/area/shuttle/hunter)
 "qS" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supplymain/hidden,
 /obj/structure/lattice/catwalk/over,
@@ -437,14 +435,6 @@
 "ri" = (
 /obj/effect/turf_decal/techfloor,
 /turf/open/floor/plasteel/tech,
-/area/shuttle/hunter)
-"rB" = (
-/obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/grid/steel,
 /area/shuttle/hunter)
 "rX" = (
 /obj/structure/railing{
@@ -525,11 +515,30 @@
 	},
 /turf/open/floor/plasteel/tech,
 /area/shuttle/hunter)
+"te" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
+/turf/open/floor/plasteel/grid/steel,
+/area/shuttle/hunter)
 "ua" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/bot/left,
 /obj/machinery/suit_storage_unit/bounty,
 /turf/open/floor/plasteel/tech/grid,
+/area/shuttle/hunter)
+"uF" = (
+/obj/effect/decal/cleanable/vomit/old{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
+/turf/open/floor/plasteel/grid/steel,
 /area/shuttle/hunter)
 "vW" = (
 /obj/structure/chair/fancy/shuttle{
@@ -601,21 +610,12 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/shuttle/hunter)
-"zz" = (
-/obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
+"Bx" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/grid/steel,
-/area/shuttle/hunter)
-"BE" = (
-/obj/structure/fluff/empty_sleeper{
-	dir = 8
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/delivery/white,
-/turf/open/floor/plasteel/ridged/steel,
+/turf/open/floor/plasteel/grid/steel,
 /area/shuttle/hunter)
 "De" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
@@ -771,20 +771,6 @@
 	},
 /turf/open/floor/plasteel/tech,
 /area/shuttle/hunter)
-"Ly" = (
-/obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
-/obj/structure/sign/poster/official/work_for_a_future{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/delivery/white,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/mob_spawn/human/fugitive_hunter{
-	dir = 8
-	},
-/turf/open/floor/plasteel/ridged/steel,
-/area/shuttle/hunter)
 "LE" = (
 /turf/open/floor/plasteel/stairs/right,
 /area/shuttle/hunter)
@@ -870,6 +856,20 @@
 /obj/structure/window/shuttle/survival_pod,
 /obj/structure/grille,
 /turf/open/floor/plating,
+/area/shuttle/hunter)
+"Oa" = (
+/obj/structure/sign/poster/official/work_for_a_future{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/delivery/white,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/fugitive_hunter{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/dark/fourcorners/contrasted,
+/turf/open/floor/plasteel/ridged/steel,
 /area/shuttle/hunter)
 "Og" = (
 /obj/structure/chair/fancy/shuttle{
@@ -1265,8 +1265,8 @@ sc
 ri
 nn
 rX
-fp
-lw
+dD
+kC
 nn
 UI
 UI
@@ -1280,8 +1280,8 @@ nL
 VG
 qu
 oX
-zz
-rB
+fr
+te
 NG
 UI
 UI
@@ -1295,8 +1295,8 @@ XH
 Ko
 aS
 LE
-iD
-kM
+Bx
+uF
 NG
 UI
 UI
@@ -1310,8 +1310,8 @@ js
 ms
 nn
 ZO
-BE
-Ly
+qN
+Oa
 nn
 UI
 UI
