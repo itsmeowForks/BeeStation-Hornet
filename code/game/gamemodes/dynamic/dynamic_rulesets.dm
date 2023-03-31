@@ -221,16 +221,16 @@
 			candidates.Remove(P)
 			continue
 
-		if(candidate_player.mind.special_role) // We really don't want to give antag to an antag.
-			candidates.Remove(candidate_player)
+		if(P.mind.special_role) // We really don't want to give antag to an antag.
+			candidates.Remove(P)
 			continue
 
-		if (!((antag_preference || antag_flag) in candidate_client.prefs.be_special))
-			candidates.Remove(candidate_player)
+		if (!((antag_preference || antag_flag) in P.prefs.be_special))
+			candidates.Remove(P)
 			continue
 
-		if (is_banned_from(candidate_player.ckey, list(antag_flag_override || antag_flag, ROLE_SYNDICATE)))
-			candidates.Remove(candidate_player)
+		if (is_banned_from(P.ckey, list(antag_flag_override || antag_flag, ROLE_SYNDICATE)))
+			candidates.Remove(P)
 			continue
 
 /// Do your checks if the ruleset is ready to be executed here.

@@ -44,7 +44,7 @@
 	icon.Crop(-15, -15, 48, 48)
 
 	var/obj/item/melee/sickly_blade/blade = new
-	icon.Blend(icon(blade.lefthand_file, blade.inhand_icon_state), ICON_OVERLAY)
+	icon.Blend(icon(blade.lefthand_file, blade.icon_state), ICON_OVERLAY)
 	qdel(blade)
 
 	// Move the guy back to the bottom left, 32x32.

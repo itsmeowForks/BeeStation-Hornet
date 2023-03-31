@@ -43,6 +43,8 @@
 #define COLOR_PINK             "#FFC0CB"
 #define COLOR_MAGENTA          "#FF00FF"
 #define COLOR_PURPLE           "#800080"
+#define COLOR_VIOLET           "#B900F7"
+#define COLOR_STRONG_VIOLET    "#6927C5"
 #define COLOR_ORANGE           "#FF9900"
 #define COLOR_BEIGE            "#CEB689"
 #define COLOR_BLUE_GRAY        "#75A2BB"
