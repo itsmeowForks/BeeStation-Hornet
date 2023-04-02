@@ -225,7 +225,7 @@
 			candidates.Remove(P)
 			continue
 
-		if (!((antag_preference || antag_flag) in P.prefs.be_special))
+		if (!((antag_preference || antag_flag) in client.prefs.be_special))
 			candidates.Remove(P)
 			continue
 

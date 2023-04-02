@@ -70,14 +70,16 @@
 
 	if(!preference_source)
 		return
-	var/path = J.species_outfits[SPECIES_PLASMAMAN]
-	var/datum/outfit/plasmaman/O = new path
+	//var/path = J.species_outfits[SPECIES_PLASMAMAN]
+	//var/datum/outfit/plasmaman/O = new path
+	// TODO tgui-prefs
+	/*
 	var/datum/character_save/CS = preference_source.prefs.active_character
 	if(CS.helmet_style != HELMET_DEFAULT)
 		if(O.helmet_variants[CS.helmet_style])
 			var/helmet = O.helmet_variants[CS.helmet_style]
 			qdel(H.head)
-			H.equip_to_slot(new helmet, ITEM_SLOT_HEAD)
+			H.equip_to_slot(new helmet, ITEM_SLOT_HEAD)*/
 
 /datum/species/plasmaman/qualifies_for_rank(rank, list/features)
 	if(rank in GLOB.security_positions)
