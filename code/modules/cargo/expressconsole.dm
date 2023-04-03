@@ -23,7 +23,7 @@
 /obj/machinery/computer/cargo/express/Initialize(mapload)
 	. = ..()
 	packin_up()
-	RegisterSignal(SSdcs, COMSIG_GLOB_RESUPPLY, PROC_REF(ui_update))
+	RegisterSignal(SSdcs, COMSIG_GLOB_RESUPPLY, PROC_REF(update_static_ui))
 
 /obj/machinery/computer/cargo/express/Destroy()
 	if(beacon)
