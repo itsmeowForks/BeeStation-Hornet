@@ -22,7 +22,7 @@
 		else
 			return
 	// Client does NOT have tgui_input on: Returns regular input
-	//if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+	//if(!user.client.prefs.read_player_preference(/datum/preference/toggle/tgui_input))
 	//	return input(user, message, title) as null|anything in items
 	var/datum/tgui_list_input/input = new(user, message, title, items, default, timeout)
 	input.ui_interact(user)
@@ -56,7 +56,7 @@
 		else
 			return
 	// Client does NOT have tgui_input on: Returns regular input
-	//if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+	//if(!user.client.prefs.read_player_preference(/datum/preference/toggle/tgui_input))
 	//	return input(user, message, title) as null|anything in items
 	var/datum/tgui_list_input/async/input = new(user, message, title, items, default, callback, timeout)
 	input.ui_interact(user)
@@ -150,8 +150,8 @@
 	.["init_value"] = default || items[1]
 	.["message"] = message
 	.["preferences"] = list()
-	.["preferences"]["large_buttons"] = TRUE//user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
-	.["preferences"]["swapped_buttons"] = TRUE//user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
+	.["preferences"]["large_buttons"] = TRUE//user.client.prefs.read_player_preference(/datum/preference/toggle/tgui_input_large)
+	.["preferences"]["swapped_buttons"] = TRUE//user.client.prefs.read_player_preference(/datum/preference/toggle/tgui_input_swapped)
 	.["title"] = title
 	if(timeout)
 		.["timeout"] = clamp((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS), 0, 1)
