@@ -1,6 +1,6 @@
 import { binaryInsertWith } from "common/collections";
 import { classes } from "common/react";
-import { InfernoNode } from "inferno";
+import type { Inferno } from 'inferno';
 import { useBackend } from "../../backend";
 import { Box, Button, Dropdown, Stack, Tooltip } from "../../components";
 import { createSetPreference, JoblessRole, JobPriority, PreferencesMenuData } from "./data";
@@ -223,7 +223,7 @@ const JobRow = (props: {
     && data.job_required_experience[job.name];
   const daysLeft = data.job_days_left ? data.job_days_left[job.name] : 0;
 
-  let rightSide: InfernoNode;
+  let rightSide: Inferno.InfernoNode;
 
   if (experienceNeeded) {
     const { experience_type, required_playtime } = experienceNeeded;

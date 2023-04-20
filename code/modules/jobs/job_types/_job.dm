@@ -133,7 +133,7 @@
 					continue
 
 				if(G.slot)
-					if(H.equip_to_slot_or_del(G.spawn_item(H), G.slot))
+					if(H.equip_to_slot_or_del(G.spawn_item(H, skirt_pref = M.client.prefs.active_character.jumpsuit_style), G.slot))
 						to_chat(M, "<span class='notice'>Equipping you with [G.display_name]!</span>")
 					else
 						gear_leftovers += G
@@ -146,7 +146,7 @@
 	if(gear_leftovers.len)
 		for(var/datum/gear/G in gear_leftovers)
 			var/metadata = M.client.prefs.active_character.equipped_gear[G.id]
-			var/item = G.spawn_item(null, metadata)
+			var/item = G.spawn_item(null, metadata, M.client.prefs.active_character.jumpsuit_style)
 			var/atom/placed_in = human.equip_or_collect(item)
 
 			if(istype(placed_in))
@@ -165,7 +165,7 @@
 
 			var/obj/item/storage/B = (locate() in H)
 			if(B)
-				G.spawn_item(B, metadata)
+				G.spawn_item(B, metadata, M.client.prefs.active_character.jumpsuit_style)
 				to_chat(M, "<span class='notice'>Placing [G.display_name] in [B.name]!</span>")
 				continue
 
