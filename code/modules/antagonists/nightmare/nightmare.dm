@@ -48,3 +48,9 @@
 		new_owner.assigned_role = ROLE_NIGHTMARE
 		new_owner.special_role = ROLE_NIGHTMARE
 	return ..()
+
+/datum/outfit/nightmare
+	name = "Nightmare (Preview only)"
+
+/datum/outfit/nightmare/post_equip(mob/living/carbon/human/human, visualsOnly)
+	human.set_species(/datum/species/shadow/nightmare)
