@@ -49,3 +49,10 @@ export const tgui_say_light_mode: FeatureToggle = {
   description: 'Sets TGUI Say to use light mode.',
   component: CheckboxInput,
 };
+
+export const tgui_say_show_prefix: FeatureToggle = {
+  name: 'Say: Show Prefix',
+  category: 'UI',
+  description: 'If radio prefixes should remain in the chatbox after being typed.',
+  component: CheckboxInput,
+};

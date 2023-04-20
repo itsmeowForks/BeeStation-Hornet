@@ -47,16 +47,6 @@
 		// Force it to reload either way
 		tgui.send_full_update(client.mob)
 
-/// Light mode for tgui say
-/datum/preference/toggle/tgui_say_light_mode
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	db_key = "tgui_say_light_mode"
-	preference_type = PREFERENCE_PLAYER
-	default_value = FALSE
-
-/datum/preference/toggle/tgui_say_light_mode/apply_to_client(client/client)
-	//client.tgui_say?.load()
-
 /// TGUI Say vs Classic Say
 /datum/preference/toggle/tgui_say
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
@@ -67,3 +57,22 @@
 /datum/preference/toggle/tgui_say/apply_to_client(client/client)
 	//client.tgui_say?.load()
 	// TODO tgui-prefs
+
+/// Light mode for tgui say
+/datum/preference/toggle/tgui_say_light_mode
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	db_key = "tgui_say_light_mode"
+	preference_type = PREFERENCE_PLAYER
+	default_value = FALSE
+
+/datum/preference/toggle/tgui_say_light_mode/apply_to_client(client/client)
+	//client.tgui_say?.load()
+
+/datum/preference/toggle/tgui_say_show_prefix
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	db_key = "tgui_say_show_prefix"
+	preference_type = PREFERENCE_PLAYER
+	default_value = FALSE
+
+/datum/preference/toggle/tgui_say_show_prefix/apply_to_client(client/client)
+	//client.tgui_say?.load()

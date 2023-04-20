@@ -229,7 +229,7 @@ export const FeatureIconnedDropdownInput = (
 
   const displayNames = Object.fromEntries(
     Object.entries(textNames).map(([choice, textName]) => {
-      let element: Inferno.InfernoNode = textName;
+      let element: InfernoNode = textName;
 
       if (icons && icons[choice]) {
         const icon = icons[choice];
