@@ -255,7 +255,7 @@ export const computeBoxClassName = (props: BoxProps) => {
   ]);
 };
 
-export const Box: SFC<BoxProps> = (props: BoxProps) => {
+export const Box: Inferno.SFC<BoxProps> = (props: BoxProps) => {
   const {
     as = 'div',
     className,

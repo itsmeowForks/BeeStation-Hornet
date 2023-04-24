@@ -28,6 +28,9 @@ const hotKeysAcquired = [
 // State of passed-through keys.
 const keyState = {};
 
+// Custom listeners for key events
+const keyListeners: ((key: KeyEvent) => void)[] = [];
+
 // Is hotkey mode on?
 let hotkeyMode;
 
@@ -183,6 +186,37 @@ export const setupHotKeys = () => {
     releaseHeldKeys();
   });
   globalEvents.on('key', key => {
+    for (const keyListener of keyListeners) {
+      keyListener(key);
+    }
     handlePassthrough(key);
   });
+};
+
+/**
+ * Registers for any key events, such as key down or key up.
+ * This should be preferred over directly connecting to keydown/keyup
+ * as it lets tgui prevent the key from reaching BYOND.
+ *
+ * If using in a component, prefer KeyListener, which automatically handles
+ * stopping listening when unmounting.
+ *
+ * @param callback The function to call whenever a key event occurs
+ * @returns A callback to stop listening
+ */
+export const listenForKeyEvents = (
+  callback: (key: KeyEvent) => void,
+): () => void => {
+  keyListeners.push(callback);
+
+  let removed = false;
+
+  return () => {
+    if (removed) {
+      return;
+    }
+
+    removed = true;
+    keyListeners.splice(keyListeners.indexOf(callback), 1);
+  };
 };
