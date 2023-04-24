@@ -688,12 +688,12 @@ rules:
   ## expressions.
   # react/jsx-child-element-spacing: error
   ## Validate closing bracket location in JSX (fixable)
-  react/jsx-closing-bracket-location: [error, {
+  #react/jsx-closing-bracket-location: [error, {
     ## NOTE: Not really sure about enforcing this one
-    selfClosing: false,
-    nonEmpty: after-props,
-    }
-  ]
+  #  selfClosing: false,
+  #  nonEmpty: after-props,
+  #  }
+  #]
   ## Validate closing tag location in JSX (fixable)
   react/jsx-closing-tag-location: error
   ## Enforce or disallow newlines inside of curly braces in JSX attributes and
