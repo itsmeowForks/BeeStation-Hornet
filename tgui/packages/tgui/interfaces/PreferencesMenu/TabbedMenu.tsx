@@ -1,10 +1,10 @@
 import { Component, createRef, RefObject } from "inferno";
-import type { InfernoNode } from 'inferno';
+import type { Inferno } from 'inferno';
 import { Button, Section, Stack } from "../../components";
 import { FlexProps } from "../../components/Flex";
 
 type TabbedMenuProps = {
-  categoryEntries: [string, InfernoNode][],
+  categoryEntries: [string, Inferno.InfernoNode][],
   contentProps?: FlexProps,
 };
 

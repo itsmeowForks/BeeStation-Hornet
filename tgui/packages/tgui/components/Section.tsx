@@ -8,12 +8,12 @@ import { canRender, classes } from 'common/react';
 import { Component, createRef, RefObject } from 'inferno';
 import { addScrollableNode, removeScrollableNode } from '../events';
 import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
-import type { InfernoNode } from 'inferno';
+import type { Inferno } from 'inferno';
 
 interface SectionProps extends BoxProps {
   className?: string;
   title?: string;
-  buttons?: InfernoNode;
+  buttons?: Inferno.InfernoNode;
   fill?: boolean;
   fitted?: boolean;
   scrollable?: boolean;

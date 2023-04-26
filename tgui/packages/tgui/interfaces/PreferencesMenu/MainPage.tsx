@@ -415,8 +415,8 @@ export const MainPage = (props: {
         = data.character_preferences.secondary_features || [];
 
       const mainFeatures = [
-        ...Object.entries(data.character_preferences.clothing || {}),
-        ...Object.entries(data.character_preferences.features || {})
+        ...Object.entries(data.character_preferences.clothing),
+        ...Object.entries(data.character_preferences.features)
           .filter(([featureName]) => {
             if (!currentSpeciesData) {
               return false;

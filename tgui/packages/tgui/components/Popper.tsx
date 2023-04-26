@@ -1,12 +1,13 @@
 import { createPopper } from '@popperjs/core';
 import { ArgumentsOf } from 'common/types';
-import { Component, findDOMfromVNode, render } from 'inferno';
-import type { InfernoNode } from 'inferno';
+import { Component, findDOMFromVNode, render } from 'inferno';
+import type { Inferno } from 'inferno';
+import type { PropertiesHyphen } from 'csstype';
 
 type PopperProps = {
-  popperContent: InfernoNode;
+  popperContent: Inferno.InfernoNode;
   options?: ArgumentsOf<typeof createPopper>[2];
-  additionalStyles?: CSSProperties;
+  additionalStyles?: PropertiesHyphen;
 };
 
 export class Popper extends Component<PopperProps> {
@@ -44,7 +45,7 @@ export class Popper extends Component<PopperProps> {
       // This code is copied from `findDOMNode` in inferno-extras.
       // Because this component is written in TypeScript, we will know
       // immediately if this internal variable is removed.
-      const domNode = findDOMfromVNode(this.$LI, true);
+      const domNode = findDOMFromVNode(this.$LI, true);
       if (!domNode) {
         return;
       }
