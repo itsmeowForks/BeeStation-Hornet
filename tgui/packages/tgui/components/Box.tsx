@@ -8,13 +8,13 @@ import { BooleanLike, classes, pureComponentHooks } from 'common/react';
 import { createVNode } from 'inferno';
 import { ChildFlags, VNodeFlags } from 'inferno-vnode-flags';
 import { CSS_COLORS } from '../constants';
-import type { Inferno } from 'inferno';
+import type { InfernoNode, SFC } from 'inferno';
 
 export interface BoxProps {
   [key: string]: any;
   as?: string;
   className?: string | BooleanLike;
-  children?: Inferno.InfernoNode;
+  children?: InfernoNode;
   position?: string | BooleanLike;
   overflow?: string | BooleanLike;
   overflowX?: string | BooleanLike;
@@ -207,7 +207,7 @@ const styleMapperByPropName = {
 };
 
 export const computeBoxProps = (props: BoxProps) => {
-  const computedProps: Inferno.HTMLAttributes<any> = {};
+  const computedProps: HTMLAttributes<any> = {};
   const computedStyles = {};
   // Compute props
   for (let propName of Object.keys(props)) {
@@ -255,7 +255,7 @@ export const computeBoxClassName = (props: BoxProps) => {
   ]);
 };
 
-export const Box: Inferno.SFC<BoxProps> = (props: BoxProps) => {
+export const Box: SFC<BoxProps> = (props: BoxProps) => {
   const {
     as = 'div',
     className,
