@@ -136,8 +136,8 @@ export class Dropdown extends Component {
             }
             this.setOpen(!this.state.open);
 
-            if (props.onOpen) {
-              props.onOpen(event);
+            if (onOpen) {
+              onOpen(event);
             }
           }}>
           {icon && (
