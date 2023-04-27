@@ -1,11 +1,11 @@
 import { createPopper } from '@popperjs/core';
 import { ArgumentsOf } from 'common/types';
 import { Component, findDOMFromVNode, render } from 'inferno';
-import type { Inferno } from 'inferno';
+import type { InfernoNode } from 'inferno';
 import type { PropertiesHyphen } from 'csstype';
 
 type PopperProps = {
-  popperContent: Inferno.InfernoNode;
+  popperContent: InfernoNode;
   options?: ArgumentsOf<typeof createPopper>[2];
   additionalStyles?: PropertiesHyphen;
 };
