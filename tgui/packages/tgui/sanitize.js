@@ -6,10 +6,27 @@ import DOMPurify from 'dompurify';
 
 // Default values
 let defTag = [
-  'br', 'code', 'li', 'p', 'pre',
-  'span', 'table', 'td', 'tr', 'i',
-  'th', 'ul', 'ol', 'menu', 'font', 'b',
-  'center', 'table', 'tr', 'th', 'hr',
+  'br',
+  'code',
+  'li',
+  'p',
+  'pre',
+  'span',
+  'table',
+  'td',
+  'tr',
+  'i',
+  'th',
+  'ul',
+  'ol',
+  'menu',
+  'font',
+  'b',
+  'center',
+  'table',
+  'tr',
+  'th',
+  'hr',
 ];
 let defAttr = ['class', 'style'];
 

@@ -1,14 +1,7 @@
 import { Loader } from './common/Loader';
 import { Preferences } from './common/InputButtons';
 import { useBackend, useLocalState } from '../backend';
-import {
-  KEY_ENTER,
-  KEY_ESCAPE,
-  KEY_LEFT,
-  KEY_RIGHT,
-  KEY_SPACE,
-  KEY_TAB,
-} from '../../common/keycodes';
+import { KEY_ENTER, KEY_ESCAPE, KEY_LEFT, KEY_RIGHT, KEY_SPACE, KEY_TAB } from '../../common/keycodes';
 import { Autofocus, Box, Button, Flex, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
@@ -26,22 +19,15 @@ const KEY_INCREMENT = 1;
 
 export const AlertModal = (_, context) => {
   const { act, data } = useBackend<AlertModalData>(context);
-  const {
-    autofocus,
-    buttons = [],
-    message,
-    preferences,
-    timeout,
-    title,
-  } = data;
+  const { autofocus, buttons = [], message, preferences, timeout, title } = data;
   const { large_buttons } = preferences;
   const [selected, setSelected] = useLocalState<number>(context, 'selected', 0);
   // Dynamically sets window height
-  const windowHeight
-    = 115
-    + (message.length > 30 ? Math.ceil(message.length / 3) : 0)
-    + (message.length && large_buttons ? 5 : 0)
-    + (buttons.length > 2 ? buttons.length * 25 : 0);
+  const windowHeight =
+    115 +
+    (message.length > 30 ? Math.ceil(message.length / 3) : 0) +
+    (message.length && large_buttons ? 5 : 0) +
+    (buttons.length > 2 ? buttons.length * 25 : 0);
   const onKey = (direction: number) => {
     if (selected === 0 && direction === KEY_DECREMENT) {
       setSelected(buttons.length - 1);
@@ -66,10 +52,7 @@ export const AlertModal = (_, context) => {
             act('choose', { choice: buttons[selected] });
           } else if (keyCode === KEY_ESCAPE) {
             act('cancel');
-          } else if (
-            keyCode === KEY_LEFT
-            || (e.shiftKey && keyCode === KEY_TAB)
-          ) {
+          } else if (keyCode === KEY_LEFT || (e.shiftKey && keyCode === KEY_TAB)) {
             onKey(KEY_DECREMENT);
           } else if (keyCode === KEY_RIGHT || keyCode === KEY_TAB) {
             onKey(KEY_INCREMENT);
@@ -103,32 +86,18 @@ const ButtonDisplay = (props, context) => {
   const { buttons = [], preferences } = data;
   const { selected } = props;
   const { large_buttons, swapped_buttons } = preferences;
-  const buttonDirection
-    = (buttons.length > 2 ? 'column' : 'row')
-    + (!swapped_buttons ? '-reverse' : '');
+  const buttonDirection = (buttons.length > 2 ? 'column' : 'row') + (!swapped_buttons ? '-reverse' : '');
 
   return (
-    <Flex
-      align="center"
-      direction={buttonDirection}
-      fill
-      justify="space-around">
+    <Flex align="center" direction={buttonDirection} fill justify="space-around">
       {buttons?.map((button, index) =>
         !!large_buttons && buttons.length < 3 ? (
           <Flex.Item grow key={index}>
-            <AlertButton
-              button={button}
-              id={index.toString()}
-              selected={selected === index}
-            />
+            <AlertButton button={button} id={index.toString()} selected={selected === index} />
           </Flex.Item>
         ) : (
           <Flex.Item key={index}>
-            <AlertButton
-              button={button}
-              id={index.toString()}
-              selected={selected === index}
-            />
+            <AlertButton button={button} id={index.toString()} selected={selected === index} />
           </Flex.Item>
         )
       )}
