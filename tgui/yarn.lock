@@ -10591,15 +10591,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-plugin-inferno@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "ts-plugin-inferno@npm:6.0.0"
-  dependencies:
-    typescript: ^5.0.3
-  checksum: b12a98d371e2f2744e385c26ecc69b12bb434c90f475d08e203945228a1be30ddaf691180b99af956b3393d17965f2d6d432cfed1f08704d4520ec5193786e7a
-  languageName: node
-  linkType: hard
-
 "trim-trailing-lines@npm:^1.0.0":
   version: 1.1.4
   resolution: "trim-trailing-lines@npm:1.1.4"
