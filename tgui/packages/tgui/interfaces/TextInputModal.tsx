@@ -17,21 +17,9 @@ type TextInputData = {
 
 export const TextInputModal = (_, context) => {
   const { act, data } = useBackend<TextInputData>(context);
-  const {
-    max_length,
-    message,
-    multiline,
-    placeholder,
-    preferences,
-    timeout,
-    title,
-  } = data;
+  const { max_length, message, multiline, placeholder, preferences, timeout, title } = data;
   const { large_buttons } = preferences;
-  const [input, setInput] = useLocalState<string>(
-    context,
-    'input',
-    placeholder || ''
-  );
+  const [input, setInput] = useLocalState<string>(context, 'input', placeholder || '');
   const onType = (value: string) => {
     if (value === input) {
       return;
@@ -39,11 +27,11 @@ export const TextInputModal = (_, context) => {
     setInput(value);
   };
   // Dynamically changes the window height based on the message.
-  const windowHeight
-    = 125
-    + Math.ceil(message.length / 3)
-    + (multiline || input.length >= 30 ? 75 : 0)
-    + (message.length && large_buttons ? 5 : 0);
+  const windowHeight =
+    125 +
+    Math.ceil(message.length / 3) +
+    (multiline || input.length >= 30 ? 75 : 0) +
+    (message.length && large_buttons ? 5 : 0);
 
   return (
     <Window title={title} width={325} height={windowHeight} theme="generic">
@@ -67,10 +55,7 @@ export const TextInputModal = (_, context) => {
               <InputArea input={input} onType={onType} />
             </Stack.Item>
             <Stack.Item>
-              <InputButtons
-                input={input}
-                message={`${input.length}/${max_length}`}
-              />
+              <InputButtons input={input} message={`${input.length}/${max_length}`} />
             </Stack.Item>
           </Stack>
         </Section>
