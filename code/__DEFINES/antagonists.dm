@@ -110,5 +110,8 @@
 #define FUGITIVE_CULT "cultist"
 #define FUGITIVE_SYNTH "synth"
 
+//Spider webs
+#define MAX_WEBS_PER_TILE 3
+
 /// The dimensions of the antagonist preview icon. Will be scaled to this size.
 #define ANTAGONIST_PREVIEW_ICON_SIZE 96
