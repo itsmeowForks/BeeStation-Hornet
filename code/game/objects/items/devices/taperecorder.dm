@@ -222,16 +222,25 @@
 		return
 
 	to_chat(usr, "<span class='notice'>Transcript printed.</span>")
-	var/obj/item/paper/transcript_paper = new /obj/item/paper(get_turf(src))
-	var/t1 = "<B>Transcript:</B><BR><BR>"
+	var/this_transcript = "<B>Transcript:</B><BR><BR>"
+	var/list/transcripts = list()
 	for(var/i in 1 to mytape.storedinfo.len)
-		t1 += "[mytape.storedinfo[i]]<BR>"
-	transcript_paper.add_raw_text(t1)
-	transcript_paper.name = "paper- 'Transcript'"
-	transcript_paper.update_appearance()
-	usr.put_in_hands(transcript_paper)
+		var/next_line = "[mytape.storedinfo[i]]<BR>"
+		if(length(this_transcript) + length(next_line) < MAX_PAPER_LENGTH)
+			this_transcript += next_line
+		else
+			transcripts += this_transcript
+			this_transcript = "<B>Transcript (continued #[transcripts.len + 1]):</B><BR><BR>[next_line]"
+	if(length(this_transcript))
+		transcripts += this_transcript
+	for(var/i in 1 to transcripts.len)
+		var/obj/item/paper/transcript_paper = new (get_turf(src))
+		transcript_paper.add_raw_text(transcripts[i])
+		transcript_paper.name = "paper- 'Transcript[i > 1 ? " (continued #[i])" : ""]'"
+		transcript_paper.update_appearance()
+		usr.put_in_hands(transcript_paper)
 	canprint = FALSE
-	addtimer(VARSET_CALLBACK(src, canprint, TRUE), 30 SECONDS)
+	addtimer(VARSET_CALLBACK(src, canprint, TRUE), (30 SECONDS) * transcripts.len)
 
 
 //empty tape recorders
