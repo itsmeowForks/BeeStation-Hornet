@@ -89,6 +89,24 @@
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/tech,
 /area/ruin/space/has_grav/hotel/bar)
+"bO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/table/glass,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 8;
+	pixel_x = 7
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "bT" = (
 /obj/structure/railing{
 	dir = 8
@@ -186,6 +204,12 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/shuttle)
+"dK" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/siding/wood,
+/obj/item/storage/bag/tray,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "ea" = (
 /obj/structure/chair/fancy/comfy,
 /turf/open/floor/carpet,
@@ -259,6 +283,18 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/hotel/dock)
+"fx" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_y = 8;
+	pixel_x = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel/bar)
 "fz" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -373,6 +409,14 @@
 /obj/structure/chair/fancy/sofa/old/right,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/hotel/dock)
+"ie" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/storage/bag/tray,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "if" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/flora/ausbushes/genericbush,
@@ -428,6 +472,14 @@
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/bar)
+"ka" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/table/glass,
+/obj/item/storage/bag/tray,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "kj" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -439,6 +491,14 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/bar)
+"ky" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/desk_bell{
+	pixel_x = -10
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "kA" = (
 /obj/structure/table/wood,
 /obj/item/paper/pamphlet/ruin/spacehotel{
@@ -457,6 +517,27 @@
 /obj/machinery/teleport/station,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/hotel/shuttle)
+"kI" = (
+/obj/structure/table/glass,
+/obj/structure/desk_bell{
+	pixel_x = -5;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/tech,
+/area/ruin/space/has_grav/hotel/bar)
+"kS" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	desc = "Often used to flavor food or make people sneeze. Fashionably moved to the left side of the table.";
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel/bar)
 "kT" = (
 /obj/machinery/door/window/northleft{
 	dir = 4;
@@ -630,6 +711,14 @@
 	},
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/hotel/shuttle)
+"oD" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/desk_bell{
+	pixel_x = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "oL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -713,6 +802,7 @@
 /area/ruin/space/has_grav/hotel/shuttle)
 "qs" = (
 /obj/structure/table/wood/fancy/red,
+/obj/item/storage/bag/tray,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/shuttle)
 "qO" = (
@@ -857,6 +947,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/storage/bag/tray,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/shuttle)
 "tQ" = (
@@ -938,6 +1029,24 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/dock)
+"va" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 8;
+	pixel_x = 7
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "vg" = (
 /obj/machinery/power/apc/highcap/five_k{
 	name = "Dock APC";
@@ -953,6 +1062,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/storage/bag/tray,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/shuttle)
 "vj" = (
@@ -1032,6 +1142,12 @@
 /obj/item/beacon,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/shuttle)
+"wJ" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/table/glass,
+/obj/item/storage/bag/tray,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "wR" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
@@ -1445,6 +1561,17 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/hotel/shuttle)
+"Gb" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/desk_bell{
+	pixel_x = -10;
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "Gi" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/black/opposingcorners,
@@ -1468,6 +1595,14 @@
 "GA" = (
 /obj/structure/table/wood/fancy/black,
 /obj/machinery/light,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_y = 2;
+	pixel_x = 4
+	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/bar)
 "GB" = (
@@ -1544,6 +1679,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray,
 /turf/open/floor/noslip/white,
 /area/ruin/space/has_grav/hotel/bar)
 "Il" = (
@@ -1612,6 +1751,10 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/structure/desk_bell{
+	pixel_x = 10;
+	pixel_y = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/dock)
 "Jz" = (
@@ -1659,6 +1802,7 @@
 	},
 /obj/structure/table/glass,
 /obj/machinery/light,
+/obj/item/storage/bag/tray,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/dock)
 "Kb" = (
@@ -2020,6 +2164,10 @@
 	pixel_y = 11
 	},
 /obj/effect/turf_decal/tile/black/opposingcorners,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_y = 10
+	},
 /turf/open/floor/noslip/white,
 /area/ruin/space/has_grav/hotel/bar)
 "QS" = (
@@ -2300,6 +2448,18 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/hotel/shuttle)
+"WA" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_y = 2;
+	pixel_x = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel/bar)
 "WN" = (
 /obj/structure/musician/piano{
 	icon_state = "piano"
@@ -2355,6 +2515,7 @@
 "XS" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/black/opposingcorners,
+/obj/item/storage/bag/tray,
 /turf/open/floor/noslip/white,
 /area/ruin/space/has_grav/hotel/bar)
 "Yc" = (
@@ -5770,7 +5931,7 @@ pf
 EQ
 by
 by
-by
+kI
 Qv
 Zo
 tB
@@ -5878,7 +6039,7 @@ Zo
 tB
 jM
 Qv
-Ci
+wJ
 nC
 cO
 cO
@@ -5980,7 +6141,7 @@ Zo
 tB
 Be
 Qv
-OC
+dK
 nC
 cO
 cO
@@ -5992,7 +6153,7 @@ cO
 cO
 cO
 nC
-CL
+ie
 mI
 Yh
 Jz
@@ -6080,7 +6241,7 @@ tB
 tB
 Zo
 tB
-Xa
+WA
 Qv
 OC
 nC
@@ -6277,7 +6438,7 @@ aM
 aM
 Qv
 WR
-Xa
+fx
 xB
 tB
 tB
@@ -6286,7 +6447,7 @@ tB
 tB
 Eg
 Qv
-OC
+va
 nC
 cO
 cO
@@ -6298,7 +6459,7 @@ cO
 cO
 cO
 nC
-CL
+va
 mI
 ZD
 Jz
@@ -6386,9 +6547,9 @@ tB
 Zo
 jW
 Pu
-Xa
+kS
 Qv
-OC
+va
 nC
 cO
 cO
@@ -6400,7 +6561,7 @@ cO
 cO
 cO
 nC
-CL
+va
 mI
 Hf
 Jz
@@ -7420,7 +7581,7 @@ Jx
 uZ
 Ru
 xd
-Xg
+oD
 Jz
 JJ
 JJ
@@ -7722,11 +7883,11 @@ BX
 Wo
 Jz
 Jz
-Jx
+Gb
 uZ
 Ru
 xd
-Xg
+ky
 Jz
 JJ
 JJ
@@ -8734,7 +8895,7 @@ Zt
 nC
 nC
 mI
-Ci
+va
 nC
 cO
 cO
@@ -8746,7 +8907,7 @@ cO
 cO
 cO
 nC
-Bx
+bO
 mI
 tg
 Jz
@@ -8836,7 +8997,7 @@ nC
 nC
 nC
 mI
-Ci
+va
 nC
 cO
 cO
@@ -8848,7 +9009,7 @@ cO
 cO
 cO
 nC
-Bx
+bO
 mI
 Xg
 Jz
@@ -9142,7 +9303,7 @@ nC
 nC
 nC
 mI
-Ci
+wJ
 nC
 cO
 cO
@@ -9154,7 +9315,7 @@ cO
 cO
 cO
 nC
-Bx
+ka
 mI
 Yh
 Jz
@@ -9244,7 +9405,7 @@ nC
 nC
 nC
 mI
-Ci
+wJ
 nC
 cO
 cO
