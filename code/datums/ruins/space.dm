@@ -252,6 +252,14 @@
 	description = "An interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residental staff will not murder them in their sleep. Probably."
 	cost = 8
 
+/datum/map_template/ruin/space/spacehotel2
+	id = "spacehotel2"
+	suffix = "spacehotel2.dmm"
+	name = "The Twin-Nexus Hotel 2"
+	description = "An interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residental staff will not murder them in their sleep. Probably."
+	cost = 8
+	always_place = TRUE
+
 /datum/map_template/ruin/space/turreted_outpost
 	id = "turreted-outpost"
 	suffix = "turretedoutpost.dmm"
