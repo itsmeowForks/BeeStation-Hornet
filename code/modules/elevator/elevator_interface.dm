@@ -23,11 +23,11 @@
 	id = "primary"
 	available_levels = list(1, 2, 3)
 
-// Glowstation
-/obj/machinery/elevator_interface/secure
-	id = "secure"
-	available_levels = list(1, 2, 5)
-	calltime = 3.5 SECONDS // this is a long elevator, please don't take 5 years
+/obj/machinery/elevator_interface/hotel
+	id = "hotel"
+	available_levels = list(1, 2, 3)
+	// True luxury, a fast elevator
+	calltime = 5 SECONDS
 
 /obj/machinery/elevator_interface/Initialize(mapload)
 	. = ..()
@@ -38,14 +38,20 @@
 /obj/machinery/elevator_interface/attack_hand(mob/living/user)
 	. = ..()
 	if(preset_z)
-		select_level(get_virtual_z_level() + z_offset)
+		select_level(real_z_to_displayed())
+
+/obj/machinery/elevator_interface/proc/real_z_to_displayed()
+	return get_virtual_z_level() - z_offset - SSelevator_controller.elevator_group_lowest[id]
+
+/obj/machinery/elevator_interface/proc/displayed_z_to_real(display_level)
+	return display_level + z_offset + SSelevator_controller.elevator_group_lowest[id]
 
 /obj/machinery/elevator_interface/proc/select_level(display_level)
 	if(!powered() || SSelevator_controller.elevator_group_timers[id])
 		if(powered())
 			say("Elevator is currently moving, please wait.")
 		return
-	var/real_destination = display_level - z_offset
+	var/real_destination = displayed_z_to_real(display_level)
 	var/display_destination = display_level
 	if(!(display_destination in available_levels))
 		return
@@ -72,7 +78,7 @@
 
 /obj/machinery/elevator_interface/ui_data(mob/user)
 	var/list/data = list()
-	data["current_z"] = get_virtual_z_level()+z_offset
+	data["current_z"] = real_z_to_displayed()
 	data["available_levels"] = available_levels
 	data["in_transit"] = !!SSelevator_controller.elevator_group_timers[id]
 	return data

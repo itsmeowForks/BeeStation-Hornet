@@ -16,9 +16,8 @@
 	id = "primary"
 	base_turf = /turf/open/floor/plasteel/elevatorshaft
 
-// Glowstation
-/obj/structure/elevator_segment/secure
-	id = "secure"
+/obj/structure/elevator_segment/hotel
+	id = "hotel"
 	base_turf = /turf/open/floor/plasteel/elevatorshaft
 
 /obj/structure/elevator_segment/Initialize(mapload)

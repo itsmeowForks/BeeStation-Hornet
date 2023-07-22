@@ -18,9 +18,8 @@
 /obj/machinery/elevator_indicator/primary
 	id = "primary"
 
-// Glowstation
-/obj/machinery/elevator_indicator/secure
-	id = "secure"
+/obj/machinery/elevator_indicator/hotel
+	id = "hotel"
 
 /obj/machinery/elevator_indicator/Initialize(mapload)
 	. = ..()
@@ -32,7 +31,7 @@
 
 /obj/machinery/elevator_indicator/examine(mob/user)
 	. = ..()
-	. += "\nIt reads, level [get_virtual_z_level() + z_offset]"
+	. += "\nIt reads, level [get_virtual_z_level() - z_offset - SSelevator_controller.elevator_group_lowest[id]]"
 
 /obj/machinery/elevator_indicator/proc/update_display(datum/source, _id, z_destination, force = FALSE)
 	if(_id != id && !force)
@@ -40,5 +39,5 @@
 	if(level_display)
 		cut_overlay(level_display)
 		QDEL_NULL(level_display)
-	level_display = mutable_appearance('icons/obj/elevator.dmi', "[icon_state]_[(preset_z || !z_destination ? get_virtual_z_level() : z_destination) + z_offset]")
+	level_display = mutable_appearance('icons/obj/elevator.dmi', "[icon_state]_[(preset_z || !z_destination ? get_virtual_z_level() : z_destination) - z_offset - SSelevator_controller.elevator_group_lowest[id]]")
 	add_overlay(level_display)

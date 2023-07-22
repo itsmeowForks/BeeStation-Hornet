@@ -8,11 +8,14 @@ SUBSYSTEM_DEF(elevator_controller)
 	var/list/elevator_group_positions = list()
 	///List of elevator group timers - stops them being spammed
 	var/list/elevator_group_timers = list()
+	///List of elevator group base zlevels. This is used as a base offset so elevators work offstation.
+	var/list/elevator_group_lowest = list()
 
 /datum/controller/subsystem/elevator_controller/proc/append_id(id, obj/structure/elevator_segment/EV)
 	//append positions
 	if(!elevator_group_positions[id])
 		elevator_group_positions[id] += list("bar" = list("x", "y"), "floor" = list("x", "y"), "middle" = list("x", "y"))
+	elevator_group_lowest[id] = EV.z
 	//Bar
 	elevator_group_positions[id]["bar"]["x"] = max(elevator_group_positions[id]["bar"]["x"], EV.x)
 	elevator_group_positions[id]["bar"]["y"] = max(elevator_group_positions[id]["bar"]["y"], EV.y)
@@ -26,7 +29,7 @@ SUBSYSTEM_DEF(elevator_controller)
 	if(!elevator_groups[id])
 		elevator_groups[id] = list()
 	elevator_groups[id] |= EV
-	
+
 /datum/controller/subsystem/elevator_controller/proc/move_elevator(id, destination_z, calltime, force)
 	. = TRUE
 	elevator_group_timers[id] = addtimer(CALLBACK(src, PROC_REF(finish_timer), id), calltime || 2 SECONDS, TIMER_STOPPABLE)
@@ -46,7 +49,7 @@ SUBSYSTEM_DEF(elevator_controller)
 						var/turf/T = locate(ES.x, ES.y, i)
 						T.ChangeTurf(/turf/open/openspace)
 						crashing = TRUE
-	
+
 	if(S.get_virtual_z_level() != destination_z)
 		playsound(S, 'sound/effects/turbolift/turbolift.ogg', 45)
 	SEND_SIGNAL(src, COMSIG_ELEVATOR_MOVE, id, destination_z, calltime, crashing)
