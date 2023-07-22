@@ -107,7 +107,7 @@
 /turf/open/floor/noslip/white,
 /area/ruin/space/has_grav/hotel/bar)
 "bu" = (
-/obj/machinery/light{
+/obj/machinery/light/half{
 	dir = 1
 	},
 /turf/open/floor/noslip/darkblue,
@@ -169,6 +169,10 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
+"ct" = (
+/obj/machinery/light,
+/turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
 "cy" = (
 /obj/structure/filingcabinet,
@@ -286,6 +290,14 @@
 /obj/item/storage/bag/tray,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/dock)
+"dP" = (
+/obj/machinery/light/floor{
+	pixel_y = 8;
+	light_color = "#8FC3FF";
+	nightshift_light_color = "#83C3DE"
+	},
+/turf/open/indestructible/sound/pool,
+/area/ruin/space/has_grav/hotel/pool)
 "dU" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -797,7 +809,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/auto_name/east,
+/obj/machinery/power/apc/auto_name/east{
+	nightshift_lights = 1
+	},
 /turf/open/floor/noslip/darkblue,
 /area/ruin/space/has_grav/hotel/pool)
 "mj" = (
@@ -893,7 +907,7 @@
 /area/ruin/space/has_grav/hotel/shuttle)
 "nB" = (
 /obj/item/radio/intercom{
-	frequency = 1447;
+	frequency = 1449;
 	pixel_x = -32;
 	name = "hotel intercom"
 	},
@@ -1185,6 +1199,15 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/shuttle)
+"sJ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "sL" = (
 /turf/closed/wall/mineral/wood,
 /area/ruin/space/has_grav/hotel/pool)
@@ -1492,7 +1515,7 @@
 /turf/open/floor/plating/beach/coastline_t/sandwater_inner,
 /area/ruin/space/has_grav/hotel)
 "yM" = (
-/obj/machinery/light{
+/obj/machinery/light/half{
 	dir = 4
 	},
 /turf/open/floor/noslip/darkblue,
@@ -1526,7 +1549,7 @@
 /area/ruin/space/has_grav/hotel/shuttle)
 "zj" = (
 /obj/structure/table/glass,
-/obj/machinery/light{
+/obj/machinery/light/half{
 	dir = 4
 	},
 /turf/open/floor/noslip/darkblue,
@@ -1688,7 +1711,7 @@
 /turf/open/floor/plasteel/tech,
 /area/ruin/space/has_grav/hotel/bar)
 "Bv" = (
-/obj/machinery/light,
+/obj/machinery/light/half,
 /turf/open/floor/noslip/darkblue,
 /area/ruin/space/has_grav/hotel/pool)
 "Bx" = (
@@ -1928,6 +1951,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/dock)
 "Ez" = (
@@ -2161,7 +2187,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/shuttle)
 "HN" = (
-/obj/machinery/light{
+/obj/machinery/light/half{
 	dir = 8
 	},
 /turf/open/floor/noslip/darkblue,
@@ -2295,7 +2321,7 @@
 /area/ruin/space/has_grav/hotel/dock)
 "JI" = (
 /obj/structure/chair/fancy/bench/corporate,
-/obj/machinery/light{
+/obj/machinery/light/half{
 	dir = 1
 	},
 /turf/open/floor/noslip/darkblue,
@@ -2621,7 +2647,7 @@
 	dir = 1
 	},
 /obj/item/radio/intercom{
-	frequency = 1447;
+	frequency = 1449;
 	name = "hotel intercom";
 	pixel_y = 24
 	},
@@ -2902,14 +2928,6 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
-"SY" = (
-/obj/machinery/light/floor{
-	pixel_y = 8;
-	light_color = "#BBDBFF";
-	nightshift_light_color = "#A3D2E6"
-	},
-/turf/open/indestructible/sound/pool,
-/area/ruin/space/has_grav/hotel/pool)
 "Ta" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
@@ -3029,7 +3047,7 @@
 /obj/effect/turf_decal/tile/black/opposingcorners,
 /obj/item/radio/intercom{
 	pixel_x = 32;
-	frequency = 1447;
+	frequency = 1449;
 	name = "hotel intercom"
 	},
 /turf/open/floor/noslip/white,
@@ -7455,15 +7473,15 @@ lD
 gw
 ZO
 Yw
+dP
+bZ
+dP
 bZ
 bZ
 bZ
 bZ
 bZ
-bZ
-bZ
-bZ
-bZ
+dP
 Tp
 TQ
 gw
@@ -7722,7 +7740,7 @@ aM
 aM
 aM
 mI
-Jz
+tV
 Jz
 Jz
 Jz
@@ -7761,15 +7779,15 @@ bu
 gw
 ZO
 Yw
+dP
+bZ
+dP
 bZ
 bZ
 bZ
 bZ
 bZ
-bZ
-bZ
-bZ
-bZ
+dP
 bZ
 TQ
 gw
@@ -7865,13 +7883,13 @@ ZO
 UP
 bZ
 bZ
-SY
 bZ
 bZ
 bZ
 bZ
 bZ
-SY
+bZ
+bZ
 bZ
 TQ
 gw
@@ -8171,13 +8189,13 @@ az
 Ei
 ZO
 Yw
-SY
+dP
 bZ
 bZ
 bZ
 bZ
 bZ
-SY
+dP
 Tp
 TQ
 gw
@@ -8334,7 +8352,7 @@ aM
 aM
 aM
 mI
-Jz
+tV
 JJ
 JJ
 Cs
@@ -8479,9 +8497,9 @@ ZO
 UP
 bZ
 bZ
-SY
+dP
 bZ
-SY
+dP
 bZ
 bZ
 bZ
@@ -8785,9 +8803,9 @@ ZO
 UP
 bZ
 bZ
-SY
+dP
 bZ
-SY
+dP
 bZ
 bZ
 bZ
@@ -8844,7 +8862,7 @@ aM
 aM
 aM
 mI
-Jz
+tV
 JJ
 JJ
 JJ
@@ -8878,7 +8896,7 @@ JJ
 BQ
 Xf
 KU
-Em
+sJ
 oO
 mI
 JI
@@ -9089,13 +9107,13 @@ az
 gw
 ZO
 Yw
-SY
+dP
 bZ
 bZ
 bZ
 bZ
 bZ
-SY
+dP
 Tp
 TQ
 gw
@@ -9395,13 +9413,13 @@ ZO
 UP
 bZ
 bZ
-SY
 bZ
 bZ
 bZ
 bZ
 bZ
-SY
+bZ
+bZ
 bZ
 TQ
 gw
@@ -9456,7 +9474,7 @@ aM
 aM
 aM
 mI
-Jz
+tV
 Jz
 Jz
 Jz
@@ -9495,15 +9513,15 @@ bu
 gw
 ZO
 Yw
+dP
+bZ
+dP
 bZ
 bZ
 bZ
 bZ
 bZ
-bZ
-bZ
-bZ
-bZ
+dP
 bZ
 TQ
 gw
@@ -9801,15 +9819,15 @@ lD
 gw
 ZO
 Yw
+dP
+bZ
+dP
 bZ
 bZ
 bZ
 bZ
 bZ
-bZ
-bZ
-bZ
-bZ
+dP
 Tp
 TQ
 gw
@@ -10788,7 +10806,7 @@ nC
 nC
 nC
 nC
-nC
+ct
 mI
 Yy
 Zu

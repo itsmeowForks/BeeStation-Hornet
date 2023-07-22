@@ -649,6 +649,19 @@
 	. = ..()
 	break_light_tube()
 
+/// A large light with half power
+/obj/machinery/light/half
+	bulb_power = 0.75
+	nightshift_light_power = 0.5
+	bulb_colour = "#ede1d6"
+
+/// A small light with half power
+/obj/machinery/light/small/half
+	bulb_power = 0.75
+	nightshift_light_power = 0.5
+	bulb_colour = "#ede1d6"
+
+
 /obj/machinery/light/floor
 	name = "floor light"
 	icon = 'icons/obj/lighting.dmi'
