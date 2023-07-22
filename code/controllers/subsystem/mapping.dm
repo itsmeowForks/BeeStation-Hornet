@@ -335,6 +335,18 @@ SUBSYSTEM_DEF(mapping)
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND, orbital_body_type = /datum/orbital_object/z_linked/lavaland)
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
+
+	// load hotel
+	LoadGroup(FailedZs, "Space Hotel", "map_files/generic", "SpaceHotel.dmm",
+		list(
+			list(ZTRAIT_UP = 1),
+			list(ZTRAIT_DOWN = -1, ZTRAIT_UP = 1, ZTRAIT_BASETURF = /turf/open/openspace),
+			list(ZTRAIT_DOWN = -1, ZTRAIT_BASETURF = /turf/open/openspace),
+		),
+		list(ZTRAIT_HOTEL = TRUE, ZTRAIT_LINKAGE = SELFLOOPING),
+		silent = FALSE,
+		orbital_body_type = /datum/orbital_object/z_linked/hotel
+	)
 #endif
 
 	if(LAZYLEN(FailedZs))	//but seriously, unless the server's filesystem is messed up this will never happen
