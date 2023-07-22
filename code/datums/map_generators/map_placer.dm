@@ -34,7 +34,6 @@
 	var/current_run = GENERATE_STAGE_BUILD_CACHE_START
 	var/run_stage = 0
 
-	var/list/area_cache = list()
 	var/list/model_cache
 	var/space_key = null
 	var/list/bounds
@@ -197,7 +196,7 @@
 					var/list/cache = model_cache[model_key]
 					if(!cache)
 						CRASH("Undefined model key in DMM: [model_key]")
-					placing_template.build_coordinate(area_cache, cache, locate(xcrd, ycrd, zcrd), no_afterchange, place_on_top)
+					placing_template.build_coordinate(cache, locate(xcrd, ycrd, zcrd), no_afterchange, place_on_top)
 
 					// only bother with bounds that actually exist
 					bounds[MAP_MINX] = min(bounds[MAP_MINX], xcrd)
@@ -301,9 +300,9 @@
 	//find next delimiter (comma here) that's not within {...}
 	dpos = placing_template.find_next_delimiter_position(model, old_position, ",", "{", "}")
 	//full definition, e.g : /obj/foo/bar{variables=derp}
-	var/full_def = placing_template.trim_text(copytext(model, old_position, dpos))
+	var/full_def = trim_reduced(copytext(model, old_position, dpos))
 	var/variables_start = findtext(full_def, "{")
-	var/path_text = placing_template.trim_text(copytext(full_def, 1, variables_start))
+	var/path_text = trim_reduced(copytext(full_def, 1, variables_start))
 	//path definition, e.g /obj/foo/bar
 	var/atom_def = text2path(path_text)
 	if(dpos)
