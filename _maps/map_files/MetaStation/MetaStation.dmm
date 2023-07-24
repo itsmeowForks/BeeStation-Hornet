@@ -2771,7 +2771,7 @@
 	dir = 4
 	},
 /turf/open/space/basic,
-/area/quartermaster/miningoffice)
+/area/space/nearstation)
 "amP" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -5161,7 +5161,7 @@
 	dir = 8
 	},
 /turf/open/space/basic,
-/area/quartermaster/miningoffice)
+/area/space/nearstation)
 "aAK" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "qm_mine_warehouse";
@@ -5637,11 +5637,6 @@
 "aDb" = (
 /turf/closed/wall,
 /area/construction/mining/aux_base)
-"aDc" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/railing/corner,
-/turf/open/space/basic,
-/area/quartermaster/miningoffice)
 "aDp" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -30617,13 +30612,12 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "dhC" = (
-/obj/structure/lattice/catwalk,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "mine"
 	},
 /obj/structure/plasticflaps,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/quartermaster/miningoffice)
 "dhD" = (
 /obj/structure/sign/poster/official/random{
@@ -31499,10 +31493,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
-"dst" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/quartermaster/miningoffice)
 "dsI" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 4
@@ -36769,12 +36759,11 @@
 /turf/closed/wall,
 /area/science/nanite)
 "fFa" = (
-/obj/structure/lattice/catwalk,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "mine"
 	},
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/quartermaster/miningoffice)
 "fFk" = (
 /obj/structure/cable/yellow{
@@ -90055,7 +90044,7 @@ pdd
 drQ
 dne
 dne
-aip
+dne
 dne
 dne
 dne
@@ -94673,10 +94662,10 @@ atr
 atr
 amO
 aAJ
-dst
-dst
-dst
-aDc
+aie
+aie
+aie
+fgA
 iqo
 aaa
 aaa
