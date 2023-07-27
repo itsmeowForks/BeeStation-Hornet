@@ -640,6 +640,9 @@
 /// Only moves the object if it's under no gravity
 /// Accepts the direction to move, and if the push should be instant
 /atom/movable/proc/newtonian_move(direction, instant = FALSE)
+	if(QDELETED(src))
+		return
+
 	if(!isturf(loc) || Process_Spacemove(0))
 		return FALSE
 
