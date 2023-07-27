@@ -34,7 +34,7 @@
 /////////////////////// ZMIMIC
 
 ///Enables Multi-Z lighting
-#define ZMIMIC_LIGHT_BLEED
+//#define ZMIMIC_LIGHT_BLEED
 
 /// If this is uncommented, will profile mapload atom initializations
 // #define PROFILE_MAPLOAD_INIT_ATOM
