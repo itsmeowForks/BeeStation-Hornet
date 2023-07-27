@@ -24,7 +24,10 @@
 	if(ismovable(target))
 		tracker = new(target, CALLBACK(src, PROC_REF(move_react)))
 
+	RegisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, PROC_REF(orbiter_glide_size_update))
+
 /datum/component/orbiter/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE)
 	var/atom/target = parent
 	target.orbiters = null
 	QDEL_NULL(tracker)
@@ -129,6 +132,12 @@
 	if(orbiter.loc == get_turf(parent))
 		return
 	end_orbit(orbiter)
+
+/datum/component/orbiter/proc/orbiter_glide_size_update(datum/source, target)
+	SIGNAL_HANDLER
+	for(var/orbiter in orbiters)
+		var/atom/movable/movable_orbiter = orbiter
+		movable_orbiter.glide_size = target
 
 /////////////////////
 

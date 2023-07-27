@@ -228,7 +228,6 @@
 	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
 		pulledby.stop_pulling()
 
-/* SMOOTH MOVEMENTS SHIT, PORT LATER
 /atom/movable/proc/set_glide_size(target = 8)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, target)
 	glide_size = target
@@ -236,7 +235,7 @@
 	for(var/m in buckled_mobs)
 		var/mob/buckled_mob = m
 		buckled_mob.set_glide_size(target)
-*/
+
 
 /**
  * meant for movement with zero side effects. only use for objects that are supposed to move "invisibly" (like camera mobs or ghosts)
@@ -638,12 +637,18 @@
 	return 0
 
 
-/atom/movable/proc/newtonian_move(direction, instant = FALSE) // Accepts the direction to move, and if the push should be instant
-	if(!loc || Process_Spacemove(0) || !direction)
+/// Only moves the object if it's under no gravity
+/// Accepts the direction to move, and if the push should be instant
+/atom/movable/proc/newtonian_move(direction, instant = FALSE)
+	if(!isturf(loc) || Process_Spacemove(0))
 		return FALSE
+
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_NEWTONIAN_MOVE, direction) & COMPONENT_MOVABLE_NEWTONIAN_BLOCK)
 		return TRUE
+
+	set_glide_size(MOVEMENT_ADJUSTED_GLIDE_SIZE(inertia_move_delay, SSspacedrift.visual_delay))
 	AddComponent(/datum/component/drift, direction, instant)
+
 	return TRUE
 
 /atom/movable/proc/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
