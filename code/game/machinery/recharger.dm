@@ -17,7 +17,8 @@
 		/obj/item/melee/baton,
 		/obj/item/ammo_box/magazine/recharge,
 		/obj/item/toy/batong,
-		/obj/item/modular_computer))
+		/obj/item/modular_computer,
+		/obj/item/pickaxe/energy_pickaxe))
 
 /obj/machinery/recharger/RefreshParts()
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
@@ -140,6 +141,15 @@
 				R.stored_ammo += new R.ammo_type(R)
 				use_power(100 * recharge_coeff * delta_time)
 				using_power = TRUE
+			update_icon()
+			return
+
+		if (istype(charging, /obj/item/pickaxe/energy_pickaxe))
+			var/obj/item/pickaxe/energy_pickaxe/e_pick = charging
+			if (e_pick.charge < e_pick.max_charge)
+				use_power(200 * recharge_coeff * delta_time)
+				using_power = TRUE
+			e_pick.charge = min(e_pick.charge + 200 * recharge_coeff * delta_time, e_pick.max_charge)
 			update_icon()
 			return
 	else

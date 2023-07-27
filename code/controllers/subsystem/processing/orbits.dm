@@ -13,6 +13,7 @@ PROCESSING_SUBSYSTEM_DEF(orbits)
 	var/initial_space_ruins = 2
 	var/initial_objective_beacons = 3
 	var/initial_asteroids = 6
+	var/max_asteroids = 10
 
 	var/orbits_setup = FALSE
 
@@ -50,6 +51,7 @@ PROCESSING_SUBSYSTEM_DEF(orbits)
 
 	//Ruin level count
 	var/ruin_levels = 0
+	var/asteroids = 0
 
 /datum/controller/subsystem/processing/orbits/Initialize(start_timeofday)
 	. = ..()
@@ -124,6 +126,8 @@ PROCESSING_SUBSYSTEM_DEF(orbits)
 	//Check space ruin count
 	if(ruin_levels < 2 && prob(5))
 		new /datum/orbital_object/z_linked/beacon/ruin/spaceruin()
+	if (prob(4) && asteroids < max_asteroids)
+		new /datum/orbital_object/z_linked/beacon/ruin/asteroid()
 	//Check objective
 	if(current_objective)
 		if(current_objective.check_failed())
@@ -236,5 +240,6 @@ PROCESSING_SUBSYSTEM_DEF(orbits)
 				"render_mode" = object.render_mode,
 				"priority" = object.priority,
 				"vel_mult" = object.velocity_multiplier,
+				"scan_data" = object.get_scan_data()
 			))
 	return data

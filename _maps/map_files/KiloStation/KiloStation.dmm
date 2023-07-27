@@ -30825,18 +30825,6 @@
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
-"cpR" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security/glass{
-	id_tag = null;
-	name = "Brig";
-	req_access_txt = "63"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/dark,
-/area/security/warden)
 "cpS" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/disposalpipe/segment{
@@ -39896,18 +39884,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/warden)
-"cOS" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security/glass{
-	id_tag = null;
-	name = "Brig";
-	req_access_txt = "63"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/warden)
 "cOT" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -43512,6 +43488,17 @@
 	},
 /turf/open/space/basic,
 /area/solar/starboard/fore)
+"elA" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/security/glass{
+	name = "Brig";
+	req_access_txt = "63"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
 "emc" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/decal/cleanable/cobweb,
@@ -43599,6 +43586,23 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"eno" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
+	},
+/obj/machinery/cryopod,
+/obj/machinery/computer/cryopod{
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "enu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -51145,17 +51149,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
-"hAI" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/computer/shuttle_flight/mining{
-	dir = 4;
-	req_access = null;
-	req_one_access = null
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral/half/contrasted,
-/turf/open/floor/plasteel/dark,
-/area/construction/mining/aux_base)
 "hAJ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -60882,23 +60875,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"lEC" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wideplating/dark/corner{
-	dir = 1
-	},
-/obj/machinery/cryopod,
-/obj/machinery/computer/cryopod{
-	pixel_y = -28
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "lEH" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/landmark/event_spawn,
@@ -65904,18 +65880,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/sorting)
-"nTo" = (
-/obj/machinery/computer/shuttle_flight/mining{
-	dir = 8;
-	req_access = null;
-	req_one_access = null
-	},
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/quartermaster/miningoffice)
 "nTq" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable/yellow{
@@ -68694,6 +68658,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/medbay/central)
+"pfc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral/half/contrasted,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-21"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "pfj" = (
 /obj/item/storage/box/firingpins,
 /obj/item/storage/box/firingpins,
@@ -73828,28 +73803,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"rfW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral/half/contrasted{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	desc = "Talk through this. It looks like it has been modified to not broadcast.";
-	name = "Prison Intercom (General)";
-	pixel_x = 28;
-	prison_radio = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "rgb" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/matches{
@@ -74442,6 +74395,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/warehouse)
+"rtd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_x = 28;
+	prison_radio = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "rti" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-10"
@@ -74537,6 +74512,17 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
+"rtO" = (
+/obj/machinery/computer/shuttle_flight/mining{
+	dir = 8;
+	req_access = null
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/quartermaster/miningoffice)
 "rtV" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -81545,6 +81531,17 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"urD" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/security/glass{
+	name = "Brig";
+	req_access_txt = "63"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
 "usp" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -84161,17 +84158,6 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"vwa" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral/half/contrasted,
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 4
-	},
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "vwf" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -88942,6 +88928,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"xlY" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/computer/shuttle_flight/mining{
+	dir = 4;
+	req_access = null
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral/half/contrasted,
+/turf/open/floor/plasteel/dark,
+/area/construction/mining/aux_base)
 "xmc" = (
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/components/trinary/filter/atmos/co2{
@@ -102492,7 +102488,7 @@ ijc
 dmh
 kcF
 bHg
-vwa
+pfc
 aat
 aat
 aeu
@@ -103777,8 +103773,8 @@ wio
 lAe
 fsH
 eRf
-rfW
-lEC
+rtd
+eno
 aav
 coy
 cmU
@@ -104799,11 +104795,11 @@ aeu
 aav
 aav
 bJB
-abp
-abp
+aav
+aav
 cJf
-abh
-abp
+aav
+aav
 cfZ
 aat
 abp
@@ -113029,7 +113025,7 @@ mTN
 dhW
 cOQ
 mSz
-cOS
+elA
 cOT
 htc
 aio
@@ -113286,7 +113282,7 @@ qMU
 evs
 cjO
 waN
-cpR
+urD
 cxM
 riz
 cjM
@@ -125557,7 +125553,7 @@ nHk
 sId
 eqn
 kIa
-hAI
+xlY
 evG
 iny
 cDD
@@ -132788,7 +132784,7 @@ bbp
 bgf
 bhH
 oAK
-nTo
+rtO
 pWu
 etV
 yao

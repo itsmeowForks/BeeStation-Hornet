@@ -18,6 +18,8 @@
         ),\
     )
 
+	var/fastdmm_pathfinding_tag = ""
+
 /obj/machinery/atmospherics/pipe/New()
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
 	volume = 35 * device_type
