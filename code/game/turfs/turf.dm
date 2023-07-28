@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 	  */
 	var/list/baseturfs = /turf/baseturf_bottom
 
+	var/temperature = T20C
 	/// How hot the turf is, in kelvin
 	var/initial_temperature = T20C
 
@@ -105,20 +106,13 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 		directional_opacity = ALL_CARDINALS
 
 	ComponentInitialize()
-	if(isopenturf(src))
-		var/turf/open/O = src
-		__auxtools_update_turf_temp_info(isspaceturf(get_z_base_turf()) && !O.planetary_atmos)
-	else
-		update_air_ref(-1)
-		__auxtools_update_turf_temp_info(isspaceturf(get_z_base_turf()))
-
 	return INITIALIZE_HINT_NORMAL
 
-/turf/proc/__auxtools_update_turf_temp_info()
-
 /turf/return_temperature()
+	return temperature
 
-/turf/proc/set_temperature()
+/turf/proc/set_temperature(temp)
+	temperature = temp
 
 /turf/proc/Initalize_Atmos(times_fired)
 	CALCULATE_ADJACENT_TURFS(src)

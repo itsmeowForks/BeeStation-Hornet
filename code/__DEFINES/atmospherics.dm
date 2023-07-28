@@ -1,3 +1,28 @@
+//LISTMOS
+//indices of values in gas lists.
+///Amount of total moles in said gas mixture
+#define MOLES 1
+///Archived version of MOLES
+#define ARCHIVE 2
+///All gas related variables
+#define GAS_META 3
+///Gas specific heat per mole
+#define META_GAS_SPECIFIC_HEAT 1
+///Name of the gas
+#define META_GAS_NAME 2
+///Amount of moles required of the gas to be visible
+#define META_GAS_MOLES_VISIBLE 3
+///Overlay path of the gas, also setup the alpha based on the amount
+#define META_GAS_OVERLAY 4
+///Let the air alarm know if the gas is dangerous
+#define META_GAS_DANGER 5
+///Id of the gas for quick access
+#define META_GAS_ID 6
+///Power of the gas when used in the current iteration of fusion
+#define META_GAS_FUSION_POWER 7
+///Short description of the gas.
+#define META_GAS_DESC 8
+
 //ATMOS
 //stuff you should probably leave well alone!
 #define R_IDEAL_GAS_EQUATION	8.31	//! kPa*L/(K*mol)
@@ -307,6 +332,27 @@
 #define PIPING_LAYER_DOUBLE_SHIFT(T, PipingLayer) \
 	T.pixel_x = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X;\
 	T.pixel_y = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y;
+
+///Calculate the thermal energy of the selected gas (J)
+#define THERMAL_ENERGY(gas) (gas.temperature * gas.heat_capacity())
+
+///Directly adds a gas to a gas mixture without checking for its presence beforehand, use only if is certain the absence of said gas
+#define ADD_GAS(gas_id, out_list)\
+	var/list/tmp_gaslist = GLOB.gaslist_cache[gas_id]; out_list[gas_id] = tmp_gaslist.Copy();
+
+///Adds a gas to a gas mixture but checks if is already present, faster than the same proc
+#define ASSERT_GAS(gas_id, gas_mixture) ASSERT_GAS_IN_LIST(gas_id, gas_mixture.gases)
+
+///Adds a gas to a gas LIST but checks if is already present, accepts a list instead of a datum, so faster if the list is locally cached
+#define ASSERT_GAS_IN_LIST(gas_id, gases) if (!gases[gas_id]) { ADD_GAS(gas_id, gases) };
+
+//prefer this to gas_mixture/total_moles in performance critical areas
+///Calculate the total moles of the gas mixture, faster than the proc, good for performance critical areas
+#define TOTAL_MOLES(cached_gases, out_var)\
+	out_var = 0;\
+	for(var/total_moles_id in cached_gases){\
+		out_var += cached_gases[total_moles_id][MOLES];\
+	}
 
 #ifdef TESTING
 GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))

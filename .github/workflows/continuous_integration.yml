@@ -2,10 +2,10 @@ name: Run tests
 
 on:
   workflow_dispatch:
-#  push:
-#    paths-ignore:
-#      - "html/changelogs/**"
-#      - "html/changelog.html"
+  #  push:
+  #    paths-ignore:
+  #      - "html/changelogs/**"
+  #      - "html/changelog.html"
   pull_request:
     branches:
       - master
@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-          cache: 'pip'
+          cache: "pip"
       - name: Cache SpacemanDMM
         id: cache-spacemandmm
         uses: actions/cache@v3
@@ -108,9 +108,6 @@ jobs:
           sudo apt update || true
           sudo apt install libssl1.1:i386
           bash tools/ci/install_rust_g.sh
-      - name: Install auxmos
-        run: |
-          bash tools/ci/install_auxmos.sh
       - name: Cache Yarn
         id: cache-yarn
         uses: actions/cache@v3

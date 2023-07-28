@@ -28,6 +28,9 @@ SUBSYSTEM_DEF(air)
 	var/num_group_turfs_processed = 0
 	var/num_equalize_processed = 0
 
+	var/list/excited_groups = list()
+	var/list/active_turfs = list()
+	var/list/turf/active_super_conductivity = list()
 	var/list/hotspots = list()
 	var/list/networks = list()
 	var/list/pipenets_needing_rebuilt = list()
@@ -75,7 +78,7 @@ SUBSYSTEM_DEF(air)
 	msg += "C:{"
 	msg += "HP:[round(cost_highpressure,1)]|"
 	msg += "HS:[round(cost_hotspots,1)]|"
-	msg += "HE:[round(heat_process_time(),1)]|"
+	//msg += "HE:[round(heat_process_time(),1)]|"
 	msg += "SC:[round(cost_superconductivity,1)]|"
 	msg += "PN:[round(cost_pipenets,1)]|"
 	msg += "AM:[round(cost_atmos_machinery,1)]"
@@ -95,8 +98,6 @@ SUBSYSTEM_DEF(air)
 	msg += "ET:[num_equalize_processed]|"
 	msg += "GT:[num_group_turfs_processed]|"
 	msg += "DF:[max_deferred_airs]|"
-	msg += "GA:[get_amt_gas_mixes()]|"
-	msg += "MG:[get_max_gas_mixes()]"
 	return ..()
 
 /datum/controller/subsystem/air/Initialize(timeofday)
@@ -105,12 +106,7 @@ SUBSYSTEM_DEF(air)
 	setup_atmos_machinery()
 	setup_pipenets()
 	gas_reactions = init_gas_reactions()
-	auxtools_update_reactions()
 	return ..()
-
-/datum/controller/subsystem/air/proc/extools_update_ssair()
-
-/datum/controller/subsystem/air/proc/auxtools_update_reactions()
 
 /proc/reset_all_air()
 	SSair.can_fire = 0
@@ -211,11 +207,11 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
-		currentpart = SSAIR_FINALIZE_TURFS
+		currentpart = SSAIR_DEFERRED_AIRS
 	// This literally just waits for the turf processing thread to finish, doesn't do anything else.
 	// this is necessary cause the next step after this interacts with the air--we get consistency
 	// issues if we don't wait for it, disappearing gases etc.
-	if(currentpart == SSAIR_FINALIZE_TURFS)
+	/*if(currentpart == SSAIR_FINALIZE_TURFS)
 		finish_turf_processing(resumed)
 		if(state != SS_RUNNING)
 			cur_thread_wait_ticks++
@@ -223,7 +219,7 @@ SUBSYSTEM_DEF(air)
 		resumed = 0
 		thread_wait_ticks = MC_AVERAGE(thread_wait_ticks, cur_thread_wait_ticks)
 		cur_thread_wait_ticks = 0
-		currentpart = SSAIR_DEFERRED_AIRS
+		currentpart = SSAIR_DEFERRED_AIRS*/
 	if(currentpart == SSAIR_DEFERRED_AIRS)
 		timer = TICK_USAGE_REAL
 		process_deferred_airs(resumed)
@@ -252,7 +248,7 @@ SUBSYSTEM_DEF(air)
 	// Heat -- slow and of questionable usefulness. Off by default for this reason. Pretty cool, though.
 	if(currentpart == SSAIR_TURF_CONDUCTION)
 		timer = TICK_USAGE_REAL
-		if(process_turf_heat(MC_TICK_REMAINING_MS))
+		if(process_super_conductivity(MC_TICK_REMAINING_MS))
 			pause()
 		cost_superconductivity = MC_AVERAGE(cost_superconductivity, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 		if(state != SS_RUNNING)
@@ -269,7 +265,7 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
-	/*
+		currentpart = SSAIR_EQUALIZE
 	// Monstermos and/or Putnamos--making large pressure deltas move faster
 	if(currentpart == SSAIR_EQUALIZE)
 		timer = TICK_USAGE_REAL
@@ -278,26 +274,7 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
-		currentpart = SSAIR_EXCITEDGROUPS
-	// Making small pressure deltas equalize immediately so they don't process anymore
-	if(currentpart == SSAIR_EXCITEDGROUPS)
-		timer = TICK_USAGE_REAL
-		process_excited_groups(resumed)
-		cost_groups = MC_AVERAGE(cost_groups, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-		if(state != SS_RUNNING)
-			return
-		resumed = 0
 		currentpart = SSAIR_TURF_POST_PROCESS
-	// Quick multithreaded "should we display/react?" checks followed by finishing those up before the next step
-	if(currentpart == SSAIR_TURF_POST_PROCESS)
-		timer = TICK_USAGE_REAL
-		post_process_turfs(resumed)
-		cost_post_process = MC_AVERAGE(cost_post_process, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-		if(state != SS_RUNNING)
-			return
-		resumed = 0
-		currentpart = SSAIR_HOTSPOTS
-	*/
 	currentpart = SSAIR_REBUILD_PIPENETS
 	last_complete_process = world.time
 
@@ -329,6 +306,18 @@ SUBSYSTEM_DEF(air)
 	share_max_steps = SSair.share_max_steps
 	excited_group_pressure_goal = SSair.excited_group_pressure_goal
 	paused_z_levels = SSair.paused_z_levels
+
+/datum/controller/subsystem/air/proc/process_super_conductivity(resumed = FALSE)
+	if (!resumed)
+		src.currentrun = active_super_conductivity.Copy()
+	//cache for sanic speed (lists are references anyways)
+	var/list/currentrun = src.currentrun
+	while(currentrun.len)
+		var/turf/T = currentrun[currentrun.len]
+		currentrun.len--
+		T.super_conduct()
+		if(MC_TICK_CHECK)
+			return
 
 /datum/controller/subsystem/air/proc/process_pipenets(resumed = FALSE)
 	if (!resumed)
@@ -452,8 +441,6 @@ SUBSYSTEM_DEF(air)
 	if(machine.interacts_with_air && currentpart == SSAIR_ATMOSMACHINERY_AIR)
 		currentrun -= machine
 
-/datum/controller/subsystem/air/proc/process_turf_heat()
-
 /datum/controller/subsystem/air/proc/process_hotspots(resumed = FALSE)
 	if (!resumed)
 		src.currentrun = hotspots.Copy()
@@ -481,9 +468,6 @@ SUBSYSTEM_DEF(air)
 			return
 
 /datum/controller/subsystem/air/proc/process_turf_equalize(resumed = 0)
-	if(process_turf_equalize_auxtools(resumed,MC_TICK_REMAINING_MS))
-		pause()
-	/*
 	//cache for sanic speed
 	var/fire_count = times_fired
 	if (!resumed)
@@ -498,12 +482,8 @@ SUBSYSTEM_DEF(air)
 			//equalize_pressure_in_zone(T, fire_count)
 		if (MC_TICK_CHECK)
 			return
-	*/
 
 /datum/controller/subsystem/air/proc/process_turfs(resumed = 0)
-	if(process_turfs_auxtools(resumed,MC_TICK_REMAINING_MS))
-		pause()
-	/*
 	//cache for sanic speed
 	var/fire_count = times_fired
 	if (!resumed)
@@ -517,29 +497,7 @@ SUBSYSTEM_DEF(air)
 			T.process_cell(fire_count)
 		if (MC_TICK_CHECK)
 			return
-	*/
 
-/datum/controller/subsystem/air/proc/process_excited_groups(resumed = 0)
-	if(process_excited_groups_auxtools(resumed,MC_TICK_REMAINING_MS))
-		pause()
-
-/datum/controller/subsystem/air/proc/finish_turf_processing(resumed = 0)
-	if(finish_turf_processing_auxtools(MC_TICK_REMAINING_MS))
-		pause()
-
-/datum/controller/subsystem/air/proc/post_process_turfs(resumed = 0)
-	if(post_process_turfs_auxtools(resumed,MC_TICK_REMAINING_MS))
-		pause()
-
-/datum/controller/subsystem/air/proc/finish_turf_processing_auxtools()
-/datum/controller/subsystem/air/proc/process_turfs_auxtools()
-/datum/controller/subsystem/air/proc/post_process_turfs_auxtools()
-/datum/controller/subsystem/air/proc/process_turf_equalize_auxtools()
-/datum/controller/subsystem/air/proc/process_excited_groups_auxtools()
-/datum/controller/subsystem/air/proc/get_amt_gas_mixes()
-/datum/controller/subsystem/air/proc/get_max_gas_mixes()
-/datum/controller/subsystem/air/proc/turf_process_time()
-/datum/controller/subsystem/air/proc/heat_process_time()
 
 /datum/controller/subsystem/air/StartLoadingMap()
 	map_loading = TRUE
