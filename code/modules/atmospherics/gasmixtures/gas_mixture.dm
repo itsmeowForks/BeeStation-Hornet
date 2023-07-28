@@ -448,7 +448,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 		return
 	var/possible
 	for(var/I in cached_gases)
-		if(GLOB.nonreactive_gases[I])
+		if(I in GLOB.nonreactive_gases)
 			continue
 		possible = TRUE
 		break
