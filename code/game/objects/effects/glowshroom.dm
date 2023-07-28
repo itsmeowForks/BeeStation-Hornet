@@ -69,6 +69,8 @@
 		myseed.genes -= G
 		G = new G
 		myseed.genes += G
+	if(!G)
+		return INITIALIZE_HINT_QDEL
 	set_light(G.glow_range(myseed), G.glow_power(myseed), G.glow_color)
 	setDir(CalcDir())
 	var/base_icon_state = initial(icon_state)
