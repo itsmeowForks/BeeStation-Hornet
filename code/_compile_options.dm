@@ -34,7 +34,7 @@
 /// Enables BYOND TRACY, which allows profiling using Tracy.
 /// The prof.dll/libprof.so must be built and placed in the repo folder.
 /// https://github.com/mafemergency/byond-tracy
-//#define USE_BYOND_TRACY
+#define USE_BYOND_TRACY
 
 /////////////////////// ZMIMIC
 
@@ -66,7 +66,6 @@
 #endif							//	1 to use the default behaviour;
 								//	2 for preloading absolutely everything;
 
-#define LOWMEMORYMODE
 #ifdef LOWMEMORYMODE
 #define FORCE_MAP "runtimestation"
 #endif
