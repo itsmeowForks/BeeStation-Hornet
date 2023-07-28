@@ -518,12 +518,11 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	return GLOB.cable_coil_recipes
 
 /obj/item/stack/cable_coil/Initialize(mapload, new_amount = null, param_color = null)
-	. = ..()
-
 	var/list/cable_colors = GLOB.cable_colors
 	cable_color = param_color || cable_color || pick(cable_colors)
 	if(cable_colors[cable_color])
 		cable_color = cable_colors[cable_color]
+	. = ..()
 
 	pixel_x = base_pixel_x + rand(-2,2)
 	pixel_y = base_pixel_y + rand(-2,2)
