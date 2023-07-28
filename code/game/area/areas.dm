@@ -306,10 +306,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Register this area as belonging to a z level
   *
   * Ensures the item is added to the SSmapping.areas_in_z list for this z
-  *
-  * It also goes through every item in this areas contents and sets the area level z to it
-  * breaking the exat first time it does this, this seems crazy but what would I know, maybe
-  * areas don't have a valid z themself or something
   */
 /area/proc/reg_in_areas_in_z()
 	if(!has_contained_turfs())
