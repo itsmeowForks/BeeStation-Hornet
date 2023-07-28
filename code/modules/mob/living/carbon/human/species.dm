@@ -554,20 +554,20 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(S)
 
 				//List of all valid dynamic_hair_suffixes
-				var/static/list/extensions
+				/*var/static/list/extensions
 				if(!extensions)
 					var/icon/hair_extensions = icon('icons/mob/hair_extensions.dmi') //hehe
 					extensions = list()
 					for(var/s in hair_extensions.IconStates(1))
 						extensions[s] = TRUE
-					qdel(hair_extensions)
+					qdel(hair_extensions)*/
 
 				//Is hair+dynamic_hair_suffix a valid iconstate?
 				var/hair_state = S.icon_state
 				var/hair_file = S.icon
-				if(extensions[hair_state+dynamic_hair_suffix])
+				/*if(extensions[hair_state+dynamic_hair_suffix])
 					hair_state += dynamic_hair_suffix
-					hair_file = 'icons/mob/hair_extensions.dmi'
+					hair_file = 'icons/mob/hair_extensions.dmi'*/
 
 				hair_overlay.icon = hair_file
 				hair_overlay.icon_state = hair_state

@@ -163,9 +163,8 @@
 		var/procpath/P = pp
 		if(!P)
 			continue
-		// OD: invisibility not implemented!
-		/*if((!mob && P.invisibility) || (mob && P.invisibility > mob.see_invisible))
-			continue*/
+		if(!mob || !P.name || !P.category)
+			continue
 		if(!islist(added_verbs[P.category]))
 			added_verbs[P.category] = list()
 		added_verbs[P.category]["[P.name]"] = list(

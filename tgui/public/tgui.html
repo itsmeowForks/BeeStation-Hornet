@@ -512,7 +512,7 @@ window.replaceHtml = function (inline_html) {
 };
 
 // Signal tgui that we're ready to receive updates
-Byond.sendMessage('ready');
+window.onload = function() { Byond.sendMessage('ready'); }
 </script>
 
 <style>
