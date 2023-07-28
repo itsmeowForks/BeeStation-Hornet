@@ -23,17 +23,17 @@
 		if (fexists("./librust_g.so"))
 			// No need for LD_LIBRARY_PATH badness.
 			return __rust_g = "./librust_g.so"
-		else if (fexists("./rust_g"))
+		else if (fexists("./rust_g.dll"))
 			// Old dumb filename.
-			return __rust_g = "./rust_g"
+			return __rust_g = "./rust_g.dll"
 		else if (fexists("[world.GetConfig("env", "HOME")]/.byond/bin/rust_g"))
 			// Old dumb filename in `~/.byond/bin`.
-			return __rust_g = "rust_g"
+			return __rust_g = "rust_g.dll"
 		else
 			// It's not in the current directory, so try others
 			return __rust_g = "librust_g.so"
 	else
-		return __rust_g = "rust_g"
+		return __rust_g = "rust_g.dll"
 
 #define RUST_G (__rust_g || __detect_rust_g())
 #endif

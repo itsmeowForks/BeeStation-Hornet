@@ -273,6 +273,7 @@
 /datum/component/overlay_lighting/proc/set_range(atom/source, new_range)
 	if(range == new_range)
 		return
+	return
 	if(range == 0)
 		turn_off()
 	range = clamp(CEILING(new_range, 0.5), 1, 6)

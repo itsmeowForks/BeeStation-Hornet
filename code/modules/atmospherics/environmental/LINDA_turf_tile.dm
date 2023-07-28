@@ -159,6 +159,8 @@
 	var/list/atmos_overlay_types = src.atmos_overlay_types // Cache for free performance
 	var/list/new_overlay_types = list()
 	var/static/list/nonoverlaying_gases = typecache_of_gases_with_no_overlays()
+	if(isnull(nonoverlaying_gases))
+		nonoverlaying_gases = typecache_of_gases_with_no_overlays() || list()
 
 	if(!air) // 2019-05-14: was not able to get this path to fire in testing. Consider removing/looking at callers -Naksu
 		if (atmos_overlay_types)
