@@ -525,7 +525,7 @@
 ////////  Movement procs  ////////
 //////////////////////////////////
 
-/obj/mecha/Move(atom/newloc, direct)
+/obj/mecha/Move(atom/newloc, direct, update_dir = TRUE, glide_size_override = 0)
 	. = ..()
 	if(.)
 		events.fireEvent("onMove",get_turf(src))

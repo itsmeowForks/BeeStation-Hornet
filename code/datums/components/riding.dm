@@ -63,24 +63,19 @@
 /datum/component/riding/proc/set_vehicle_dir_layer(dir, layer)
 	directional_vehicle_layers["[dir]"] = layer
 
-/datum/component/riding/proc/vehicle_moved(datum/source, dir)
+/datum/component/riding/proc/vehicle_moved(datum/source, atom/oldloc, dir)
 	SIGNAL_HANDLER
 
 	var/atom/movable/movable_parent = parent
 	if (isnull(dir))
 		dir = movable_parent.dir
-	movable_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(vehicle_move_delay))
+	movable_parent.set_glide_size(DELAY_TO_GLIDE_SIZE((((dir & (dir - 1)) ? SQRT_2 : 1) * vehicle_move_delay * vehicle_move_multiplier)))
 	for (var/m in movable_parent.buckled_mobs)
 		ride_check(m)
 		var/mob/buckled_mob = m
 		buckled_mob.set_glide_size(movable_parent.glide_size)
 	handle_vehicle_offsets(dir)
 	handle_vehicle_layer(dir)
-
-/datum/component/riding/proc/vehicle_turned(datum/source, _old_dir, new_dir)
-	SIGNAL_HANDLER
-
-	vehicle_moved(source, new_dir)
 
 /datum/component/riding/proc/ride_check(mob/living/M)
 	var/atom/movable/AM = parent
