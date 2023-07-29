@@ -128,7 +128,6 @@
 	if(!canmove)
 		return
 	vehicle_move(direction)
-	SEND_SIGNAL(src, COMSIG_RIDDEN_DRIVER_MOVE, user, direction)
 	return TRUE
 
 /obj/vehicle/proc/vehicle_move(direction)
