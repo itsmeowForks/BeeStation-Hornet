@@ -176,6 +176,8 @@
 	var/sequence = GET_SEQUENCE(mutation)
 	if(active)
 		return sequence
+	if(!length(sequence))
+		return
 	while(difficulty)
 		var/randnum = rand(1, length_char(sequence))
 		sequence = copytext_char(sequence, 1, randnum) + "X" + copytext_char(sequence, randnum + 1)

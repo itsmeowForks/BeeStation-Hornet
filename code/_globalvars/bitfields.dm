@@ -67,7 +67,6 @@ DEFINE_BITFIELD(obj_flags, list(
 ))
 
 DEFINE_BITFIELD(datum_flags, list(
-	"DF_USE_TAG" = DF_USE_TAG,
 	"DF_VAR_EDITED" = DF_VAR_EDITED,
 	"DF_ISPROCESSING" = DF_ISPROCESSING,
 ))

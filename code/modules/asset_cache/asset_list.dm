@@ -178,6 +178,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		SSasset_loading.queue_asset(src)
 
 /datum/asset/spritesheet/proc/realize_spritesheets(yield)
+	return
 	if(fully_generated)
 		return
 	while(length(to_generate))
@@ -205,9 +206,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	SSasset_loading.dequeue_asset(src)
 
 /datum/asset/spritesheet/queued_generation()
+	return
 	realize_spritesheets(yield = TRUE)
 
 /datum/asset/spritesheet/ensure_ready()
+	return TRUE
 	if(!fully_generated)
 		realize_spritesheets(yield = FALSE)
 	return ..()

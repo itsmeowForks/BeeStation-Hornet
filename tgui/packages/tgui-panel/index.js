@@ -85,10 +85,10 @@ const setupApp = () => {
     'is-visible': true,
     'is-disabled': false,
     'pos': '0x0',
-    'size': '0x0',
+    'size': '600x900',
   });
 
-  based_winset();
+  // based_winset();
 
   // Enable hot module reloading
   if (module.hot) {
@@ -101,12 +101,12 @@ const setupApp = () => {
     );
   }
 };
-
+/*
 const based_winset = async (based_on_what = 'output') => {
   const winget_output = await Byond.winget(based_on_what);
   Byond.winset('browseroutput', {
     'size': winget_output['size'],
   });
-};
+};*/
 
 setupApp();

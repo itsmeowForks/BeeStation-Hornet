@@ -35,50 +35,15 @@
 		winset(src, "[id]_macro_return", "parent=persist_[id]_macro;name=Return;command=\".winset \\\"[id].is-visible=false\\\"\"")
 		winset(src, "[id]_macro_escape", "parent=persist_[id]_macro;name=Escape;command=\".winset \\\"[id].is-visible=false\\\";[id].input.text=\\\"\\\"\"")
 
-	//Window scaling!
-	//BYOND doesn't scale the window by DPI scaling, so it'll appear too big/too small with DPI scaling other than the one it was based on
-	//This code uses the title bar to figure out what DPI scaling is being used and resize the window based on that
-	//Figure out the DPI scaling based on the titlebar size of the window, based on outer-inner height
-	var/window_data = params2list(winget(src, id, "outer-size;inner-size"))
-	var/window_innersize = splittext(window_data["inner-size"], "x")
-	var/window_outersize = splittext(window_data["outer-size"], "x")
-
-	var/titlebarHeight = text2num(window_outersize[2])-text2num(window_innersize[2])
-
-	//Known titlebar heights for DPI scaling:
-	//win7:  100%-28, 125%-33, 150%-39
-	//win10: 100%-29, 125%-35, 150%-40
-
-	//Known window sizes for DPI scaling: (Win7)
-	//100%: 302x86,  font 7
-	//125%: 402x106, font 8
-	//150%: 503x133, font 8
-
-	var/scaling = FALSE
-
 	//Those are the default values for the window
 	var/window_width  = 302
 	var/window_height = 86
 	var/font_size = 7
 
-	//The values used here were sampled from BYOND in practice, I couldn't find a formula that would describe them
-	switch(titlebarHeight)
-		if(30 to 37)
-			scaling = 1.25
-			window_width  = 402
-			window_height = 106
-			font_size = 8
-		if(37 to 42)
-			scaling = 1.50
-			window_width  = 503
-			window_height = 133
-			font_size = 8
-
-	if(scaling)
-		winset(src, null, "[id].size=[window_width]x[window_height];[id].input.font-size=[font_size];[id].accept.font-size=[font_size];[id].cancel.font-size=[font_size]")
+	winset(src, null, "[id].size=[window_width]x[window_height];[id].input.font-size=[font_size];[id].accept.font-size=[font_size];[id].cancel.font-size=[font_size]")
 	//End window scaling
 
-	center_window(id, window_width, window_height)
+	//center_window(id, window_width, window_height)
 
 	if(show)
 		//Show the window and focus on the textbox

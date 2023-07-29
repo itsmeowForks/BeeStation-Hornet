@@ -57,6 +57,14 @@
  */
 /datum/tgui_panel/proc/add_verbs(list/new_verbs)
 	var/list/payload = new_verbs
+	for(var/key in payload)
+		if(!key)
+			payload -= key
+			continue
+		if(!islist(payload[key]))
+			payload -= key
+			continue
+		payload[key] = remove_nulls_from_list(payload[key].Copy())
 	window.send_message("stat/addVerbs", payload)
 
 /**

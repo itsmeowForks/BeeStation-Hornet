@@ -83,8 +83,10 @@ have ways of interacting with a specific mob and control it.
 ///re-used behavior pattern by monkeys for finding a weapon
 /datum/ai_controller/monkey/proc/TryFindWeapon()
 	var/mob/living/living_pawn = pawn
+	if(!istype(living_pawn) || !islist(living_pawn.held_items))
+		return
 
-	if(!locate(/obj/item) in living_pawn.held_items)
+	if(!(locate(/obj/item) in living_pawn.held_items))
 		blackboard[BB_MONKEY_BEST_FORCE_FOUND] = 0
 
 	if(blackboard[BB_MONKEY_GUN_NEURONS_ACTIVATED] && (locate(/obj/item/gun) in living_pawn.held_items))

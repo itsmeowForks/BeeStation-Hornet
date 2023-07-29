@@ -66,6 +66,11 @@ menu "menu"
 		command = "game-preferences"
 		category = "&Preferences"
 		saved-params = "is-checked"
+	elem
+		name = "&Start Now"
+		command = "startnow"
+		category = "&Verbs"
+		saved-params = "is-checked"
 
 
 window "mainwindow"

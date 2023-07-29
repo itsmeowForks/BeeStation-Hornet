@@ -269,7 +269,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	set name = "Fit Viewport"
 	set category = "OOC"
 	set desc = "Fit the width of the map window to match the viewport"
-
+	return
 	// Fetch aspect ratio
 	var/view_size = getviewsize(view)
 	var/aspect_ratio = view_size[1] / view_size[2]
