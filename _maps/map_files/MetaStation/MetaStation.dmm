@@ -36187,7 +36187,7 @@
 	req_access_txt = "3"
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners/contrasted,
-/obj/effect/spawner/lootdrop/job_scale/armoury/riot_shield,
+/obj/effect/loot_jobscale/armoury/riot_shield,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "gnR" = (
@@ -43508,11 +43508,11 @@
 	req_access_txt = "5"
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
-/obj/effect/spawner/lootdrop/job_scale/medical/medkits{
+/obj/effect/loot_jobscale/medical/medkits{
 	pixel_x = -6;
 	pixel_y = 2
 	},
-/obj/effect/spawner/lootdrop/job_scale/medical/medkits{
+/obj/effect/loot_jobscale/medical/medkits{
 	pixel_x = 5
 	},
 /obj/machinery/camera/autoname{
@@ -48434,7 +48434,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
-/obj/effect/spawner/lootdrop/job_scale/medical/first_aid_kit,
+/obj/effect/loot_jobscale/medical/first_aid_kit,
 /obj/structure/window/reinforced{
 	dir = 8;
 	layer = 2.9
@@ -50667,7 +50667,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners/contrasted,
-/obj/effect/spawner/lootdrop/job_scale/armoury/disabler,
+/obj/effect/loot_jobscale/armoury/disabler,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "mCf" = (
@@ -50943,7 +50943,7 @@
 "mGm" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/neutral/fourcorners/contrasted,
-/obj/effect/spawner/lootdrop/job_scale/armoury/laser_gun,
+/obj/effect/loot_jobscale/armoury/laser_gun,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "mGx" = (
@@ -58703,7 +58703,7 @@
 /obj/item/storage/fancy/donut_box,
 /obj/item/beacon/nettingportal,
 /obj/effect/turf_decal/tile/neutral/fourcorners/contrasted,
-/obj/effect/spawner/lootdrop/job_scale/armoury/dragnet,
+/obj/effect/loot_jobscale/armoury/dragnet,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "pVv" = (
@@ -59559,7 +59559,7 @@
 "qlF" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/neutral/fourcorners/contrasted,
-/obj/effect/spawner/lootdrop/job_scale/armoury/energy_gun,
+/obj/effect/loot_jobscale/armoury/energy_gun,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "qlH" = (
@@ -67257,7 +67257,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
-/obj/effect/spawner/lootdrop/job_scale/medical/medkits,
+/obj/effect/loot_jobscale/medical/medkits,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/storage)
 "tHf" = (
@@ -72327,7 +72327,7 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/effect/spawner/lootdrop/job_scale/medical/medkits{
+/obj/effect/loot_jobscale/medical/medkits{
 	pixel_x = -5;
 	pixel_y = 1
 	},
@@ -73538,7 +73538,7 @@
 /obj/item/storage/box/breacherslug,
 /obj/item/storage/box/breacherslug,
 /obj/effect/turf_decal/tile/neutral/fourcorners/contrasted,
-/obj/effect/spawner/lootdrop/job_scale/armoury/riot_shotgun,
+/obj/effect/loot_jobscale/armoury/riot_shotgun,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "wsx" = (
@@ -74003,8 +74003,8 @@
 	pixel_x = 28
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners/contrasted,
-/obj/effect/spawner/lootdrop/job_scale/armoury/bulletproof_vest,
-/obj/effect/spawner/lootdrop/job_scale/armoury/riot_helmet,
+/obj/effect/loot_jobscale/armoury/bulletproof_vest,
+/obj/effect/loot_jobscale/armoury/riot_helmet,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "wCo" = (
@@ -74169,8 +74169,8 @@
 "wFr" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/neutral/fourcorners/contrasted,
-/obj/effect/spawner/lootdrop/job_scale/armoury/bulletproof_vest,
-/obj/effect/spawner/lootdrop/job_scale/armoury/bulletproof_helmet,
+/obj/effect/loot_jobscale/armoury/bulletproof_vest,
+/obj/effect/loot_jobscale/armoury/bulletproof_helmet,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "wFH" = (
@@ -76543,7 +76543,7 @@
 /area/crew_quarters/heads/captain/private)
 "xzV" = (
 /obj/structure/table/glass,
-/obj/effect/spawner/lootdrop/job_scale/medical/medkits{
+/obj/effect/loot_jobscale/medical/medkits{
 	pixel_x = -4;
 	pixel_y = 11
 	},
