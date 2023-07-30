@@ -129,6 +129,8 @@
 
 	for(var/datum/space_level/level as anything in cached_z_list)
 		if(!level.neigbours.len)
+			continue
+		var/zlevelnumber = level.z_value
 		for(var/side in 1 to 4)
 			var/turf/beginning = locate(x_pos_beginning[side], y_pos_beginning[side], zlevelnumber)
 			var/turf/ending = locate(x_pos_ending[side], y_pos_ending[side], zlevelnumber)
