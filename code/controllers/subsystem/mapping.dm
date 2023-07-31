@@ -339,9 +339,9 @@ SUBSYSTEM_DEF(mapping)
 	// load hotel
 	LoadGroup(FailedZs, "Space Hotel", "map_files/generic", "SpaceHotel.dmm",
 		list(
-			list(ZTRAIT_UP = 1),
-			list(ZTRAIT_DOWN = -1, ZTRAIT_UP = 1, ZTRAIT_BASETURF = /turf/open/openspace),
-			list(ZTRAIT_DOWN = -1, ZTRAIT_BASETURF = /turf/open/openspace),
+			list(ZTRAIT_UP = TRUE),
+			list(ZTRAIT_DOWN = TRUE, ZTRAIT_UP = TRUE, ZTRAIT_BASETURF = /turf/open/openspace),
+			list(ZTRAIT_DOWN = TRUE, ZTRAIT_BASETURF = /turf/open/openspace),
 		),
 		list(ZTRAIT_HOTEL = TRUE, ZTRAIT_LINKAGE = SELFLOOPING),
 		silent = FALSE,
