@@ -3,10 +3,13 @@
 /area/ruin/space/has_grav/hotel
 	name = "Hotel"
 	airlock_hack_difficulty = AIRLOCK_WIRE_SECURITY_PROTECTED
+	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
+	ambience_index = AMBIENCE_GENERIC
 
 /area/ruin/space/has_grav/hotel/guestroom
 	name = "Hotel Guest Room"
 	icon_state = "unknown"
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/hotel/guestroom/room_1
 	name = "Hotel Guest Room 1"
@@ -39,6 +42,7 @@
 /area/ruin/space/has_grav/hotel/pool
 	name = "Hotel Pool Room"
 	icon_state = "fitness"
+	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/ruin/space/has_grav/hotel/bar
 	name = "Hotel Bar"
@@ -55,6 +59,7 @@
 /area/ruin/space/has_grav/hotel/dock
 	name = "Hotel Shuttle Dock"
 	icon_state = "shuttle"
+	sound_environment = SOUND_AREA_TUNNEL_ENCLOSED
 
 /area/ruin/space/has_grav/hotel/workroom
 	name = "Hotel Staff Room"
@@ -69,10 +74,12 @@
 /area/ruin/space/has_grav/hotel/reception
 	name = "Hotel Reception"
 	icon_state = "start"
+	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/ruin/space/has_grav/hotel/kitchen
 	name = "Hotel Kitchen"
 	icon_state = "kitchen"
+	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/ruin/space/has_grav/hotel/ballroom
 	name = "Hotel Ballroom"

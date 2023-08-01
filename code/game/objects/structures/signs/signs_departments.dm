@@ -65,6 +65,21 @@
 	desc = "A sign labelling a restroom."
 	icon_state = "restroom"
 
+/obj/structure/sign/departments/restroom/men
+	name = "\improper MEN"
+	desc = "A sign labelling a men's restroom."
+	icon_state = "restroom_m"
+
+/obj/structure/sign/departments/restroom/women
+	name = "\improper WOMEN"
+	desc = "A sign labelling a women's restroom."
+	icon_state = "restroom_f"
+
+/obj/structure/sign/departments/restroom/handicap
+	name = "\improper RESTROOM"
+	desc = "A sign labelling an all gender, handicap accessible restroom."
+	icon_state = "restroom_h"
+
 /obj/structure/sign/departments/medbay
 	name = "\improper MEDBAY"
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
