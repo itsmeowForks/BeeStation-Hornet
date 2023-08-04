@@ -102,6 +102,11 @@
 #define ACCESS_AWAY_GENERIC2 206
 #define ACCESS_AWAY_GENERIC3 207
 #define ACCESS_AWAY_GENERIC4 208
+/// Access to all hotel staff areas and all rooms
+#define ACCESS_AWAY_HOTEL 209
+/// Range of accessible hotel room accesses, passed out by the front desk.
+#define ACCESS_AWAY_HOTELROOM_MIN 210
+#define ACCESS_AWAY_HOTELROOM_MAX 230
 
 	//Special, for anything that's basically internal
 #define ACCESS_BLOODCULT 250

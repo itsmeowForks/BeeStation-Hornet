@@ -106,3 +106,24 @@
 /area/ruin/space/has_grav/hotel/shuttle
 	name = "Hotel Shuttle Dock (OLD!!!)"
 	icon_state = "shuttle"
+
+/area/ruin/space/has_grav/hotel/botany
+	name = "Hotel Hydroponics"
+	icon_state = "hydro"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+
+/area/ruin/space/has_grav/hotel/gym
+	name = "Hotel Gym"
+	icon_state = "prison_workout"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+
+/area/ruin/space/has_grav/hotel/court
+	name = "Hotel Basketball Court"
+	icon_state = "rec"
+	sound_environment = SOUND_AREA_WOODFLOOR
+
+/area/ruin/space/has_grav/hotel/garden
+	name = "Hotel Garden"
+	icon_state = "garden"
+	sound_environment = SOUND_ENVIRONMENT_FOREST
+
