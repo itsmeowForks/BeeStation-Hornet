@@ -108,6 +108,11 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	/// will show the feature as selectable.
 	var/relevant_species_trait = null
 
+	/// If this preference is attached to a quirk datum, this is its typepath.
+	/// This will display the preference inside the quirks panel.
+	/// Use this with category = PREFERENCE_CATEGORY_QUIRK
+	var/relevant_quirk = null
+
 	/// If this requires create_informed_default_value
 	var/informed = FALSE
 
