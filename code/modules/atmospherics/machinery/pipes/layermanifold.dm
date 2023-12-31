@@ -68,14 +68,14 @@
 	var/image/I
 
 	if(p_color)
-		I = getpipeimage(icon, "pipe", p_dir, p_color, piping_layer = p_layer)
+		I = get_pipe_image(icon, "pipe", p_dir, p_color, piping_layer = p_layer)
 	else
-		I = getpipeimage(icon, "pipe", p_dir, piping_layer = p_layer)
+		I = get_pipe_image(icon, "pipe", p_dir, piping_layer = p_layer)
 
 	I.layer = layer - 0.01
 	add_overlay(I)
 
-/obj/machinery/atmospherics/pipe/layer_manifold/SetInitDirections()
+/obj/machinery/atmospherics/pipe/layer_manifold/set_init_directions()
 	switch(dir)
 		if(NORTH, SOUTH)
 			initialize_directions = NORTH|SOUTH
@@ -103,7 +103,7 @@
 	update_appearance()
 	return new_nodes
 
-/obj/machinery/atmospherics/pipe/layer_manifold/atmosinit()
+/obj/machinery/atmospherics/pipe/layer_manifold/atmos_init()
 	normalize_cardinal_directions()
 	findAllConnections()
 

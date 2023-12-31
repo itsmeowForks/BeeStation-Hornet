@@ -162,7 +162,7 @@ Buildable meters
 
 /obj/item/pipe/proc/build_pipe(obj/machinery/atmospherics/A)
 	A.setDir(fixed_dir())
-	A.SetInitDirections()
+	A.set_init_directions()
 
 	if(pipename)
 		A.name = pipename

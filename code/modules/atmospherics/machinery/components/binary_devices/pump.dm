@@ -140,7 +140,7 @@
 	if(.)
 		update_icon()
 
-/obj/machinery/atmospherics/components/binary/pump/atmosinit()
+/obj/machinery/atmospherics/components/binary/pump/atmos_init()
 	..()
 	if(frequency)
 		set_frequency(frequency)

@@ -82,12 +82,12 @@
 	else
 		icon_state = icon_state_off
 
-	add_overlay(getpipeimage(icon, "pipe", dir, , piping_layer))
+	add_overlay(get_pipe_image(icon, "pipe", dir, , piping_layer))
 
 /obj/machinery/atmospherics/components/unary/thermomachine/update_icon_nopipes()
 	cut_overlays()
 	if(showpipe)
-		add_overlay(getpipeimage(icon, "scrub_cap", initialize_directions))
+		add_overlay(get_pipe_image(icon, "scrub_cap", initialize_directions))
 
 /obj/machinery/atmospherics/components/unary/thermomachine/examine(mob/user)
 	. = ..()
@@ -142,20 +142,20 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/default_change_direction_wrench(mob/user, obj/item/I)
 	if(!..())
 		return FALSE
-	SetInitDirections()
+	set_init_directions()
 	var/obj/machinery/atmospherics/node = nodes[1]
 	if(node)
 		node.disconnect(src)
 		nodes[1] = null
 	//Sometimes this gets called more than once per atmos tick; i.e. before the incoming build_network call by SSAIR_REBUILD_PIPENETS, so we check this here.
 	if(parents[1])
-		nullifyPipenet(parents[1])
+		nullify_pipenet(parents[1])
 
-	atmosinit()
+	atmos_init()
 	node = nodes[1]
 	if(node)
-		node.atmosinit()
-		node.addMember(src)
+		node.atmos_init()
+		node.add_member(src)
 	SSair.add_to_rebuild_queue(src)
 	return TRUE
 

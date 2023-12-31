@@ -49,9 +49,9 @@
 
 		var/image/cap
 		if(node)
-			cap = getpipeimage(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer, trinary = TRUE)
+			cap = get_pipe_image(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer, trinary = TRUE)
 		else
-			cap = getpipeimage(icon, "cap", direction, piping_layer = piping_layer, trinary = TRUE)
+			cap = get_pipe_image(icon, "cap", direction, piping_layer = piping_layer, trinary = TRUE)
 
 		add_overlay(cap)
 
@@ -95,7 +95,7 @@
 
 	update_parents()
 
-/obj/machinery/atmospherics/components/trinary/filter/atmosinit()
+/obj/machinery/atmospherics/components/trinary/filter/atmos_init()
 	set_frequency(frequency)
 	return ..()
 
