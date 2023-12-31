@@ -86,7 +86,7 @@
 	obj_flags |= EMAGGED
 	visible_message(span_warning("Sparks fly out of [src]!"))
 	balloon_alert(user, "authentication sensors scrambled")
-	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	playsound(src, "sparks", 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
 /obj/machinery/airalarm/deconstruct(disassembled = TRUE)
