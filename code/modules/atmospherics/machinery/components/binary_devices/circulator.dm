@@ -163,7 +163,7 @@
 	generator.update_icon()
 	generator = null
 
-/obj/machinery/atmospherics/components/binary/circulator/setPipingLayer(new_layer)
+/obj/machinery/atmospherics/components/binary/circulator/set_piping_layer(new_layer)
 	..()
 	pixel_x = 0
 	pixel_y = 0

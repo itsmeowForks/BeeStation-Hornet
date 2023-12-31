@@ -68,9 +68,9 @@ Buildable meters
 /obj/item/pipe/dropped()
 	..()
 	if(loc)
-		setPipingLayer(piping_layer)
+		set_piping_layer(piping_layer)
 
-/obj/item/pipe/proc/setPipingLayer(new_layer = PIPING_LAYER_DEFAULT)
+/obj/item/pipe/proc/set_piping_layer(new_layer = PIPING_LAYER_DEFAULT)
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 
 	if(initial(fakeA.pipe_flags) & PIPING_ALL_LAYER)
