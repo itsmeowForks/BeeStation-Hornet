@@ -1,3 +1,25 @@
+/** liters in a normal breath. note that breaths are taken once every 4 life ticks, which is 8 seconds
+ * Addendum for people tweaking this value in the future.
+ * Because o2 tank release values/human o2 requirements are very strictly set to the same pressure, small errors can cause breakage
+ * This comes from QUANTIZE being used in /datum/gas_mixture.remove(), forming a slight sawtooth pattern of the added/removed gas, centered on the actual pressure
+ * Changing BREATH_VOLUME can set us on the lower half of this sawtooth, making humans unable to breath at standard pressure.
+ * There's no good way I can come up with to hardcode a fix for this. So if you're going to change this variable
+ * graph the functions that describe how it is used/how it interacts with breath code, and pick something on the upper half of the sawtooth
+ *
+**/
+#define BREATH_VOLUME 1.99
+/// Amount of air to take a from a tile
+#define BREATH_PERCENTAGE (BREATH_VOLUME/CELL_VOLUME)
+
+#define QUANTIZE(variable) (round((variable), (MOLAR_ACCURACY)))
+
+/// Return this from a while_present proc to call its on_loss version, if one exists
+/// Useful for doing "we're done" effects without duped code
+#define BREATH_LOST 1
+
+//The proportion of oxygen needed for metabolism compared to pluoxium. (Pluoxium is this many times efficient as oxygen)
+#define PLUOXIUM_PROPORTION 8
+
 // Pressure limits.
 #define HAZARD_HIGH_PRESSURE				550		//! This determines at what pressure the ultra-high pressure red icon is displayed. (This one is set as a constant)
 #define WARNING_HIGH_PRESSURE				325		//! This determines when the orange pressure icon is displayed (it is 0.7 * HAZARD_HIGH_PRESSURE)
