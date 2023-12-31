@@ -61,7 +61,7 @@
 		GAS_PLUOXIUM = 0,
 		GAS_STIMULUM = 0,
 		GAS_TRITIUM = 1,
-		GAS_H2O = 0,
+		GAS_WATER_VAPOR = 0,
 	)
 	// Have we spoken our alert yet?
 	var/has_spoken = FALSE
