@@ -177,7 +177,7 @@
 /obj/machinery/atmospherics/miner/water_vapor
 	name = "\improper Water Vapor Gas Miner"
 	overlay_color = "#99928E"
-	spawn_id = GAS_H2O
+	spawn_id = GAS_WATER_VAPOR
 
 /obj/machinery/atmospherics/miner/tritium
 	name = "\improper Tritium Gas Miner"
@@ -242,7 +242,7 @@
 /obj/machinery/atmospherics/miner/station/water_vapor
 	name = "\improper Water Vapor Gas Miner"
 	overlay_color = "#99928E"
-	spawn_id = GAS_H2O
+	spawn_id = GAS_WATER_VAPOR
 
 
 #undef GASMINER_POWER_NONE
