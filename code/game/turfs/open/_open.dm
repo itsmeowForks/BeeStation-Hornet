@@ -148,7 +148,7 @@
 	can_atmos_pass = ATMOS_PASS_NO
 	init_air = FALSE
 
-/turf/open/Initalize_Atmos(times_fired)
+/turf/open/Initalize_Atmos(time)
 	excited = FALSE
 	update_visuals()
 

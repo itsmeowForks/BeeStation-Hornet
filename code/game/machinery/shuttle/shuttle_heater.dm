@@ -60,13 +60,13 @@
 		nodes[1] = null
 	if(!parents[1])
 		return
-	nullifyPipenet(parents[1])
+	nullify_pipenet(parents[1])
 
-	atmosinit()
+	atmos_init()
 	node = nodes[1]
 	if(node)
-		node.atmosinit()
-		node.addMember(src)
+		node.atmos_init()
+		node.add_member(src)
 	build_network()
 	return TRUE
 

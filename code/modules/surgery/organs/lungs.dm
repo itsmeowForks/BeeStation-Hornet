@@ -253,7 +253,7 @@
 
 	// N2O
 
-		var/SA_pp = PP(breath, GAS_NITROUS)
+		var/SA_pp = PP(breath, GAS_N2O)
 		if(SA_pp > SA_para_min) // Enough to make us stunned for a bit
 			H.Unconscious(60) // 60 gives them one second to wake up and run away a bit!
 			if(SA_pp > SA_sleep_min) // Enough to make us sleep as well

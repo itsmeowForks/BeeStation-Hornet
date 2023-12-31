@@ -55,7 +55,7 @@
 		GAS_BZ = 1,
 		GAS_CO2 = 1,
 		GAS_HYPERNOB = 1,
-		GAS_NITROUS = 1,
+		GAS_N2O = 1,
 		GAS_NITRYL = 1,
 		GAS_PLASMA = 1,
 		GAS_PLUOXIUM = 0,

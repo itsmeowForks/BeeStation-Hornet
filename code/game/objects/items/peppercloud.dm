@@ -68,7 +68,7 @@
 	var/turf/previous = get_turf(user)
 	var/turf/next = get_step(user, direction)
 	for (var/i in 1 to 2)
-		if (!CANATMOSPASS(next, previous))
+		if (!previous.can_atmos_pass(next))
 			break
 		previous = next
 		next = get_step(previous, direction)

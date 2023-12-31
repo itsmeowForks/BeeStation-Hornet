@@ -147,7 +147,7 @@
 /obj/machinery/atmospherics/miner/n2o
 	name = "\improper N2O Gas Miner"
 	overlay_color = "#FFCCCC"
-	spawn_id = GAS_NITROUS
+	spawn_id = GAS_N2O
 
 /obj/machinery/atmospherics/miner/nitrogen
 	name = "\improper N2 Gas Miner"
@@ -212,7 +212,7 @@
 /obj/machinery/atmospherics/miner/station/n2o
 	name = "\improper N2O Gas Miner"
 	overlay_color = "#FFCCCC"
-	spawn_id = GAS_NITROUS
+	spawn_id = GAS_N2O
 
 /obj/machinery/atmospherics/miner/station/nitrogen
 	name = "\improper N2 Gas Miner"

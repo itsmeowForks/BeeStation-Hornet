@@ -796,13 +796,14 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	var/turf/T = get_turf(usr.loc)
 	message_admins("[key_name_admin(usr)] stabilized atmos at [AREACOORD(T)]")
 	log_game("[key_name_admin(usr)] stabilized atmos at [AREACOORD(T)]")
-
+	// TODO ATMOS
+/*
 	var/datum/gas_mixture/GM = new
 	for(var/turf/open/F in view())
 		GM.parse_gas_string(F.initial_gas_mix)
 		F.copy_air(GM)
 		F.update_visuals()
-
+*/
 	for(var/obj/machinery/portable_atmospherics/canister/can in view())
 		can.valve_open = FALSE
 		can.update_icon()

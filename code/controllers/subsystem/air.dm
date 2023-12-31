@@ -719,7 +719,8 @@ SUBSYSTEM_DEF(air)
 GLOBAL_LIST_EMPTY(colored_turfs)
 GLOBAL_LIST_EMPTY(colored_images)
 /datum/controller/subsystem/air/proc/setup_turf_visuals()
-	for(var/sharp_color in GLOB.contrast_colors)
+	return // TODO ATMOS
+	/*for(var/sharp_color in GLOB.contrast_colors)
 		var/list/add_to = list()
 		GLOB.colored_turfs += list(add_to)
 		for(var/offset in 0 to SSmapping.max_plane_offset)
@@ -729,7 +730,7 @@ GLOBAL_LIST_EMPTY(colored_images)
 			var/image/shiny = new('icons/effects/effects.dmi', suger_high, "atmos_top")
 			SET_PLANE_W_SCALAR(shiny, HIGH_GAME_PLANE, offset)
 			shiny.color = sharp_color
-			GLOB.colored_images += shiny
+			GLOB.colored_images += shiny*/
 
 /datum/controller/subsystem/air/proc/setup_template_machinery(list/atmos_machines)
 	var/obj/machinery/atmospherics/AM

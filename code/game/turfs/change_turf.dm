@@ -179,7 +179,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	else
 		if(excited || excited_group)
 			SSair.remove_from_active(src) //Clean up wall excitement, and refresh excited groups
-		if(ispath(path, /turf/closed) || ispath(path, /turf/cordon))
+		if(ispath(path, /turf/closed))
 			flags |= CHANGETURF_RECALC_ADJACENT
 		return ..()
 
@@ -301,8 +301,10 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			new_baseturfs += target_baseturfs
 
 	var/turf/newT = copytarget.copyTurf(src)
-	if (copy_air)
-		newT.air.copy_from(air)
+	if (copy_air && isopenturf(src) && isopenturf(newT))
+		var/turf/open/new_turf = newT
+		var/turf/open/self = src
+		new_turf.air.copy_from(self.air)
 	newT.baseturfs = baseturfs_string_list(new_baseturfs, newT)
 	return newT
 
