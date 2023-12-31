@@ -1,10 +1,10 @@
 
-/proc/create_portal_pair(turf/source, turf/destination, _creator = null, _lifespan = 300, accuracy = 0, newtype = /obj/effect/portal, atmos_link_override)
+/proc/create_portal_pair(turf/source, turf/destination, _creator = null, _lifespan = 300, accuracy = 0, newtype = /obj/effect/portal)
 	if(!istype(source) || !istype(destination))
 		return
 	var/turf/actual_destination = get_teleport_turf(destination, accuracy)
-	var/obj/effect/portal/P1 = new newtype(source, _creator, _lifespan, null, FALSE, null, atmos_link_override)
-	var/obj/effect/portal/P2 = new newtype(actual_destination, _creator, _lifespan, P1, TRUE, null, atmos_link_override)
+	var/obj/effect/portal/P1 = new newtype(source, _creator, _lifespan, null, FALSE, null)
+	var/obj/effect/portal/P2 = new newtype(actual_destination, _creator, _lifespan, P1, TRUE, null)
 	if(!istype(P1)||!istype(P2))
 		return
 	P1.link_portal(P2)
@@ -25,7 +25,6 @@
 	var/teleport_channel = TELEPORT_CHANNEL_BLUESPACE
 	var/creator
 	var/turf/hard_target			//For when a portal needs a hard target and isn't to be linked.
-	var/atmos_link = FALSE			//Link source/destination atmos.
 	var/turf/open/atmos_source		//Atmos link source
 	var/turf/open/atmos_destination	//Atmos link destination
 	var/allow_anchored = FALSE
@@ -86,7 +85,7 @@
 	if(Adjacent(user))
 		teleport(user)
 
-/obj/effect/portal/Initialize(mapload, _creator, _lifespan = 0, obj/effect/portal/_linked, automatic_link = FALSE, turf/hard_target_override, atmos_link_override)
+/obj/effect/portal/Initialize(mapload, _creator, _lifespan = 0, obj/effect/portal/_linked, automatic_link = FALSE, turf/hard_target_override)
 	. = ..()
 	GLOB.portals += src
 	if(!istype(_linked) && automatic_link)
@@ -94,8 +93,6 @@
 		CRASH("Somebody fucked up.")
 	if(_lifespan > 0)
 		addtimer(CALLBACK(src, PROC_REF(dispel)), _lifespan)
-	if(!isnull(atmos_link_override))
-		atmos_link = atmos_link_override
 	link_portal(_linked)
 	hardlinked = automatic_link
 	creator = _creator
@@ -110,51 +107,12 @@
 
 /obj/effect/portal/proc/link_portal(obj/effect/portal/newlink)
 	linked = newlink
-	if(atmos_link)
-		link_atmos()
-
-/obj/effect/portal/proc/link_atmos()
-	if(atmos_source || atmos_destination)
-		unlink_atmos()
-	if(!isopenturf(get_turf(src)))
-		return FALSE
-	if(linked)
-		if(isopenturf(get_turf(linked)))
-			atmos_source = get_turf(src)
-			atmos_destination = get_turf(linked)
-	else if(hard_target)
-		if(isopenturf(hard_target))
-			atmos_source = get_turf(src)
-			atmos_destination = hard_target
-	else
-		return FALSE
-	if(!istype(atmos_source) || !istype(atmos_destination))
-		return FALSE
-	LAZYINITLIST(atmos_source.atmos_adjacent_turfs)
-	LAZYINITLIST(atmos_destination.atmos_adjacent_turfs)
-	if(atmos_source.atmos_adjacent_turfs[atmos_destination] || atmos_destination.atmos_adjacent_turfs[atmos_source])	//Already linked!
-		return FALSE
-	atmos_source.atmos_adjacent_turfs[atmos_destination] = TRUE
-	atmos_destination.atmos_adjacent_turfs[atmos_source] = TRUE
-	atmos_source.air_update_turf(FALSE)
-	atmos_destination.air_update_turf(FALSE)
-
-/obj/effect/portal/proc/unlink_atmos()
-	if(istype(atmos_source))
-		if(istype(atmos_destination) && !atmos_source.Adjacent(atmos_destination) && !CANATMOSPASS(atmos_destination, atmos_source))
-			LAZYREMOVE(atmos_source.atmos_adjacent_turfs, atmos_destination)
-		atmos_source = null
-	if(istype(atmos_destination))
-		if(istype(atmos_source) && !atmos_destination.Adjacent(atmos_source) && !CANATMOSPASS(atmos_source, atmos_destination))
-			LAZYREMOVE(atmos_destination.atmos_adjacent_turfs, atmos_source)
-		atmos_destination = null
 
 /obj/effect/portal/Destroy(force)				//Calls on_portal_destroy(destroyed portal, location of destroyed portal) on creator if creator has such call.
 	if(creator && hascall(creator, "on_portal_destroy"))
 		call(creator, "on_portal_destroy")(src, src.loc)
 	creator = null
 	GLOB.portals -= src
-	unlink_atmos()
 	if(hardlinked && !QDELETED(linked))
 		QDEL_NULL(linked)
 	else
@@ -208,7 +166,7 @@
 	var/id // var edit or set id in map editor
 	hardlinked = FALSE // dont qdel my portal nerd
 
-/obj/effect/portal/permanent/Initialize(mapload, _creator, _lifespan = 0, obj/effect/portal/_linked, automatic_link = FALSE, turf/hard_target_override, atmos_link_override)
+/obj/effect/portal/permanent/Initialize(mapload, _creator, _lifespan = 0, obj/effect/portal/_linked, automatic_link = FALSE, turf/hard_target_override)
 	. = ..()
 	set_linked()
 

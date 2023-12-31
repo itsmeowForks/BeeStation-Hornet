@@ -133,7 +133,7 @@
 
 /turf/open/indestructible/binary
 	name = "tear in the fabric of reality"
-	CanAtmosPass = ATMOS_PASS_NO
+	can_atmos_pass = ATMOS_PASS_NO
 	baseturfs = /turf/open/indestructible/binary
 	icon_state = "binary"
 	footstep = FOOTSTEP_PLATING
@@ -145,29 +145,25 @@
 /turf/open/indestructible/airblock
 	icon_state = "bluespace"
 	baseturfs = /turf/open/indestructible/airblock
-	CanAtmosPass = ATMOS_PASS_NO
+	can_atmos_pass = ATMOS_PASS_NO
 	init_air = FALSE
 
 /turf/open/Initalize_Atmos(times_fired)
-	if(!istype(air, /datum/gas_mixture/turf))
-		air = new(2500,src)
-	air.copy_from_turf(src)
-	update_air_ref(planetary_atmos ? 1 : 2)
-
+	excited = FALSE
 	update_visuals()
 
-	ImmediateCalculateAdjacentTurfs()
+	current_cycle = time
+	init_immediate_calculate_adjacent_turfs()
 
-
-/turf/open/proc/GetHeatCapacity()
+/turf/open/GetHeatCapacity()
 	. = air.heat_capacity()
 
-/turf/open/proc/GetTemperature()
-	. = air.return_temperature()
+/turf/open/GetTemperature()
+	. = air.temperature
 
-/turf/open/proc/TakeTemperature(temp)
-	air.set_temperature(air.return_temperature() + temp)
-	air_update_turf()
+/turf/open/TakeTemperature(temp)
+	air.temperature += temp
+	air_update_turf(FALSE, FALSE)
 
 /turf/open/proc/freeze_turf()
 	for(var/obj/I in contents)

@@ -63,7 +63,7 @@
 	anchored = TRUE
 	max_integrity = 200
 	var/resintype = null
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_DENSITY
 
 
 /obj/structure/alien/resin/Initialize(mapload)
@@ -158,7 +158,7 @@
 		qdel(src)
 		return FALSE
 
-	for(var/turf/T in U.GetAtmosAdjacentTurfs())
+	for(var/turf/T in U.get_atmos_adjacent_turfs())
 		if((locate(/obj/structure/alien/weeds) in T))
 			continue
 

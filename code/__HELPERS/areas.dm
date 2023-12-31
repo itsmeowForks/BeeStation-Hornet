@@ -10,33 +10,72 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/eng
 // The dirs are connected turfs in the same space
 // break_if_found is a typecache of turf/area types to return false if found
 // Please keep this proc type agnostic. If you need to restrict it do it elsewhere or add an arg.
-/proc/detect_room(turf/origin, list/break_if_found)
-	if(isclosedturf(origin))
+/proc/detect_room(turf/origin, list/break_if_found = list(), max_size=INFINITY)
+	if(origin.blocks_air)
 		return list(origin)
 
 	. = list()
 	var/list/checked_turfs = list()
 	var/list/found_turfs = list(origin)
-	while(found_turfs.len)
+	while(length(found_turfs))
 		var/turf/sourceT = found_turfs[1]
 		found_turfs.Cut(1, 2)
 		var/dir_flags = checked_turfs[sourceT]
 		for(var/dir in GLOB.alldirs)
+			if(length(.) > max_size)
+				return
 			if(dir_flags & dir) // This means we've checked this dir before, probably from the other turf
 				continue
 			var/turf/checkT = get_step(sourceT, dir)
 			if(!checkT)
 				continue
 			checked_turfs[sourceT] |= dir
-			checked_turfs[checkT] |= turn(dir, 180)
+			checked_turfs[checkT] |= REVERSE_DIR(dir)
 			.[sourceT] |= dir
-			.[checkT] |= turn(dir, 180)
+			.[checkT] |= REVERSE_DIR(dir)
 			if(break_if_found[checkT.type] || break_if_found[checkT.loc.type])
 				return FALSE
 			var/static/list/cardinal_cache = list("[NORTH]"=TRUE, "[EAST]"=TRUE, "[SOUTH]"=TRUE, "[WEST]"=TRUE)
-			if(!cardinal_cache["[dir]"] || isclosedturf(checkT) || !CANATMOSPASS(sourceT, checkT))
+			if(!cardinal_cache["[dir]"] || !TURFS_CAN_SHARE(sourceT, checkT))
 				continue
 			found_turfs += checkT // Since checkT is connected, add it to the list to be processed
+
+/**
+ * Create an atmos zone (Think ZAS), similiar to [proc/detect_room] but it ignores walls and turfs which are non-[atmos_can_pass]
+ *
+ * Arguments
+ * source - the turf which to find all connected atmos turfs
+ * range - the max range to check
+ *
+ * Returns a list of turfs, which is an area of isolated atmos
+ */
+/proc/create_atmos_zone(turf/source, range = INFINITY)
+	var/counter = 1 // a counter which increment each loop
+	var/loops = 0
+	if(source.blocks_air)
+		return
+	var/list/connected_turfs = list(source)
+	. = connected_turfs
+	while(length(connected_turfs))
+		var/list/turf/adjacent_turfs = list(
+			get_step(connected_turfs[counter], NORTH),
+			get_step(connected_turfs[counter], SOUTH),
+			get_step(connected_turfs[counter], EAST),
+			get_step(connected_turfs[counter], WEST)
+		)// get a tile in each cardinal direction at once and add that to the list
+		for(var/turf/valid_turf in adjacent_turfs)//loop through the list and check for atmos adjacency
+			var/turf/reference_turf = connected_turfs[counter]
+			if(valid_turf in connected_turfs)//if the turf is already added, skip
+				loops += 1
+				continue
+			if(length(connected_turfs) >= range)
+				return
+			if(TURFS_CAN_SHARE(reference_turf, valid_turf))
+				loops = 0
+				connected_turfs |= valid_turf//add that to the original list
+		if(loops >= 7)//if the loop has gone 7 consecutive times with no new turfs added, return the result. Number is arbitrary, subject to change
+			return
+		counter += 1 //increment by one so the next loop will start at the next position in the list
 
 /proc/create_area(mob/creator)
 	// Passed into the above proc as list/break_if_found

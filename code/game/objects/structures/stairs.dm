@@ -3,7 +3,7 @@
 #define STAIR_TERMINATOR_YES 2
 
 // dir determines the direction of travel to go upwards
-// stairs require /turf/open/openspace as the tile above them to work, unless your stairs have 'force_open_above' set to TRUE
+// stairs require /turf/open/openspace as the tile above them to work
 // multiple stair objects can be chained together; the Z level transition will happen on the final stair object in the chain
 
 /obj/structure/stairs
@@ -12,15 +12,10 @@
 	icon_state = "stairs"
 	anchored = TRUE
 
-	var/force_open_above = FALSE // replaces the turf above this stair obj with /turf/open/openspace
 	var/terminator_mode = STAIR_TERMINATOR_AUTOMATIC
-	var/turf/listeningTo
 
 
 /obj/structure/stairs/Initialize(mapload)
-	if(force_open_above)
-		force_open_above()
-		build_signal_listener()
 	update_surrounding()
 
 	var/static/list/loc_connections = list(
@@ -31,14 +26,8 @@
 
 	return ..()
 
-/obj/structure/stairs/Destroy()
-	listeningTo = null
-	return ..()
-
 /obj/structure/stairs/Move()			//Look this should never happen but...
 	. = ..()
-	if(force_open_above)
-		build_signal_listener()
 	update_surrounding()
 
 // Passthrough for 0G travel
@@ -82,40 +71,6 @@
 	var/turf/target = get_step_multiz(get_turf(src), (dir|UP))
 	if(istype(target) && !target.can_zFall(AM, null, get_step_multiz(target, DOWN)))			//Don't throw them into a tile that will just dump them back down.
 		AM.Move(target, (dir | UP))
-
-/obj/structure/stairs/vv_edit_var(var_name, var_value)
-	. = ..()
-	if(!.)
-		return
-	if(var_name != NAMEOF(src, force_open_above))
-		return
-	if(!var_value)
-		if(listeningTo)
-			UnregisterSignal(listeningTo, COMSIG_TURF_MULTIZ_NEW)
-			listeningTo = null
-	else
-		build_signal_listener()
-		force_open_above()
-
-/obj/structure/stairs/proc/build_signal_listener()
-	if(listeningTo)
-		UnregisterSignal(listeningTo, COMSIG_TURF_MULTIZ_NEW)
-	var/turf/open/openspace/T = get_step_multiz(get_turf(src), UP)
-	RegisterSignal(T, COMSIG_TURF_MULTIZ_NEW, PROC_REF(on_multiz_new))
-	listeningTo = T
-
-/obj/structure/stairs/proc/force_open_above()
-	var/turf/open/openspace/T = get_step_multiz(get_turf(src), UP)
-	if(T && !istype(T))
-		T.ChangeTurf(/turf/open/openspace, flags = CHANGETURF_INHERIT_AIR)
-
-/obj/structure/stairs/proc/on_multiz_new(turf/source, dir)
-	SIGNAL_HANDLER
-
-	if(dir == UP)
-		var/turf/open/openspace/T = get_step_multiz(get_turf(src), UP)
-		if(T && !istype(T))
-			T.ChangeTurf(/turf/open/openspace, flags = CHANGETURF_INHERIT_AIR)
 
 /obj/structure/stairs/intercept_zImpact(atom/movable/AM, levels = 1)
 	. = ..()

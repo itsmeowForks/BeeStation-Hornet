@@ -110,3 +110,11 @@
 /// Called when a buffer tries to send some stored data to something (datum/source, mob/user, datum/buffer, obj/item/buffer_parent) (buffer item may be null)
 #define COMSIG_PARENT_RECIEVE_BUFFER "recieve_buffer"
 	#define COMPONENT_BUFFER_RECIEVED (1 << 0)
+
+// Gas mixture signals
+/// From /datum/gas_mixture/proc/merge: ()
+#define COMSIG_GASMIX_MERGED "comsig_gasmix_merged"
+/// From /datum/gas_mixture/proc/remove: ()
+#define COMSIG_GASMIX_REMOVED "comsig_gasmix_removed"
+/// From /datum/gas_mixture/proc/react: ()
+#define COMSIG_GASMIX_REACTED "comsig_gasmix_reacted"

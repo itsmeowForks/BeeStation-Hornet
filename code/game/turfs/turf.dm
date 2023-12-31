@@ -20,14 +20,16 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 	var/list/baseturfs = /turf/baseturf_bottom
 
 	/// How hot the turf is, in kelvin
-	var/initial_temperature = T20C
+	var/temperature = T20C
 
-	/// Used for fire, if a melting temperature was reached, it will be destroyed
+	///Used for fire, if a melting temperature was reached, it will be destroyed
 	var/to_be_destroyed = 0
-	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
+	///The max temperature of the fire which it was subjected to
+	var/max_fire_temperature_sustained = 0
 
-	/// If this turf should initialize atmos adjacent turfs or not
-	/// Optimization, not for setting outside of initialize
+	var/blocks_air = FALSE
+	// If this turf should initialize atmos adjacent turfs or not
+	// Optimization, not for setting outside of initialize
 	var/init_air = TRUE
 
 	//If true, turf will allow users to float up and down in 0 grav.
@@ -110,7 +112,7 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 			add_overlay(GLOB.fullbright_overlay)
 
 	if(requires_activation)
-		CALCULATE_ADJACENT_TURFS(src)
+		CALCULATE_ADJACENT_TURFS(src, KILL_EXCITED)
 
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
@@ -125,24 +127,12 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 		directional_opacity = ALL_CARDINALS
 
 	ComponentInitialize()
-	if(isopenturf(src))
-		var/turf/open/O = src
-		__auxtools_update_turf_temp_info(isspaceturf(get_z_base_turf()) && !O.planetary_atmos)
-	else
-		update_air_ref(-1)
-		__auxtools_update_turf_temp_info(isspaceturf(get_z_base_turf()))
 
 	return INITIALIZE_HINT_NORMAL
 
-/turf/proc/__auxtools_update_turf_temp_info()
-
-/turf/return_temperature()
-
-/turf/proc/set_temperature()
-
 /// Initializes our adjacent turfs. If you want to avoid this, do not override it, instead set init_air to FALSE
-/turf/proc/Initalize_Atmos(times_fired)
-	CALCULATE_ADJACENT_TURFS(src)
+/turf/proc/Initalize_Atmos(time)
+	CALCULATE_ADJACENT_TURFS(src, NORMAL_TURF)
 
 /turf/Destroy(force)
 	. = QDEL_HINT_IWILLGC
@@ -537,3 +527,12 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 			var/obj/O = each
 			for(var/mob/M in O.contents)
 				. += M
+
+/turf/proc/GetHeatCapacity()
+	. = heat_capacity
+
+/turf/proc/GetTemperature()
+	. = temperature
+
+/turf/proc/TakeTemperature(temp)
+	temperature += temp

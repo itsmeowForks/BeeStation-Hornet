@@ -18,7 +18,7 @@
 	density = FALSE
 	layer = ABOVE_OBJ_LAYER //Just above doors
 	anchored = FALSE
-	CanAtmosPass = ATMOS_PASS_PROC
+	can_atmos_pass = ATMOS_PASS_PROC
 	dir = NORTH
 	set_dir_on_move = FALSE
 

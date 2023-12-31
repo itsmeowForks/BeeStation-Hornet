@@ -383,7 +383,7 @@
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_1 = ON_BORDER_1
-	CanAtmosPass = ATMOS_PASS_PROC
+	can_atmos_pass = ATMOS_PASS_PROC
 	assemblytype = /obj/structure/firelock_frame/border
 
 /obj/machinery/door/firedoor/border_only/Initialize(mapload)

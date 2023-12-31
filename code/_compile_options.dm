@@ -129,24 +129,7 @@
 #define CBT
 #endif
 
-#if defined(OPENDREAM)
-#error Compiling BeeStation in OpenDream is unsupported due to BeeStation's dependence on the auxtools DLL to function.
-#elif !defined(CBT) && !defined(SPACEMAN_DMM) && !defined(FASTDMM)
+#if !defined(CBT) && !defined(SPACEMAN_DMM) && !defined(FASTDMM)
 #warn Building with Dream Maker is no longer supported and will result in missing interface files.
 #warn Switch to VSCode and when prompted install the recommended extensions, you can then either use the UI or press Ctrl+Shift+B to build the codebase.
 #endif
-
-#define AUXMOS (world.system_type == MS_WINDOWS ? "auxtools/auxmos.dll" : __detect_auxmos())
-
-/proc/__detect_auxmos()
-	var/static/auxmos_path
-	if(!auxmos_path)
-		if (fexists("./libauxmos.so"))
-			auxmos_path = "./libauxmos.so"
-		else if (fexists("./auxtools/libauxmos.so"))
-			auxmos_path = "./auxtools/libauxmos.so"
-		else if (fexists("[world.GetConfig("env", "HOME")]/.byond/bin/libauxmos.so"))
-			auxmos_path = "[world.GetConfig("env", "HOME")]/.byond/bin/libauxmos.so"
-		else
-			CRASH("Could not find libauxmos.so")
-	return auxmos_path

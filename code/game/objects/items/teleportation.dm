@@ -114,7 +114,6 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/list/active_portal_pairs
 	var/max_portal_pairs = 3
-	var/atmos_link_override
 	investigate_flags = ADMIN_INVESTIGATE_TARGET
 
 /obj/item/hand_tele/Initialize(mapload)
@@ -209,7 +208,7 @@
 	if(!current_location || current_area.teleport_restriction || is_away_level(current_location.z) || is_centcom_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
 		to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")
 		return
-	var/list/obj/effect/portal/created = create_portal_pair(current_location, get_teleport_turf(get_turf(teleport_target)), src, 300, 1, null, atmos_link_override)
+	var/list/obj/effect/portal/created = create_portal_pair(current_location, get_teleport_turf(get_turf(teleport_target)), src, 300, 1, null)
 	if(!(LAZYLEN(created) == 2))
 		return
 
