@@ -934,3 +934,11 @@ GLOBAL_LIST_EMPTY(colored_images)
 			//else
 			//	user.client.images -= GLOB.colored_images
 			return TRUE
+
+// TODO ATMOS
+/datum/controller/subsystem/air/proc/pause_z(z)
+	return
+
+// TODO ATMOS
+/datum/controller/subsystem/air/proc/unpause_z(z)
+	return

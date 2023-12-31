@@ -68,7 +68,7 @@
 /obj/structure/blob/BlockThermalConductivity()
 	return atmosblock
 
-/obj/structure/blob/CanAtmosPass(turf/T)
+/obj/structure/blob/can_atmos_pass(turf/T)
 	return !atmosblock
 
 /obj/structure/blob/update_icon() //Updates color based on overmind color if we have an overmind.

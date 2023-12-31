@@ -136,7 +136,7 @@
 
 	return TRUE
 
-/obj/machinery/door/window/CanAtmosPass(turf/T)
+/obj/machinery/door/window/can_atmos_pass(turf/T)
 	if(get_dir(loc, T) == dir)
 		return !density
 	else
