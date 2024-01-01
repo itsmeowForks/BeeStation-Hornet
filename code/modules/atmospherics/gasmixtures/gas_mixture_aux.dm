@@ -7,16 +7,22 @@
 
 /// DO NOT USE IN NEW CODE!
 /datum/gas_mixture/proc/adjust_moles(gastype, moles)
+	if(!ispath(gastype))
+		gastype = gas_id2path(gastype)
 	ASSERT_GAS(gastype, src)
 	gases[gastype][MOLES] += moles
 
 /// DO NOT USE IN NEW CODE!
 /datum/gas_mixture/proc/set_moles(gastype, moles)
+	if(!ispath(gastype))
+		gastype = gas_id2path(gastype)
 	ASSERT_GAS(gastype, src)
 	gases[gastype][MOLES] = moles
 
 /// DO NOT USE IN NEW CODE!
 /datum/gas_mixture/proc/get_moles(gastype)
+	if(!ispath(gastype))
+		gastype = gas_id2path(gastype)
 	ASSERT_GAS(gastype, src)
 	return gases[gastype][MOLES]
 

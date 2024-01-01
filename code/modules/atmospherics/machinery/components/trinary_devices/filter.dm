@@ -117,8 +117,8 @@
 
 	data["filter_types"] = list()
 	data["filter_types"] += list(list("name" = "Nothing", "id" = "", "selected" = !filter_type))
-	for(var/id in GLOB.gas_data.ids)
-		data["filter_types"] += list(list("name" = GLOB.gas_data.names[id], "id" = id, "selected" = (id == filter_type)))
+	for(var/id in GLOB.meta_gas_info)
+		data["filter_types"] += list(list("name" = GLOB.meta_gas_info[id][META_GAS_NAME], "id" = id, "selected" = (id == filter_type)))
 
 	return data
 
@@ -149,9 +149,9 @@
 			filter_type = null
 			var/filter_name = "nothing"
 			var/gas = params["mode"]
-			if(gas in GLOB.gas_data.names)
+			if(gas in GLOB.meta_gas_info)
 				filter_type = gas
-				filter_name	= GLOB.gas_data.names[gas]
+				filter_name	= GLOB.meta_gas_info[gas][META_GAS_NAME]
 			investigate_log("was set to filter [filter_name] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 	if(.)

@@ -652,7 +652,7 @@ GENE SCANNER
 		var/pressure = air_contents.return_pressure()
 		var/volume = air_contents.return_volume() //could just do mixture.volume... but safety, I guess?
 		var/temperature = air_contents.return_temperature()
-		var/cached_scan_results = air_contents.analyzer_results
+		//var/cached_scan_results = air_contents.analyzer_results
 
 		if(total_moles > 0)
 			message += "<span class='notice'>Moles: [round(total_moles, 0.01)] mol</span>"
@@ -661,7 +661,7 @@ GENE SCANNER
 
 			for(var/id in air_contents.gases)
 				var/gas_concentration = air_contents.get_moles(id)/total_moles
-				message += "<span class='notice'>[GLOB.gas_data.names[id]]: [round(gas_concentration*100, 0.01)] % ([round(air_contents.get_moles(id), 0.01)] mol)</span>"
+				message += "<span class='notice'>[GLOB.meta_gas_info[id][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] % ([round(air_contents.get_moles(id), 0.01)] mol)</span>"
 			message += "<span class='notice'>Temperature: [round(temperature - T0C,0.01)] &deg;C ([round(temperature, 0.01)] K)</span>"
 
 		else
@@ -671,10 +671,11 @@ GENE SCANNER
 				message += "<span class='notice'>[target] is empty!</span>"
 			message += "<span class='notice'>Volume: [volume] L</span>"
 
-		if(cached_scan_results && cached_scan_results["fusion"]) //notify the user if a fusion reaction was detected
-			var/instability = round(cached_scan_results["fusion"], 0.01)
-			message += "<span class='boldnotice'>Large amounts of free neutrons detected in the air indicate that a fusion reaction took place.</span>"
-			message += "<span class='notice'>Instability of the last fusion reaction: [instability].</span>"
+		// TODO atmos
+		//if(cached_scan_results && cached_scan_results["fusion"]) //notify the user if a fusion reaction was detected
+		//	var/instability = round(cached_scan_results["fusion"], 0.01)
+		//	message += "<span class='boldnotice'>Large amounts of free neutrons detected in the air indicate that a fusion reaction took place.</span>"
+		//	message += "<span class='notice'>Instability of the last fusion reaction: [instability].</span>"
 
 	if(to_chat)
 		to_chat(user, EXAMINE_BLOCK(jointext(message, "\n")), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
@@ -724,7 +725,7 @@ GENE SCANNER
 			if(id in GLOB.hardcoded_gases)
 				continue
 			var/gas_concentration = environment.get_moles(id)/total_moles
-			message += "<span class='alert'>[GLOB.gas_data.names[id]]: [round(gas_concentration*100, 0.01)] % ([round(environment.get_moles(id), 0.01)] mol)</span>"
+			message += "<span class='alert'>[GLOB.meta_gas_info[id][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] % ([round(environment.get_moles(id), 0.01)] mol)</span>"
 		message += "<span class='info'>Temperature: [round(environment.return_temperature()-T0C, 0.01)] &deg;C ([round(environment.return_temperature(), 0.01)] K)</span>"
 	*/ // TODO ATMOS
 	to_chat(user, EXAMINE_BLOCK(jointext(message, "\n")))

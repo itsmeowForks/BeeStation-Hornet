@@ -143,20 +143,20 @@
 /// The amount of energy one mole of pluoxium forming from carbon dioxide, oxygen, and tritium releases.
 #define PLUOXIUM_FORMATION_ENERGY 250
 
-// Nitrium:
-/// The minimum temperature necessary for nitrium to form from tritium, nitrogen, and BZ.
-#define NITRIUM_FORMATION_MIN_TEMP 1500
-/// A scaling divisor for the rate of nitrium formation relative to mix temperature.
-#define NITRIUM_FORMATION_TEMP_DIVISOR (FIRE_MINIMUM_TEMPERATURE_TO_EXIST * 8)
-/// The amount of thermal energy consumed when a mole of nitrium is formed from tritium, nitrogen, and BZ.
-#define NITRIUM_FORMATION_ENERGY 100000
+// Nitryl:
+/// The minimum temperature necessary for nitryl to form from tritium, nitrogen, and BZ.
+#define NITRYL_FORMATION_MIN_TEMP 1500
+/// A scaling divisor for the rate of nitryl formation relative to mix temperature.
+#define NITRYL_FORMATION_TEMP_DIVISOR (FIRE_MINIMUM_TEMPERATURE_TO_EXIST * 8)
+/// The amount of thermal energy consumed when a mole of nitryl is formed from tritium, nitrogen, and BZ.
+#define NITRYL_FORMATION_ENERGY 100000
 
-/// The maximum temperature nitrium can decompose into nitrogen and hydrogen at.
-#define NITRIUM_DECOMPOSITION_MAX_TEMP (T0C + 70) //Pretty warm, explicitly not fire temps. Time bombs are cool, but not that cool. If it makes you feel any better it's close.
-/// A scaling divisor for the rate of nitrium decomposition relative to mix temperature.
-#define NITRIUM_DECOMPOSITION_TEMP_DIVISOR (FIRE_MINIMUM_TEMPERATURE_TO_EXIST * 8)
-/// The amount of energy released when a mole of nitrium decomposes into nitrogen and hydrogen.
-#define NITRIUM_DECOMPOSITION_ENERGY 30000
+/// The maximum temperature nitryl can decompose into nitrogen and hydrogen at.
+#define NITRYL_DECOMPOSITION_MAX_TEMP (T0C + 70) //Pretty warm, explicitly not fire temps. Time bombs are cool, but not that cool. If it makes you feel any better it's close.
+/// A scaling divisor for the rate of nitryl decomposition relative to mix temperature.
+#define NITRYL_DECOMPOSITION_TEMP_DIVISOR (FIRE_MINIMUM_TEMPERATURE_TO_EXIST * 8)
+/// The amount of energy released when a mole of nitryl decomposes into nitrogen and hydrogen.
+#define NITRYL_DECOMPOSITION_ENERGY 30000
 
 // Freon:
 /// The minimum temperature freon can form from plasma, CO2, and BZ at.
@@ -195,13 +195,13 @@
 #define HEALIUM_FORMATION_ENERGY 9000
 
 // Zauker:
-/// The minimum temperature zauker can form from hyper-noblium and nitrium at.
+/// The minimum temperature zauker can form from hyper-noblium and nitryl at.
 #define ZAUKER_FORMATION_MIN_TEMPERATURE 50000
-/// The maximum temperature zauker can form from hyper-noblium and nitrium at.
+/// The maximum temperature zauker can form from hyper-noblium and nitryl at.
 #define ZAUKER_FORMATION_MAX_TEMPERATURE 75000
 /// The temperature scaling factor for zauker formation. At most this many moles of zauker can form per reaction tick per kelvin.
 #define ZAUKER_FORMATION_TEMPERATURE_SCALE 5e-6
-/// The amount of energy half a mole of zauker forming from hypernoblium and nitrium consumes.
+/// The amount of energy half a mole of zauker forming from hypernoblium and nitryl consumes.
 #define ZAUKER_FORMATION_ENERGY 5000
 
 /// The maximum number of moles of zauker that can decompose per reaction tick.

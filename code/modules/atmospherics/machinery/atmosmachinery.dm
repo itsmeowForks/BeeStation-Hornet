@@ -20,21 +20,23 @@
 	resistance_flags = FIRE_PROOF
 	max_integrity = 200
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
-	armor_type = /datum/armor/machinery_atmospherics
 
 	///Check if the object can be unwrenched
 	var/can_unwrench = FALSE
 	///Bitflag of the initialized directions (NORTH | SOUTH | EAST | WEST)
 	var/initialize_directions = 0
 	///The color of the pipe
-	var/pipe_color = COLOR_VERY_LIGHT_GRAY
+	var/pipe_color
 	///What layer the pipe is in (from 1 to 5, default 3)
 	var/piping_layer = PIPING_LAYER_DEFAULT
 	///The flags of the pipe/component (PIPING_ALL_LAYER | PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY | PIPING_CARDINAL_AUTONORMALIZE)
 	var/pipe_flags = NONE
 
-	///This only works on pipes, because they have 1000 subtypes wich need to be visible and invisible under tiles, so we track this here
+	///This only works on pipes, because they have 1000 subtypes which need to be visible and invisible under tiles, so we track this here
 	var/hide = TRUE
+
+	var/static/list/iconsetids = list()
+	var/static/list/pipeimages = list()
 
 	///The image of the pipe/device used for ventcrawling
 	var/image/pipe_vision_img = null
@@ -52,41 +54,21 @@
 	var/on = FALSE
 
 	///Whether it can be painted
-	var/paintable = TRUE
+	var/paintable = FALSE
 
 	///Is the thing being rebuilt by SSair or not. Prevents list bloat
 	var/rebuilding = FALSE
 
-	///The bitflag that's being checked on ventcrawling. Default is to allow ventcrawling and seeing pipes.
-	var/vent_movement = VENTCRAWL_ALLOWED | VENTCRAWL_CAN_SEE
-
-	///keeps the name of the object from being overridden if it's vareditted.
-	var/override_naming
-
 	///If we should init and immediately start processing
 	var/init_processing = FALSE
 
-	armor_type = /datum/armor/machinery_atmospherics
-
-/datum/armor/machinery_atmospherics
-	melee = 25
-	bullet = 10
-	laser = 10
-	energy = 100
-	fire = 100
-	acid = 70
-
-/obj/machinery/atmospherics/LateInitialize()
-	. = ..()
-	update_name()
-
 /obj/machinery/atmospherics/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] is on layer [piping_layer].")
-	if((vent_movement & VENTCRAWL_ENTRANCE_ALLOWED) && isliving(user))
+	. += "<span class='notice'>[src] is on layer [piping_layer].</span>"
+	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
 		var/mob/living/L = user
-		if(HAS_TRAIT(L, TRAIT_VENTCRAWLER_NUDE) || HAS_TRAIT(L, TRAIT_VENTCRAWLER_ALWAYS))
-			. += span_notice("Alt-click to crawl through it.")
+		if(L.ventcrawler)
+			. += "<span class='notice'>Alt-click to crawl through it.</span>"
 
 /obj/machinery/atmospherics/New(loc, process = TRUE, setdir, init_dir = ALL_CARDINALS)
 	if(!isnull(setdir))
@@ -94,13 +76,13 @@
 	if(pipe_flags & PIPING_CARDINAL_AUTONORMALIZE)
 		normalize_cardinal_directions()
 	nodes = new(device_type)
+	if (!armor)
+		armor = list(MELEE = 25,  BULLET = 10, LASER = 10, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 100, ACID = 70, STAMINA = 0)
 	init_processing = process
 	..()
 	set_init_directions(init_dir)
 
 /obj/machinery/atmospherics/Initialize(mapload)
-	if(mapload && name != initial(name))
-		override_naming = TRUE
 	if(init_processing)
 		SSair.start_processing_machine(src)
 	return ..()
@@ -116,7 +98,6 @@
 		qdel(pipe_vision_img)
 
 	return ..()
-	//return QDEL_HINT_FINDREFERENCE
 
 /**
  * Run when you update the conditions in which an /atom might want to start reacting to its turf's air
@@ -131,12 +112,13 @@
 	var/datum/gas_mixture/turf_gas = open_loc.air
 	if(isnull(turf_gas))
 		return
-	check_atmos_process(open_loc, turf_gas, turf_gas.temperature)
+	// TODO atmos
+	//check_atmos_process(open_loc, turf_gas, turf_gas.temperature)
 
 /turf/open/atmos_conditions_changed()
 	if(isnull(air))
 		return
-	check_atmos_process(src, air, air.temperature)
+	//check_atmos_process(src, air, air.temperature)
 
 /**
  * Called by the machinery disconnect(), custom for each type
@@ -146,7 +128,8 @@
 
 /obj/machinery/atmospherics/proc/set_on(active)
 	on = active
-	SEND_SIGNAL(src, COMSIG_ATMOS_MACHINE_SET_ON, on)
+	// TODO atmos
+	//SEND_SIGNAL(src, COMSIG_ATMOS_MACHINE_SET_ON, on)
 
 /// This should only be called by SSair as part of the rebuild queue.
 /// Handles rebuilding pipelines after init or they've been changed.
@@ -285,7 +268,7 @@
 	return TRUE
 
 /**
- * check if the piping layer and color are the same on both sides (grey can connect to all colors)
+ * check if the piping laye are the same on both sides
  * returns TRUE or FALSE if the connection is possible or not
  * Arguments:
  * * obj/machinery/atmospherics/target - the machinery we want to connect to
@@ -294,20 +277,9 @@
 /obj/machinery/atmospherics/proc/is_connectable(obj/machinery/atmospherics/target, given_layer)
 	if(isnull(given_layer))
 		given_layer = piping_layer
-
-	// you cant place the machine on the same location as the target cause it blocks
-	if(target.loc == loc)
-		return FALSE
-
-	//if the target is not in the same piping layer & it does not have the all layer connection flag[which allows it to be connected regardless of layer] then we are out
-	if(target.piping_layer != given_layer && !(target.pipe_flags & PIPING_ALL_LAYER))
-		return FALSE
-
-	//if the target does not have the same color and it does not have all color connection flag[which allows it to be connected regardless of color] & one of the pipes is not gray[allowing for connection regardless] then we are out
-	if(target.pipe_color != pipe_color && !((target.pipe_flags | pipe_flags) & PIPING_ALL_COLORS) && target.pipe_color != COLOR_VERY_LIGHT_GRAY && pipe_color != COLOR_VERY_LIGHT_GRAY)
-		return FALSE
-
-	return TRUE
+	if((target.piping_layer == given_layer) || (target.pipe_flags & PIPING_ALL_LAYER))
+		return TRUE
+	return FALSE
 
 /**
  * Called on construction and when expanding the datum_pipeline, returns the nodes of the device
@@ -383,44 +355,28 @@
 	add_fingerprint(user)
 
 	var/unsafe_wrenching = FALSE
-	var/internal_pressure = int_air.return_pressure() - env_air.return_pressure()
-	var/empty_pipe = FALSE
-	if(istype(src, /obj/machinery/atmospherics/components))
-		var/list/datum/gas_mixture/all_gas_mixes = return_analyzable_air()
-		var/empty_mixes = 0
-		for(var/gas_mix_number in 1 to device_type)
-			var/datum/gas_mixture/gas_mix = all_gas_mixes[gas_mix_number]
-			if(!gas_mix.total_moles())
-				empty_mixes++
-			if(!nodes[gas_mix_number] || (istype(nodes[gas_mix_number], /obj/machinery/atmospherics/components/unary/portables_connector) && !portable_device_connected(gas_mix_number)))
-				var/pressure_delta = all_gas_mixes[gas_mix_number].return_pressure() - env_air.return_pressure()
-				internal_pressure = internal_pressure > pressure_delta ? internal_pressure : pressure_delta
-		if(empty_mixes == device_type)
-			empty_pipe = TRUE
-	if(!int_air.total_moles())
-		empty_pipe = TRUE
+	var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
 
-	if(!empty_pipe)
-		to_chat(user, span_notice("You begin to unfasten \the [src]..."))
+	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 
-	if (internal_pressure > 2 * ONE_ATMOSPHERE)
-		to_chat(user, span_warning("As you begin unwrenching \the [src] a gush of air blows in your face... maybe you should reconsider?"))
+	if (internal_pressure > 2*ONE_ATMOSPHERE)
+		to_chat(user, "<span class='warning'>As you begin unwrenching \the [src] a gush of air blows in your face... maybe you should reconsider?</span>")
 		unsafe_wrenching = TRUE //Oh dear oh dear
 
-	if(I.use_tool(src, user, empty_pipe ? 0 : 2 SECONDS, volume = 50))
+	if(I.use_tool(src, user, 20, volume=50))
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
-			span_notice("You unfasten \the [src]."), \
-			span_hear("You hear ratchet."))
-		investigate_log("was [span_warning("REMOVED")] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			"<span class='notice'>You unfasten \the [src].</span>", \
+			"<span class='italics'>You hear ratchet.</span>")
+		investigate_log("was <span class='warning'>REMOVED</span> by [key_name(usr)]", INVESTIGATE_ATMOS)
 
 		//You unwrenched a pipe full of pressure? Let's splat you into the wall, silly.
 		if(unsafe_wrenching)
 			unsafe_pressure_release(user, internal_pressure)
-		deconstruct(TRUE)
-		return ITEM_INTERACT_SUCCESS
-
-	return ITEM_INTERACT_BLOCKING
+			if (user.client)
+				user.client.give_award(/datum/award/achievement/misc/pressure, user)
+		return deconstruct(TRUE)
+	return TRUE
 
 /**
  * Getter for can_unwrench
@@ -449,7 +405,7 @@
 		var/datum/gas_mixture/env_air = loc.return_air()
 		pressures = int_air.return_pressure() - env_air.return_pressure()
 
-	user.visible_message(span_danger("[user] is sent flying by pressure!"),span_userdanger("The pressure sends you flying!"))
+	user.visible_message("<span class='danger'>[user] is sent flying by pressure!</span>", "<span class='danger'>The pressure sends you flying!</span>")
 
 	// if get_dir(src, user) is not 0, target is the edge_target_turf on that dir
 	// otherwise, edge_target_turf uses a random cardinal direction
@@ -463,7 +419,7 @@
  * Called by wrench_act(), create a pipe fitting and remove the pipe
  */
 /obj/machinery/atmospherics/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
+	if(!(obj_flags & NODECONSTRUCT_1))
 		if(can_unwrench)
 			var/obj/item/pipe/stored = new construction_type(loc, null, dir, src, pipe_color)
 			stored.set_piping_layer(piping_layer)
@@ -485,13 +441,22 @@
  * * piping_layer - the piping_layer the device is in, used inside PIPING_LAYER_SHIFT
  * * trinary - if TRUE we also use PIPING_FORWARD_SHIFT on layer 1 and 5 for trinary devices (filters and mixers)
  */
-/obj/machinery/atmospherics/proc/get_pipe_image(iconfile, iconstate, direction, color = COLOR_VERY_LIGHT_GRAY, piping_layer = 3, trinary = FALSE)
-	var/image/pipe_overlay = image(iconfile, iconstate, dir = direction)
-	pipe_overlay.color = color
-	PIPING_LAYER_SHIFT(pipe_overlay, piping_layer)
-	if(trinary == TRUE && (piping_layer == 1 || piping_layer == 5))
-		PIPING_FORWARD_SHIFT(pipe_overlay, piping_layer, 2)
-	return pipe_overlay
+/obj/machinery/atmospherics/proc/get_pipe_image(iconfile, iconstate, direction, color = rgb(255,255,255), piping_layer = 3, trinary = FALSE)
+
+	//Add identifiers for the iconset
+	if(iconsetids[iconset] == null)
+		iconsetids[iconset] = num2text(iconsetids.len + 1)
+
+	//Generate a unique identifier for this image combination
+	var/identifier = iconsetids[iconset] + "_[iconstate]_[direction]_[col]_[piping_layer]"
+
+	if((!(. = pipeimages[identifier])))
+		var/image/pipe_overlay
+		pipe_overlay = . = pipeimages[identifier] = image(iconset, iconstate, dir = direction)
+		pipe_overlay.color = col
+		PIPING_LAYER_SHIFT(pipe_overlay, piping_layer)
+		if(trinary && (piping_layer == 1 || piping_layer == 5))
+			PIPING_FORWARD_SHIFT(pipe_overlay, piping_layer, 2)
 
 /obj/machinery/atmospherics/on_construction(mob/user, obj_color, set_layer = PIPING_LAYER_DEFAULT)
 	if(can_unwrench)
@@ -505,18 +470,8 @@
 		A.add_member(src)
 	SSair.add_to_rebuild_queue(src)
 
-/obj/machinery/atmospherics/update_name()
-	if(!override_naming)
-		name = "[GLOB.pipe_color_name[pipe_color]] [initial(name)]"
-	return ..()
-
-/obj/machinery/atmospherics/vv_edit_var(vname, vval)
-	if(vname == NAMEOF(src, name))
-		override_naming = TRUE
-	return ..()
-
 /obj/machinery/atmospherics/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	if(isliving(arrived))
+	if(istype(arrived, /mob/living))
 		var/mob/living/L = arrived
 		L.ventcrawl_layer = piping_layer
 	return ..()
@@ -528,63 +483,43 @@
 
 #define VENT_SOUND_DELAY 30
 
-// Handles mob movement inside a pipenet
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)
-	if(!direction) //cant go this way.
+	if(!direction || !(direction in GLOB.cardinals_multiz)) //cant go this way.
 		return
 	if(user in buckled_mobs)// fixes buckle ventcrawl edgecase fuck bug
 		return
+	var/obj/machinery/atmospherics/target_move = findConnecting(direction, user.ventcrawl_layer)
+	if(target_move)
+		if(target_move.can_crawl_through())
+			if(is_type_in_typecache(target_move, GLOB.ventcrawl_machinery))
+				user.forceMove(target_move.loc) //handle entering and so on.
+				user.visible_message("<span class='notice'>You hear something squeezing through the ducts...</span>", "<span class='notice'>You climb out the ventilation system.")
+			else
+				var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
+				if(pipenetdiff.len)
+					user.update_pipe_vision(target_move)
+				user.forceMove(target_move)
+				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
+				if(world.time - user.last_played_vent > VENT_SOUND_DELAY)
+					user.last_played_vent = world.time
+					playsound(src, 'sound/machines/ventcrawl.ogg', 50, 1, -3)
+					if(prob(1))
+						audible_message("<span class='warning'>You hear something crawling through the ducts...</span>")
+	else if(is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
+		user.forceMove(loc)
+		user.visible_message("<span class='notice'>You hear something squeezing through the ducts...</span>", "<span class='notice'>You climb out the ventilation system.")
 
-	// We want to support holding two directions at once, so we do this
-	var/obj/machinery/atmospherics/target_move
-	for(var/canon_direction in GLOB.cardinals_multiz)
-		if(!(direction & canon_direction))
-			continue
-		var/obj/machinery/atmospherics/temp_target = find_connecting(canon_direction, user.ventcrawl_layer)
-		if(!temp_target)
-			continue
-		target_move = temp_target
-		// If you're at a fork with two directions held, we will always prefer the direction you didn't last use
-		// This way if you find a direction you've not used before, you take it, and if you don't, you take the other
-		if(user.last_vent_dir == canon_direction)
-			continue
-		user.last_vent_dir = canon_direction
-		break
-
-	if(!target_move)
-		return
-
-	if(!(target_move.vent_movement & VENTCRAWL_ALLOWED))
-		return
-	user.forceMove(target_move)
-	var/list/pipenetdiff = return_pipenets() ^ target_move.return_pipenets()
-	if(pipenetdiff.len)
-		user.update_pipe_vision(full_refresh = TRUE)
-	if(world.time - user.last_played_vent > VENT_SOUND_DELAY)
-		user.last_played_vent = world.time
-		playsound(src, 'sound/machines/ventcrawl.ogg', 50, TRUE, -3)
-
-	//Would be great if this could be implemented when someone alt-clicks the image.
-	if (target_move.vent_movement & VENTCRAWL_ENTRANCE_ALLOWED)
-		user.handle_ventcrawl(target_move)
-		return
-
-	var/client/our_client = user.client
-	if(!our_client)
-		return
-	our_client.set_eye(target_move)
-	// Let's smooth out that movement with an animate yeah?
-	// If the new x is greater (move is left to right) we get a negative offset. vis versa
-	our_client.pixel_x = (x - target_move.x) * world.icon_size
-	our_client.pixel_y = (y - target_move.y) * world.icon_size
-	animate(our_client, pixel_x = 0, pixel_y = 0, time = 0.05 SECONDS)
-	our_client.move_delay = world.time + 0.05 SECONDS
+	//PLACEHOLDER COMMENT FOR ME TO READD THE 1 (?) DS DELAY THAT WAS IMPLEMENTED WITH A... TIMER?
 
 /obj/machinery/atmospherics/AltClick(mob/living/L)
-	if(vent_movement & VENTCRAWL_ALLOWED && istype(L))
+	. = ..()
+	if(istype(L) && is_type_in_list(src, GLOB.ventcrawl_machinery))
 		L.handle_ventcrawl(src)
 		return
-	return ..()
+
+/// Whether ventcrawling creatures can move in or out of this machine.
+/obj/machinery/atmospherics/proc/can_crawl_through()
+	return TRUE
 
 /**
  * Getter of a list of pipenets
@@ -595,7 +530,7 @@
 	return list()
 
 /obj/machinery/atmospherics/update_remote_sight(mob/user)
-	user.add_sight(SEE_TURFS|BLIND)
+	user.sight |= (SEE_TURFS|BLIND)
 
 /**
  * Used for certain children of obj/machinery/atmospherics to not show pipe vision when mob is inside it.
@@ -607,7 +542,7 @@
  * Update the layer in which the pipe/device is in, that way pipes have consistent layer depending on piping_layer
  */
 /obj/machinery/atmospherics/proc/update_layer()
-	return
+	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE
 
 /**
  * Called by the RPD.dm pre_attack()
@@ -615,22 +550,6 @@
  * * paint_color - color that the pipe will be painted in (colors in hex like #4f4f4f)
  */
 /obj/machinery/atmospherics/proc/paint(paint_color)
-	if(paintable)
-		add_atom_colour(paint_color, FIXED_COLOUR_PRIORITY)
-		set_pipe_color(paint_color)
-		update_node_icon()
-	return paintable
-
-/// Setter for pipe color, so we can ensure it's all uniform and save cpu time
-/obj/machinery/atmospherics/proc/set_pipe_color(pipe_colour)
-	src.pipe_color = uppertext(pipe_colour)
-	update_name()
-
-/// Return TRUE if there is device connected to portables_connector
-/obj/machinery/atmospherics/proc/portable_device_connected(node)
-	var/obj/machinery/atmospherics/components/unary/portables_connector/portable_devices_connector = nodes[node]
-	if(portable_devices_connector.connected_device)
-		return TRUE
 	return FALSE
 
 #undef PIPE_VISIBLE_LEVEL
