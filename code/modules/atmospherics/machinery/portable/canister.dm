@@ -166,7 +166,7 @@
 /obj/machinery/portable_atmospherics/canister/nob
 	name = "hyper-noblium canister"
 	desc = "Hyper-Noblium. More noble than all other gases."
-	gas_type = GAS_HYPERNOB
+	gas_type = GAS_HYPER_NOBLIUM
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#6399fc#b2b2b2"
 

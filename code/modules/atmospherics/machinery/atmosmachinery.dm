@@ -444,16 +444,16 @@
 /obj/machinery/atmospherics/proc/get_pipe_image(iconfile, iconstate, direction, color = rgb(255,255,255), piping_layer = 3, trinary = FALSE)
 
 	//Add identifiers for the iconset
-	if(iconsetids[iconset] == null)
-		iconsetids[iconset] = num2text(iconsetids.len + 1)
+	if(iconsetids[iconfile] == null)
+		iconsetids[iconfile] = num2text(iconsetids.len + 1)
 
 	//Generate a unique identifier for this image combination
-	var/identifier = iconsetids[iconset] + "_[iconstate]_[direction]_[col]_[piping_layer]"
+	var/identifier = iconsetids[iconfile] + "_[iconstate]_[direction]_[color]_[piping_layer]"
 
 	if((!(. = pipeimages[identifier])))
 		var/image/pipe_overlay
-		pipe_overlay = . = pipeimages[identifier] = image(iconset, iconstate, dir = direction)
-		pipe_overlay.color = col
+		pipe_overlay = . = pipeimages[identifier] = image(iconfile, iconstate, dir = direction)
+		pipe_overlay.color = color
 		PIPING_LAYER_SHIFT(pipe_overlay, piping_layer)
 		if(trinary && (piping_layer == 1 || piping_layer == 5))
 			PIPING_FORWARD_SHIFT(pipe_overlay, piping_layer, 2)
@@ -461,7 +461,7 @@
 /obj/machinery/atmospherics/on_construction(mob/user, obj_color, set_layer = PIPING_LAYER_DEFAULT)
 	if(can_unwrench)
 		add_atom_colour(obj_color, FIXED_COLOUR_PRIORITY)
-		set_pipe_color(obj_color)
+		//set_pipe_color(obj_color) // TODO ATMOS
 	set_piping_layer(set_layer)
 	atmos_init()
 	var/list/nodes = pipeline_expansion()
@@ -495,7 +495,7 @@
 				user.forceMove(target_move.loc) //handle entering and so on.
 				user.visible_message("<span class='notice'>You hear something squeezing through the ducts...</span>", "<span class='notice'>You climb out the ventilation system.")
 			else
-				var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
+				var/list/pipenetdiff = return_pipenet() ^ target_move.return_pipenet()
 				if(pipenetdiff.len)
 					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)

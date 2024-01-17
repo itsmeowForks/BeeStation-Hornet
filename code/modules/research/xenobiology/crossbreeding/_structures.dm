@@ -189,8 +189,9 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	for(var/turf/open/T in view(2, src))
 		if(isspaceturf(T))
 			continue
-		var/datum/gas_mixture/gas = T.return_air()
-		gas.parse_gas_string(OPENTURF_DEFAULT_ATMOS)
+		// TODO ATMOS
+		//var/datum/gas_mixture/gas = T.return_air()
+		//gas.parse_gas_string(OPENTURF_DEFAULT_ATMOS)
 		T.air_update_turf()
 
 /obj/structure/slime_crystal/metal

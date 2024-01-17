@@ -34,7 +34,7 @@
 	. = ..()
 	. += "<span class='notice'>[src] is on layer [piping_layer].</span>"
 
-/obj/machinery/atmospherics/pipe/nullifyNode(i)
+/obj/machinery/atmospherics/pipe/nullify_node(i)
 	var/obj/machinery/atmospherics/oldN = nodes[i]
 	..()
 	if(oldN)
@@ -76,7 +76,7 @@
 	else
 		return ..()
 
-/obj/machinery/atmospherics/pipe/returnPipenet()
+/obj/machinery/atmospherics/pipe/return_pipenet()
 	if(parent)
 		return parent.air
 
@@ -103,7 +103,7 @@
 			var/obj/machinery/atmospherics/N = nodes[i]
 			N.update_icon()
 
-/obj/machinery/atmospherics/pipe/returnPipenets()
+/obj/machinery/atmospherics/pipe/return_pipenets()
 	. = list(parent)
 
 /obj/machinery/atmospherics/pipe/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)

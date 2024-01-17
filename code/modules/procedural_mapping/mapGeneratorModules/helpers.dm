@@ -9,6 +9,8 @@
 /datum/mapGeneratorModule/bottomLayer/repressurize/generate()
 	if(!mother)
 		return
+		// TODO ATMOS
+		/*
 	var/list/map = mother.map
 	for(var/turf/open/T in map)
 		if(T.air)
@@ -16,7 +18,7 @@
 				T.air.parse_gas_string(T.initial_gas_mix)
 				T.set_temperature(T.air.return_temperature())
 			else
-				T.air.copy_from_turf(T)
+				T.air.copy_from_turf(T)*/
 
 /datum/mapGeneratorModule/bottomLayer/massdelete
 	spawnableAtoms = list()

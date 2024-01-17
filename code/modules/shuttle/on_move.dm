@@ -73,9 +73,9 @@ All ShuttleMove procs go here
 
 	if(isopenturf(src))
 		var/turf/open/after_src_terf = src
-		update_air_ref(isspaceturf(src) ? 0 : (after_src_terf.planetary_atmos ? 1 : 2))
+		// TODO ATMOS update_air_ref(isspaceturf(src) ? 0 : (after_src_terf.planetary_atmos ? 1 : 2))
 	else
-		update_air_ref(-1)
+		// TODO ATMOS update_air_ref(-1)
 
 	//Air stuff
 	newT.air_update_turf(TRUE)
@@ -269,7 +269,7 @@ All ShuttleMove procs go here
 					break
 
 			if(!connected)
-				nullifyNode(i)
+				nullify_node(i)
 
 		if(!nodes[i])
 			missing_nodes = TRUE
@@ -278,7 +278,7 @@ All ShuttleMove procs go here
 		atmos_init()
 		for(var/obj/machinery/atmospherics/A in pipeline_expansion())
 			A.atmos_init()
-			if(A.returnPipenet())
+			if(A.return_pipenet())
 				A.add_member(src)
 		SSair.add_to_rebuild_queue(src)
 	else

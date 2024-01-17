@@ -220,9 +220,10 @@
 	requires_processing = TRUE
 
 /datum/artifact_effect/atmosfix/process(delta_time)
-	var/turf/T = get_turf(source_object)
-	var/datum/gas_mixture/air = T.return_air()
-	air.parse_gas_string(T.initial_gas_mix)
+// TODO ATMOS
+	//var/turf/T = get_turf(source_object)
+	//var/datum/gas_mixture/air = T.return_air()
+	//air.parse_gas_string(T.initial_gas_mix)
 
 //===================
 // Gravity Well

@@ -150,7 +150,7 @@
 
 /turf/open/temperature_expose(datum/gas_mixture/air, exposed_temperature)
 	SEND_SIGNAL(src, COMSIG_TURF_EXPOSE, air, exposed_temperature)
-	check_atmos_process(src, air, exposed_temperature) //Manually do this to avoid needing to use elements, don't want 200 second atom init times
+	// TODO ATMOS check_atmos_process(src, air, exposed_temperature) //Manually do this to avoid needing to use elements, don't want 200 second atom init times
 
 /turf/proc/archive()
 	temperature_archived = temperature
@@ -526,6 +526,7 @@
 	if(SSair.currentpart == SSAIR_EXCITEDGROUPS)
 		SSair.currentrun -= src
 
+// todo atmos
 /datum/excited_group/proc/display_turfs()
 	if(display_id == 0) //Hasn't been shown before
 		wrapping_id = wrapping_id % GLOB.colored_turfs.len
@@ -533,14 +534,14 @@
 		display_id = wrapping_id
 	for(var/thing in turf_list)
 		var/turf/display = thing
-		var/offset = GET_Z_PLANE_OFFSET(display.z) + 1
-		display.vis_contents += GLOB.colored_turfs[display_id][offset]
+		//var/offset = GET_Z_PLANE_OFFSET(display.z) + 1
+		display.vis_contents += GLOB.colored_turfs[display_id][1]
 
 /datum/excited_group/proc/hide_turfs()
 	for(var/thing in turf_list)
 		var/turf/display = thing
-		var/offset = GET_Z_PLANE_OFFSET(display.z) + 1
-		display.vis_contents -= GLOB.colored_turfs[display_id][offset]
+		//var/offset = GET_Z_PLANE_OFFSET(display.z) + 1
+		display.vis_contents -= GLOB.colored_turfs[display_id][1]
 	display_id = 0
 
 /datum/excited_group/proc/display_turf(turf/thing)
@@ -548,8 +549,8 @@
 		wrapping_id = wrapping_id % GLOB.colored_turfs.len
 		wrapping_id++ //We do this after because lists index at 1
 		display_id = wrapping_id
-	var/offset = GET_Z_PLANE_OFFSET(thing.z) + 1
-	thing.vis_contents += GLOB.colored_turfs[display_id][offset]
+	//var/offset = GET_Z_PLANE_OFFSET(thing.z) + 1
+	thing.vis_contents += GLOB.colored_turfs[display_id][1]
 
 ////////////////////////SUPERCONDUCTIVITY/////////////////////////////
 

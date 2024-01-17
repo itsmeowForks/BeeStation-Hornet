@@ -187,7 +187,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/reload_configuration,
 	/client/proc/give_all_spells,
 	/datum/admins/proc/create_or_modify_area,
-	/datum/admins/proc/fixcorruption,
+	// TODO ATMOS /datum/admins/proc/fixcorruption,
 	#ifdef TESTING
 	/client/proc/run_dynamic_simulations,
 	#endif

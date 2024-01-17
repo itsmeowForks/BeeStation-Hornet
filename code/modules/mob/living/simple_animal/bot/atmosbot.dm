@@ -54,7 +54,7 @@
 	var/list/gasses = list(
 		GAS_BZ = 1,
 		GAS_CO2 = 1,
-		GAS_HYPERNOB = 1,
+		GAS_HYPER_NOBLIUM = 1,
 		GAS_N2O = 1,
 		GAS_NITRYL = 1,
 		GAS_PLASMA = 1,

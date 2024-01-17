@@ -23,8 +23,8 @@
 		var/fill = list()
 		to_return += list(fill)
 		for(var/j in 1 to TOTAL_VISIBLE_STATES)
-			var/obj/effect/overlay/gas/gas = new (gas.gas_overlay, log(4, (j+0.4*TOTAL_VISIBLE_STATES) / (0.35*TOTAL_VISIBLE_STATES)) * 255)
-			fill += gas
+			var/obj/effect/overlay/gas/new_gas = new (gas.gas_overlay, log(4, (j+0.4*TOTAL_VISIBLE_STATES) / (0.35*TOTAL_VISIBLE_STATES)) * 255)
+			fill += new_gas
 	return to_return
 
 /proc/gas_id2path(id)

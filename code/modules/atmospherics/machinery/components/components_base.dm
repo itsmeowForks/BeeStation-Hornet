@@ -53,9 +53,9 @@
 	SIGNAL_HANDLER
 	showpipe = !!underfloor_accessibility
 	if(showpipe)
-		REMOVE_TRAIT(src, TRAIT_UNDERFLOOR, REF(src))
+		// TODO ATMOS REMOVE_TRAIT(src, TRAIT_UNDERFLOOR, REF(src))
 	else
-		ADD_TRAIT(src, TRAIT_UNDERFLOOR, REF(src))
+		// TODO ATMOS ADD_TRAIT(src, TRAIT_UNDERFLOOR, REF(src))
 	update_appearance()
 
 /obj/machinery/atmospherics/components/update_icon()
@@ -64,7 +64,7 @@
 	underlays.Cut()
 
 	color = null
-	SET_PLANE_IMPLICIT(src, showpipe ? GAME_PLANE : FLOOR_PLANE)
+	// TODO ATMOS SET_PLANE_IMPLICIT(src, showpipe ? GAME_PLANE : FLOOR_PLANE)
 
 	if(!showpipe)
 		return ..()
@@ -216,7 +216,7 @@
 /obj/machinery/atmospherics/components/ui_status(mob/user)
 	if(allowed(user))
 		return ..()
-	to_chat(user, span_danger("Access denied."))
+	to_chat(user, "<span class='danger'>Access denied.</span>")
 	return UI_CLOSE
 
 // Tool acts
@@ -230,7 +230,7 @@
 /obj/machinery/atmospherics/components/proc/crowbar_deconstruction_act(mob/living/user, obj/item/tool, internal_pressure = 0)
 	if(!panel_open)
 		balloon_alert(user, "open panel!")
-		return ITEM_INTERACT_SUCCESS
+		return TRUE // TODO ATMOS
 
 	var/unsafe_wrenching = FALSE
 	var/filled_pipe = FALSE
@@ -245,14 +245,14 @@
 
 	if(!filled_pipe)
 		default_deconstruction_crowbar(tool)
-		return ITEM_INTERACT_SUCCESS
+		return TRUE
 
-	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
+	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 
 	internal_pressure -= environment_air.return_pressure()
 
 	if(internal_pressure > 2 * ONE_ATMOSPHERE)
-		to_chat(user, span_warning("As you begin deconstructing \the [src] a gush of air blows in your face... maybe you should reconsider?"))
+		to_chat(user, "<span class='warning'>As you begin deconstructing \the [src] a gush of air blows in your face... maybe you should reconsider?</span>")
 		unsafe_wrenching = TRUE
 
 	if(!do_after(user, 2 SECONDS, src))
@@ -261,7 +261,7 @@
 		unsafe_pressure_release(user, internal_pressure)
 	tool.play_tool_sound(src, 50)
 	deconstruct(TRUE)
-	return ITEM_INTERACT_SUCCESS
+	return TRUE
 
 /obj/machinery/atmospherics/components/default_change_direction_wrench(mob/user, obj/item/I)
 	. = ..()
@@ -327,7 +327,7 @@
 	connect_nodes()
 
 /obj/machinery/atmospherics/components/update_layer()
-	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE + (GLOB.pipe_colors_ordered[pipe_color] * 0.001)
+	// TODO ATMOS layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE + (GLOB.pipe_colors_ordered[pipe_color] * 0.001)
 
 /**
  * Handles air relocation to the pipenet/environment
@@ -336,7 +336,7 @@
 	var/turf/local_turf = get_turf(src)
 	for(var/i in 1 to device_type)
 		var/datum/gas_mixture/air = airs[i]
-		if(!nodes[i] || (istype(nodes[i], /obj/machinery/atmospherics/components/unary/portables_connector) && !portable_device_connected(i)))
+		if(!nodes[i] || (istype(nodes[i], /obj/machinery/atmospherics/components/unary/portables_connector))) // TODO ATMOS
 			if(!to_release)
 				to_release = air
 				continue

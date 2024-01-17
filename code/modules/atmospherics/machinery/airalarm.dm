@@ -98,7 +98,7 @@
 		GAS_PLASMA			= new/datum/tlv/dangerous,
 		GAS_NITROUS	= new/datum/tlv/dangerous,
 		GAS_BZ				= new/datum/tlv/dangerous,
-		GAS_HYPERNOB		= new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
+		GAS_HYPER_NOBLIUM		= new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
 		GAS_H2O		= new/datum/tlv/dangerous,
 		GAS_TRITIUM			= new/datum/tlv/dangerous,
 		GAS_STIMULUM			= new/datum/tlv/dangerous,
@@ -116,7 +116,7 @@
 		GAS_PLASMA			= new/datum/tlv/no_checks,
 		GAS_NITROUS	= new/datum/tlv/no_checks,
 		GAS_BZ				= new/datum/tlv/no_checks,
-		GAS_HYPERNOB		= new/datum/tlv/no_checks,
+		GAS_HYPER_NOBLIUM		= new/datum/tlv/no_checks,
 		GAS_H2O		= new/datum/tlv/no_checks,
 		GAS_TRITIUM			= new/datum/tlv/no_checks,
 		GAS_STIMULUM			= new/datum/tlv/no_checks,
@@ -134,7 +134,7 @@
 		GAS_PLASMA			= new/datum/tlv/dangerous,
 		GAS_NITROUS	= new/datum/tlv/dangerous,
 		GAS_BZ				= new/datum/tlv/dangerous,
-		GAS_HYPERNOB		= new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
+		GAS_HYPER_NOBLIUM		= new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
 		GAS_H2O		= new/datum/tlv/dangerous,
 		GAS_TRITIUM			= new/datum/tlv/dangerous,
 		GAS_STIMULUM			= new/datum/tlv/dangerous,
@@ -529,9 +529,9 @@
 					"set_filters" = list(
 						GAS_CO2,
 						GAS_PLASMA,
-						GAS_H2O,
-						GAS_HYPERNOB,
-						GAS_NITROUS,
+						GAS_WATER_VAPOR,
+						GAS_HYPER_NOBLIUM,
+						GAS_N2O,
 						GAS_NITRYL,
 						GAS_TRITIUM,
 						GAS_BZ,
@@ -664,7 +664,7 @@
 	var/temperature_dangerlevel = cur_tlv.get_danger_level(environment.return_temperature())
 
 	var/gas_dangerlevel = 0
-	for(var/gas_id in environment.get_gases())
+	for(var/gas_id in environment.gases)
 		if(!(gas_id in TLV)) // We're not interested in this gas, it seems.
 			continue
 		cur_tlv = TLV[gas_id]
@@ -896,8 +896,8 @@
 			"Temperature" = "temperature"
 		)
 
-		for(var/gas_id in GLOB.gas_data.ids)
-			component_options[GLOB.gas_data.names[gas_id]] = gas_id
+		for(var/gas_id in GLOB.meta_gas_info)
+			component_options[GLOB.meta_gas_info[gas_id][META_GAS_NAME]] = gas_id
 
 	air_alarm_options = add_option_port("Air Alarm Options", component_options)
 	options_map = component_options
